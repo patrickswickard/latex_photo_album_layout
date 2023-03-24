@@ -5,7 +5,7 @@
 
 import json
 
-def print_book():
+def parse_file():
     thisfile = open("photo_urls2.json", 'r')
     thishash = json.load(thisfile)
     thatfile = open('allalbumswithurls2.json', 'r')
@@ -14,8 +14,9 @@ def print_book():
     thatlist = []
     for key in thathash.keys():
       thatlist.append(key)
+    thatlist.sort(key = lambda x: thathash[x]['title'])
     for entry in thatlist:
-        print(thathash[entry]['title'])
+      print(thathash[entry]['title'])
     #print(thatlist)
     thisfile.close()
     thatfile.close()
@@ -23,6 +24,6 @@ def print_book():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_book()
+    parse_file()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
