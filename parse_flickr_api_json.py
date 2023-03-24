@@ -17,7 +17,21 @@ def parse_file():
     thatlist.sort(key = lambda x: thathash[x]['title'])
     for entry in thatlist:
       print(thathash[entry]['title'])
-    #print(thatlist)
+    print('**********')
+    album_title = thathash[thatlist[0]]['title']
+    print(album_title)
+    album_entries = thathash[thatlist[0]]['photoset_hash']
+    print(album_entries)
+    print(album_entries[0].keys())
+    caption = album_entries[0]['title']
+    print(caption)
+    id = album_entries[0]['id']
+    print(id)
+    url = thishash[id]
+    print(url)
+    url2 = album_entries[0]['url']
+    print(url2)
+    # well crap, I thought I had dimensions in one of these hashes, need to figure out that next...
     thisfile.close()
     thatfile.close()
 
