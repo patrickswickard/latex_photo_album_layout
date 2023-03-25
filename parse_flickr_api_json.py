@@ -10,6 +10,8 @@ def parse_file():
     thishash = json.load(thisfile)
     thatfile = open('allalbumswithurls2.json', 'r')
     thathash = json.load(thatfile)
+    theotherfile = open('all_info_file.json', 'r')
+    theotherhash = json.load(theotherfile)
     #print(thishash.keys())
     thatlist = []
     for key in thathash.keys():
@@ -32,8 +34,23 @@ def parse_file():
     url2 = album_entries[0]['url']
     print(url2)
     # well crap, I thought I had dimensions in one of these hashes, need to figure out that next...
+    print('***********************')
+    print('FLICKR ORIGINAL INFO')
+    print('***********************')
+    original_id = theotherhash[id]['id']
+    original_caption = theotherhash[id]['title']
+    original_url = theotherhash[id]['url_o']
+    width = theotherhash[id]['width_o']
+    height = theotherhash[id]['height_o']
+    print(original_id)
+    print(original_url)
+    print(original_caption)
+    print(width)
+    print(height)
+    print(theotherhash[id])
     thisfile.close()
     thatfile.close()
+    theotherfile.close()
 
 
 # Press the green button in the gutter to run the script.
