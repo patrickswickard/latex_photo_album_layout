@@ -4,6 +4,7 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 import json
+import flickr_photo
 
 def parse_file():
     thisfile = open("photo_urls2.json", 'r')
@@ -48,6 +49,13 @@ def parse_file():
     print(width)
     print(height)
     print(theotherhash[id])
+    thisphoto = flickr_photo.Photo(id,original_url,original_caption,width,height)
+    print(thisphoto.id)
+    print(thisphoto.location)
+    print(thisphoto.caption)
+    print(thisphoto.width)
+    print(thisphoto.height)
+    print(thisphoto.orientation)
     thisfile.close()
     thatfile.close()
     theotherfile.close()
