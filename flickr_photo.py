@@ -45,130 +45,337 @@ class Page:
         return True
       return False
 
-    def print_landscape_line(thisfile,filename):
+    def print_landscape_line(self,thisfile,filename):
       thisfile.write('\\includegraphics[width=5.19in]{landscape.jpg}\n')
 
-    def print_caption_line(thisfile,text):
+    def print_caption_line(self,thisfile,text):
       thisfile.write(text +'\\\\\n')
 
-    def print_portrait_line(thisfile, filename):
+    def print_portrait_line(self,thisfile, filename):
       thisfile.write('\\includegraphics[height=4in]{portrait.jpg}\n')
 
-    def print_ll(thisfile,land1,land2,capt_l1,capt_l2):
+    #def print_ll(self,thisfile,land1,land2,capt_l1,capt_l2):
+    def print_ll(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout LL\n')
-      print_landscape_line(thisfile, land1)
+      self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
       thisfile.write('\\vspace{0.25in}\n')
-      print_landscape_line(thisfile, land2)
+      self.print_landscape_line(thisfile, land2)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_l1)
-      print_caption_line(thisfile, capt_l2)
+      self.print_caption_line(thisfile, capt_l1)
+      self.print_caption_line(thisfile, capt_l2)
       thisfile.write('\\pagebreak\n')
 
-    def print_l(thisfile,land1,capt_l1):
+    #def print_l(self,thisfile,land1,capt_l1):
+    def print_l(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout L\n')
-      print_landscape_line(thisfile, land1)
+      self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_l1)
+      self.print_caption_line(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
-    def print_pppp(thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4):
+    #def print_pppp(self,thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4):
+    def print_pppp(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PPPP\n')
-      print_portrait_line(thisfile, port1)
-      print_portrait_line(thisfile, port2)
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-      print_portrait_line(thisfile, port3)
-      print_portrait_line(thisfile, port4)
+      self.print_portrait_line(thisfile, port3)
+      self.print_portrait_line(thisfile, port4)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_p1)
-      print_caption_line(thisfile, capt_p2)
-      print_caption_line(thisfile, capt_p3)
-      print_caption_line(thisfile, capt_p4)
+      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_p2)
+      self.print_caption_line(thisfile, capt_p3)
+      self.print_caption_line(thisfile, capt_p4)
       thisfile.write('\\pagebreak\n')
 
-    def print_ppp(thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3):
+    #def print_ppp(self,thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3):
+    def print_ppp(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PPP\n')
-      print_portrait_line(thisfile, port1)
-      print_portrait_line(thisfile, port2)
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-      print_portrait_line(thisfile, port3)
+      self.print_portrait_line(thisfile, port3)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_p1)
-      print_caption_line(thisfile, capt_p2)
-      print_caption_line(thisfile, capt_p3)
+      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_p2)
+      self.print_caption_line(thisfile, capt_p3)
       thisfile.write('\\pagebreak\n')
 
-    def print_pp(thisfile,port1,port2,capt_p1,capt_p2):
+    #def print_pp(self,thisfile,port1,port2,capt_p1,capt_p2):
+    def print_pp(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PP\n')
-      print_portrait_line(thisfile, port1)
-      print_portrait_line(thisfile, port2)
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_p1)
-      print_caption_line(thisfile, capt_p2)
+      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_p2)
       thisfile.write('\\pagebreak\n')
 
-    def print_p(thisfile,port1,capt_p1):
+    #def print_p(self,thisfile,port1,capt_p1):
+    def print_p(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout P\n')
-      print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
 
-    def print_ppl(thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1):
+    #def print_ppl(self,thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1):
+    def print_ppl(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PPL\n')
-      print_portrait_line(thisfile, port1)
-      print_portrait_line(thisfile, port2)
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
       thisfile.write('\\vspace{0.25in}\n')
-      print_landscape_line(thisfile, land1)
+      self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_p1)
-      print_caption_line(thisfile, capt_p2)
-      print_caption_line(thisfile, capt_l1)
+      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_p2)
+      self.print_caption_line(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
-    def print_lpp(thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2):
+    #def print_lpp(self,thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2):
+    def print_lpp(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout LPP\n')
-      print_landscape_line(thisfile, land1)
+      self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
       thisfile.write('\\vspace{0.25in}\n')
-      print_portrait_line(thisfile, port1)
-      print_portrait_line(thisfile, port2)
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_l1)
-      print_caption_line(thisfile, capt_p1)
-      print_caption_line(thisfile, capt_p2)
+      self.print_caption_line(thisfile, capt_l1)
+      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_p2)
       thisfile.write('\\pagebreak\n')
 
-    def print_pl(thisfile,port1,land1,capt_p1,capt_l1):
+    #def print_pl(self,thisfile,port1,land1,capt_p1,capt_l1):
+    def print_pl(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PL\n')
-      print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
       thisfile.write('\\vspace{0.25in}\n')
-      print_landscape_line(thisfile, land1)
+      self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_p1)
-      print_caption_line(thisfile, capt_l1)
+      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
-    def print_lp(thisfile,land1,port1,capt_l1,capt_p1):
+    #def print_lp(self,thisfile,land1,port1,capt_l1,capt_p1):
+    def print_lp(self,thisfile):
+      land1 = 'landscape.jpg'
+      land2 = 'landscape.jpg'
+      port1 = 'portrait.jpg'
+      port2 = 'portrait.jpg'
+      port3 = 'portrait.jpg'
+      port4 = 'portrait.jpg'
+      capt_l1 = 'CAPTION L1'
+      capt_l2 = 'CAPTION L2'
+      capt_p1 = 'CAPTION P1'
+      capt_p2 = 'CAPTION P2'
+      capt_p3 = 'CAPTION P3'
+      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout LP\n')
-      print_landscape_line(thisfile, land1)
+      self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
       thisfile.write('\\vspace{0.25in}\n')
-      print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-      print_caption_line(thisfile, capt_l1)
-      print_caption_line(thisfile, capt_p1)
+      self.print_caption_line(thisfile, capt_l1)
+      self.print_caption_line(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
+
+class Book:
+    def __init__(self,thisfile):
+      self.page_list = []
+      self.thisfile = thisfile
+
+    def add_page(self,page):
+      self.page_list.append(page)
+
+    def print_book(self):
+      thisfile = self.thisfile
+      self.print_preamble(thisfile)
+      self.print_begin(thisfile)
+      album_title = 'Baltimore 2014-03-20'
+      prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
+      for thispage in self.page_list:
+        # this will take a little thought
+        #land1 = 'landscape.jpg'
+        #land2 = 'landscape.jpg'
+        #port1 = 'portrait.jpg'
+        #port2 = 'portrait.jpg'
+        #port3 = 'portrait.jpg'
+        #port4 = 'portrait.jpg'
+        #capt_l1 = 'CAPTION L1'
+        #capt_l2 = 'CAPTION L2'
+        #capt_p1 = 'CAPTION P1'
+        #capt_p2 = 'CAPTION P2'
+        #capt_p3 = 'CAPTION P3'
+        #capt_p4 = 'CAPTION P4'
+        if thispage.layout == 'LL':
+          #thispage.print_ll(thisfile,land1,land2,capt_l1,capt_l2)
+          thispage.print_ll(thisfile)
+        elif thispage.layout == 'L':
+          #thispage.print_l(thisfile,land1,capt_l1)
+          thispage.print_l(thisfile)
+        elif thispage.layout == 'PPPP':
+          #thispage.print_pppp(thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4)
+          thispage.print_pppp(thisfile)
+        elif thispage.layout == 'PPP':
+          #thispage.print_ppp(thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3)
+          thispage.print_ppp(thisfile)
+        elif thispage.layout == 'PP':
+          #thispage.print_pp(thisfile,port1,port2,capt_p1,capt_p2)
+          thispage.print_pp(thisfile)
+        elif thispage.layout == 'P':
+          #thispage.print_p(thisfile,port1,capt_p1)
+          thispage.print_p(thisfile)
+        elif thispage.layout == 'PPL':
+          #thispage.print_ppl(thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1)
+          thispage.print_ppl(thisfile)
+        elif thispage.layout == 'LPP':
+          #thispage.print_lpp(thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2)
+          thispage.print_lpp(thisfile)
+        elif thispage.layout == 'PL':
+          #thispage.print_pl(thisfile,port1,land1,capt_p1,capt_l1)
+          thispage.print_pl(thisfile)
+        elif thispage.layout == 'LP':
+          #thispage.print_lp(thisfile,land1,port1,capt_l1,capt_p1)
+          thispage.print_lp(thisfile)
+        else:
+          raise 'That did not match any known layouts!'
+      self.print_end(thisfile)
+      thisfile.close()
+
+    def print_preamble(self,thisfile):
+      thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
+      thisfile.write('\\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+      thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
+      thisfile.write("\\usepackage{graphicx}\n")
+      thisfile.write("\\usepackage{float}\n")
+      thisfile.write("\\setlength{\parindent}{0pt}")
+
+    def print_begin(self,thisfile):
+      thisfile.write('\\begin{document}\n')
+
+    def print_end(self,thisfile):
+      thisfile.write('\\end{document}\n')
 
