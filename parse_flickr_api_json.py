@@ -57,8 +57,8 @@ def parse_file():
         current_page.add_photo(thisphoto)
         print("about to add something bad probably!!!")
         print(thisphoto.id)
-      # add final page
-      book_list.append(current_page)
+    # add final page
+    book_list.append(current_page)
 
     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
     my_file = open("splayout2.tex", 'w') 
