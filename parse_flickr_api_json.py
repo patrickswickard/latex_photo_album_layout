@@ -7,7 +7,6 @@ import json
 import flickr_photo
 
 def parse_file():
-    album_number = 7
     thatfile = open('allalbumswithurls2.json', 'r')
     thathash = json.load(thatfile)
     theotherfile = open('all_info_file.json', 'r')
@@ -16,11 +15,13 @@ def parse_file():
     for key in thathash.keys():
       thatlist.append(key)
     thatlist.sort(key = lambda x: thathash[x]['title'])
+    album_number = 7
+    this_album = thatlist[album_number]
     # THIS IS HARD-CODED SO WE JUST DO ONE
-    album_title = thathash[thatlist[album_number]]['title']
+    album_title = thathash[this_album]['title']
     filename = album_title + '.tex'
     # THIS IS HARD-CODED SO WE JUST DO ONE
-    album_entries = thathash[thatlist[album_number]]['photoset_hash']
+    album_entries = thathash[this_album]['photoset_hash']
     photo_list = []
     for thisphoto in album_entries:
       caption = thisphoto['title']
