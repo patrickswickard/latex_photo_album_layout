@@ -54,20 +54,11 @@ class Page:
     def print_portrait_line(self,thisfile, filename):
       thisfile.write('\\includegraphics[height=4in]{portrait.jpg}\n')
 
-    #def print_ll(self,thisfile,land1,land2,capt_l1,capt_l2):
     def print_ll(self,thisfile):
       land1 = 'landscape.jpg'
       land2 = 'landscape.jpg'
-      port1 = 'portrait.jpg'
-      port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
       capt_l1 = 'CAPTION L1'
       capt_l2 = 'CAPTION L2'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout LL\n')
       self.print_landscape_line(thisfile, land1)
@@ -79,20 +70,9 @@ class Page:
       self.print_caption_line(thisfile, capt_l2)
       thisfile.write('\\pagebreak\n')
 
-    #def print_l(self,thisfile,land1,capt_l1):
     def print_l(self,thisfile):
       land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
-      port1 = 'portrait.jpg'
-      port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
       capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout L\n')
       self.print_landscape_line(thisfile, land1)
@@ -100,16 +80,11 @@ class Page:
       self.print_caption_line(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
-    #def print_pppp(self,thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4):
     def print_pppp(self,thisfile):
-      land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
       port3 = 'portrait.jpg'
       port4 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
       capt_p2 = 'CAPTION P2'
       capt_p3 = 'CAPTION P3'
@@ -128,20 +103,13 @@ class Page:
       self.print_caption_line(thisfile, capt_p4)
       thisfile.write('\\pagebreak\n')
 
-    #def print_ppp(self,thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3):
     def print_ppp(self,thisfile):
-      land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
       port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
       capt_p2 = 'CAPTION P2'
       capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PPP\n')
       self.print_portrait_line(thisfile, port1)
@@ -154,20 +122,11 @@ class Page:
       self.print_caption_line(thisfile, capt_p3)
       thisfile.write('\\pagebreak\n')
 
-    #def print_pp(self,thisfile,port1,port2,capt_p1,capt_p2):
     def print_pp(self,thisfile):
-      land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
       capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PP\n')
       self.print_portrait_line(thisfile, port1)
@@ -177,20 +136,9 @@ class Page:
       self.print_caption_line(thisfile, capt_p2)
       thisfile.write('\\pagebreak\n')
 
-    #def print_p(self,thisfile,port1,capt_p1):
     def print_p(self,thisfile):
-      land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
-      port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout P\n')
       self.print_portrait_line(thisfile, port1)
@@ -198,20 +146,13 @@ class Page:
       self.print_caption_line(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
 
-    #def print_ppl(self,thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1):
     def print_ppl(self,thisfile):
       land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
       capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
       capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PPL\n')
       self.print_portrait_line(thisfile, port1)
@@ -225,20 +166,13 @@ class Page:
       self.print_caption_line(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
-    #def print_lpp(self,thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2):
     def print_lpp(self,thisfile):
       land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
       capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
       capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout LPP\n')
       self.print_landscape_line(thisfile, land1)
@@ -252,20 +186,11 @@ class Page:
       self.print_caption_line(thisfile, capt_p2)
       thisfile.write('\\pagebreak\n')
 
-    #def print_pl(self,thisfile,port1,land1,capt_p1,capt_l1):
     def print_pl(self,thisfile):
       land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
-      port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
       capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout PL\n')
       self.print_portrait_line(thisfile, port1)
@@ -277,20 +202,11 @@ class Page:
       self.print_caption_line(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
-    #def print_lp(self,thisfile,land1,port1,capt_l1,capt_p1):
     def print_lp(self,thisfile):
       land1 = 'landscape.jpg'
-      land2 = 'landscape.jpg'
       port1 = 'portrait.jpg'
-      port2 = 'portrait.jpg'
-      port3 = 'portrait.jpg'
-      port4 = 'portrait.jpg'
       capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
       capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
       thisfile.write('\n')
       thisfile.write('% Layout LP\n')
       self.print_landscape_line(thisfile, land1)
@@ -317,48 +233,25 @@ class Book:
       album_title = 'Baltimore 2014-03-20'
       prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
       for thispage in self.page_list:
-        # this will take a little thought
-        #land1 = 'landscape.jpg'
-        #land2 = 'landscape.jpg'
-        #port1 = 'portrait.jpg'
-        #port2 = 'portrait.jpg'
-        #port3 = 'portrait.jpg'
-        #port4 = 'portrait.jpg'
-        #capt_l1 = 'CAPTION L1'
-        #capt_l2 = 'CAPTION L2'
-        #capt_p1 = 'CAPTION P1'
-        #capt_p2 = 'CAPTION P2'
-        #capt_p3 = 'CAPTION P3'
-        #capt_p4 = 'CAPTION P4'
         if thispage.layout == 'LL':
-          #thispage.print_ll(thisfile,land1,land2,capt_l1,capt_l2)
           thispage.print_ll(thisfile)
         elif thispage.layout == 'L':
-          #thispage.print_l(thisfile,land1,capt_l1)
           thispage.print_l(thisfile)
         elif thispage.layout == 'PPPP':
-          #thispage.print_pppp(thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4)
           thispage.print_pppp(thisfile)
         elif thispage.layout == 'PPP':
-          #thispage.print_ppp(thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3)
           thispage.print_ppp(thisfile)
         elif thispage.layout == 'PP':
-          #thispage.print_pp(thisfile,port1,port2,capt_p1,capt_p2)
           thispage.print_pp(thisfile)
         elif thispage.layout == 'P':
-          #thispage.print_p(thisfile,port1,capt_p1)
           thispage.print_p(thisfile)
         elif thispage.layout == 'PPL':
-          #thispage.print_ppl(thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1)
           thispage.print_ppl(thisfile)
         elif thispage.layout == 'LPP':
-          #thispage.print_lpp(thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2)
           thispage.print_lpp(thisfile)
         elif thispage.layout == 'PL':
-          #thispage.print_pl(thisfile,port1,land1,capt_p1,capt_l1)
           thispage.print_pl(thisfile)
         elif thispage.layout == 'LP':
-          #thispage.print_lp(thisfile,land1,port1,capt_l1,capt_p1)
           thispage.print_lp(thisfile)
         else:
           raise 'That did not match any known layouts!'
