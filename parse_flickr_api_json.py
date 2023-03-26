@@ -15,9 +15,10 @@ def parse_file():
     for key in thathash.keys():
       thatlist.append(key)
     thatlist.sort(key = lambda x: thathash[x]['title'])
-    album_title = thathash[thatlist[0]]['title']
+    album_number = 7
+    album_title = thathash[thatlist[album_number]]['title']
     # THIS IS HARD-CODED SO WE JUST DO ONE
-    album_entries = thathash[thatlist[0]]['photoset_hash']
+    album_entries = thathash[thatlist[album_number]]['photoset_hash']
     photo_list = []
     for thisphoto in album_entries:
       caption = thisphoto['title']
