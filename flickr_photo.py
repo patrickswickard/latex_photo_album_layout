@@ -46,19 +46,19 @@ class Page:
       return False
 
     def print_landscape_line(self,thisfile,filename):
-      thisfile.write('\\includegraphics[width=5.19in]{landscape.jpg}\n')
+      thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
 
     def print_caption_line(self,thisfile,text):
       thisfile.write(text +'\\\\\n')
 
     def print_portrait_line(self,thisfile, filename):
-      thisfile.write('\\includegraphics[height=4in]{portrait.jpg}\n')
+      thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
 
     def print_ll(self,thisfile):
       land1 = 'landscape.jpg'
       land2 = 'landscape.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_l2 = 'CAPTION L2'
+      capt_l1 = self.photo_list[0].caption
+      capt_l2 = self.photo_list[1].caption
       thisfile.write('\n')
       thisfile.write('% Layout LL\n')
       self.print_landscape_line(thisfile, land1)
@@ -72,7 +72,7 @@ class Page:
 
     def print_l(self,thisfile):
       land1 = 'landscape.jpg'
-      capt_l1 = 'CAPTION L1'
+      capt_l1 = self.photo_list[0].caption
       thisfile.write('\n')
       thisfile.write('% Layout L\n')
       self.print_landscape_line(thisfile, land1)
@@ -85,10 +85,10 @@ class Page:
       port2 = 'portrait.jpg'
       port3 = 'portrait.jpg'
       port4 = 'portrait.jpg'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
-      capt_p4 = 'CAPTION P4'
+      capt_p1 = self.photo_list[0].caption
+      capt_p2 = self.photo_list[1].caption
+      capt_p3 = self.photo_list[2].caption
+      capt_p4 = self.photo_list[3].caption
       thisfile.write('\n')
       thisfile.write('% Layout PPPP\n')
       self.print_portrait_line(thisfile, port1)
@@ -107,9 +107,9 @@ class Page:
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
       port3 = 'portrait.jpg'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
-      capt_p3 = 'CAPTION P3'
+      capt_p1 = self.photo_list[0].caption
+      capt_p2 = self.photo_list[1].caption
+      capt_p3 = self.photo_list[2].caption
       thisfile.write('\n')
       thisfile.write('% Layout PPP\n')
       self.print_portrait_line(thisfile, port1)
@@ -125,8 +125,8 @@ class Page:
     def print_pp(self,thisfile):
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
+      capt_p1 = self.photo_list[0].caption
+      capt_p2 = self.photo_list[1].caption
       thisfile.write('\n')
       thisfile.write('% Layout PP\n')
       self.print_portrait_line(thisfile, port1)
@@ -138,7 +138,7 @@ class Page:
 
     def print_p(self,thisfile):
       port1 = 'portrait.jpg'
-      capt_p1 = 'CAPTION P1'
+      capt_p1 = self.photo_list[0].caption
       thisfile.write('\n')
       thisfile.write('% Layout P\n')
       self.print_portrait_line(thisfile, port1)
@@ -147,12 +147,12 @@ class Page:
       thisfile.write('\\pagebreak\n')
 
     def print_ppl(self,thisfile):
-      land1 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
+      land1 = 'landscape.jpg'
+      capt_p1 = self.photo_list[0].caption
+      capt_p2 = self.photo_list[1].caption
+      capt_l1 = self.photo_list[2].caption
       thisfile.write('\n')
       thisfile.write('% Layout PPL\n')
       self.print_portrait_line(thisfile, port1)
@@ -170,9 +170,9 @@ class Page:
       land1 = 'landscape.jpg'
       port1 = 'portrait.jpg'
       port2 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_p1 = 'CAPTION P1'
-      capt_p2 = 'CAPTION P2'
+      capt_l1 = self.photo_list[0].caption
+      capt_p1 = self.photo_list[1].caption
+      capt_p2 = self.photo_list[2].caption
       thisfile.write('\n')
       thisfile.write('% Layout LPP\n')
       self.print_landscape_line(thisfile, land1)
@@ -187,10 +187,10 @@ class Page:
       thisfile.write('\\pagebreak\n')
 
     def print_pl(self,thisfile):
-      land1 = 'landscape.jpg'
       port1 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_p1 = 'CAPTION P1'
+      land1 = 'landscape.jpg'
+      capt_p1 = self.photo_list[0].caption
+      capt_l1 = self.photo_list[1].caption
       thisfile.write('\n')
       thisfile.write('% Layout PL\n')
       self.print_portrait_line(thisfile, port1)
@@ -205,8 +205,8 @@ class Page:
     def print_lp(self,thisfile):
       land1 = 'landscape.jpg'
       port1 = 'portrait.jpg'
-      capt_l1 = 'CAPTION L1'
-      capt_p1 = 'CAPTION P1'
+      capt_l1 = self.photo_list[0].caption
+      capt_p1 = self.photo_list[1].caption
       thisfile.write('\n')
       thisfile.write('% Layout LP\n')
       self.print_landscape_line(thisfile, land1)

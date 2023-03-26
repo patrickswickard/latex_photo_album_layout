@@ -22,7 +22,7 @@ def parse_file():
     album_entries = thathash[thatlist[0]]['photoset_hash']
     photo_list = []
     for thisphoto in album_entries:
-      caption = album_entries[0]['title']
+      caption = thisphoto['title']
       id = thisphoto['id']
       url2 = album_entries[0]['url']
       # well crap, I thought I had dimensions in one of these hashes, need to figure out that next...
@@ -73,6 +73,7 @@ def parse_file():
           print(location)
         my_book.add_page(thispage)
     my_book.print_book()
+    print(my_book)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
