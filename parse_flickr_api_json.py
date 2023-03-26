@@ -17,6 +17,7 @@ def parse_file():
       thatlist.append(key)
     thatlist.sort(key = lambda x: thathash[x]['title'])
     album_title = thathash[thatlist[album_number]]['title']
+    filename = album_title + '.tex'
     # THIS IS HARD-CODED SO WE JUST DO ONE
     album_entries = thathash[thatlist[album_number]]['photoset_hash']
     photo_list = []
@@ -62,7 +63,7 @@ def parse_file():
     book_list.append(current_page)
 
     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-    my_file = open("splayout2.tex", 'w') 
+    my_file = open(filename, 'w') 
     my_book = flickr_photo.Book(my_file)
 
     for thispage in book_list:
