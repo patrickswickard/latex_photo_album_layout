@@ -16,6 +16,7 @@ def parse_file():
     for key in thathash.keys():
       thatlist.append(key)
     thatlist.sort(key = lambda x: thathash[x]['title'])
+    # THIS IS HARD-CODED SO WE JUST DO ONE
     album_title = thathash[thatlist[album_number]]['title']
     filename = album_title + '.tex'
     # THIS IS HARD-CODED SO WE JUST DO ONE
@@ -33,44 +34,31 @@ def parse_file():
       height = theotherhash[id]['height_o']
       # cross fingers here
       location = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/' + id + '.jpg'
-      #thisphoto1 = flickr_photo.Photo(id,original_url,original_caption,width,height)
       thisphoto1 = flickr_photo.Photo(id,location,original_caption,width,height)
       photo_list.append(thisphoto1)
-      #print(thisphoto1.orientation)
-      print(thisphoto1.id)
     thatfile.close()
     theotherfile.close()
 
-    print("****************")
     book_list = []
     current_page = flickr_photo.Page()
     for thisphoto in photo_list:
       if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
         current_page.add_photo(thisphoto)
-        print("adding landscape photo")
-        print(thisphoto.id)
       elif (thisphoto.orientation == 'P') and (current_page.canfit_p()):
         current_page.add_photo(thisphoto)
-        print("adding portrait photo")
-        print(thisphoto.id)
       else:
         book_list.append(current_page)
         current_page = flickr_photo.Page()
         current_page.add_photo(thisphoto)
-        print("about to add something bad probably!!!")
-        print(thisphoto.id)
     # add final page
     book_list.append(current_page)
 
-    print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
     my_file = open(filename, 'w') 
     my_book = flickr_photo.Book(my_file)
 
     for thispage in book_list:
         layout = thispage.layout
         photo_list = thispage.photo_list
-        for thisphoto in photo_list:
-          print(thisphoto.id)
         my_book.add_page(thispage)
     my_book.print_book()
 
