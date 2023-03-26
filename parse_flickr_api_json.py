@@ -21,7 +21,7 @@ def parse_file():
     for this_album in thatlist:
       album_title = thathash[this_album]['title']
       print('Creating tex file for ' + album_title)
-      filename = album_title + '.tex'
+      filename = 'texfiles/' + album_title + '.tex'
       # THIS IS HARD-CODED SO WE JUST DO ONE
       album_entries = thathash[this_album]['photoset_hash']
       photo_list = []
