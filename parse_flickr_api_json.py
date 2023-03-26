@@ -15,8 +15,6 @@ def parse_file():
     for key in thathash.keys():
       thatlist.append(key)
     thatlist.sort(key = lambda x: thathash[x]['title'])
-    for entry in thatlist:
-      print(thathash[entry]['title'])
     album_title = thathash[thatlist[0]]['title']
     # THIS IS HARD-CODED SO WE JUST DO ONE
     album_entries = thathash[thatlist[0]]['photoset_hash']
@@ -31,9 +29,13 @@ def parse_file():
       original_url = theotherhash[id]['url_o']
       width = theotherhash[id]['width_o']
       height = theotherhash[id]['height_o']
-      thisphoto1 = flickr_photo.Photo(id,original_url,original_caption,width,height)
+      # cross fingers here
+      location = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/' + id + '.jpg'
+      #thisphoto1 = flickr_photo.Photo(id,original_url,original_caption,width,height)
+      thisphoto1 = flickr_photo.Photo(id,location,original_caption,width,height)
       photo_list.append(thisphoto1)
-      print(thisphoto1.orientation)
+      #print(thisphoto1.orientation)
+      print(thisphoto1.id)
     thatfile.close()
     theotherfile.close()
 
@@ -43,16 +45,18 @@ def parse_file():
     for thisphoto in photo_list:
       if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
         current_page.add_photo(thisphoto)
-        print(current_page.layout)
-        print(current_page.canfit_l())
+        print("adding landscape photo")
+        print(thisphoto.id)
       elif (thisphoto.orientation == 'P') and (current_page.canfit_p()):
         current_page.add_photo(thisphoto)
-        print(current_page.layout)
-        print(current_page.canfit_p())
+        print("adding portrait photo")
+        print(thisphoto.id)
       else:
         book_list.append(current_page)
         current_page = flickr_photo.Page()
         current_page.add_photo(thisphoto)
+        print("about to add something bad probably!!!")
+        print(thisphoto.id)
       # add final page
       book_list.append(current_page)
 
@@ -60,20 +64,13 @@ def parse_file():
     my_file = open("splayout2.tex", 'w') 
     my_book = flickr_photo.Book(my_file)
 
-    onepage = book_list[0]
-    for thisphoto in onepage.photo_list:
-      print(album_title + thisphoto.id + '.jpg')
     for thispage in book_list:
         layout = thispage.layout
         photo_list = thispage.photo_list
-        print(layout)
-        #print(photo_list)
         for thisphoto in photo_list:
-          location = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/' + thisphoto.id + '.jpg'
-          print(location)
+          print(thisphoto.id)
         my_book.add_page(thispage)
     my_book.print_book()
-    print(my_book)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
