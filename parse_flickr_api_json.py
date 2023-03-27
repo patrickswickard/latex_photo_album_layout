@@ -7,40 +7,33 @@ import json
 import flickr_photo
 
 def parse_file():
-    thatfile = open('allalbumswithurls2.json', 'r')
-    thathash = json.load(thatfile)
-    theotherfile = open('all_info_file.json', 'r')
-    theotherhash = json.load(theotherfile)
-    thatlist = []
-    for key in thathash.keys():
-      thatlist.append(key)
-    thatlist.sort(key = lambda x: thathash[x]['title'])
-    album_number = 7
-    #this_album = thatlist[album_number]
-    # THIS IS HARD-CODED SO WE JUST DO ONE
-    for this_album in thatlist:
-      album_title = thathash[this_album]['title']
+    album_file = open('allalbumswithurls2.json', 'r')
+    album_hash = json.load(album_file)
+    all_info_file = open('all_info_file.json', 'r')
+    all_info_hash = json.load(all_info_file)
+    album_list = []
+    for key in album_hash.keys():
+      album_list.append(key)
+    album_list.sort(key = lambda x: album_hash[x]['title'])
+    for this_album in album_list:
+      album_title = album_hash[this_album]['title']
       print('Creating tex file for ' + album_title)
       filename = 'texfiles/' + album_title + '.tex'
-      # THIS IS HARD-CODED SO WE JUST DO ONE
-      album_entries = thathash[this_album]['photoset_hash']
+      album_entries = album_hash[this_album]['photoset_hash']
       photo_list = []
       for thisphoto in album_entries:
         caption = thisphoto['title']
         id = thisphoto['id']
-        url2 = album_entries[0]['url']
-        # well crap, I thought I had dimensions in one of these hashes, need to figure out that next...
-        original_id = theotherhash[id]['id']
-        original_caption = theotherhash[id]['title']
-        original_url = theotherhash[id]['url_o']
-        width = theotherhash[id]['width_o']
-        height = theotherhash[id]['height_o']
+        original_url = all_info_hash[id]['url_o']
+        width = all_info_hash[id]['width_o']
+        height = all_info_hash[id]['height_o']
         # cross fingers here
         location = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/' + id + '.jpg'
-        thisphoto1 = flickr_photo.Photo(id,location,original_caption,width,height)
+        #thisphoto1 = flickr_photo.Photo(id,location,original_caption,width,height)
+        thisphoto1 = flickr_photo.Photo(id,location,caption,width,height)
         photo_list.append(thisphoto1)
-      thatfile.close()
-      theotherfile.close()
+      album_file.close()
+      all_info_file.close()
 
       book_list = []
       current_page = flickr_photo.Page()
