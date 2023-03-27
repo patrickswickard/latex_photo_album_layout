@@ -18,7 +18,7 @@ def parse_file():
     for this_album in album_list:
       album_title = album_hash[this_album]['title']
       print('Creating tex file for ' + album_title)
-      filename = 'texfiles/' + album_title + '.tex'
+      output_filename = 'texfiles/' + album_title + '.tex'
       album_entries = album_hash[this_album]['photoset_hash']
       photo_list = []
       for thisphoto in album_entries:
@@ -27,15 +27,15 @@ def parse_file():
         original_url = all_info_hash[id]['url_o']
         width = all_info_hash[id]['width_o']
         height = all_info_hash[id]['height_o']
-        # cross fingers here
-        location = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/' + id + '.jpg'
-        #thisphoto1 = flickr_photo.Photo(id,location,original_caption,width,height)
-        thisphoto1 = flickr_photo.Photo(id,location,caption,width,height)
-        photo_list.append(thisphoto1)
+        prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
+        photo_filename = id + '.jpg'
+        location = prefix + photo_filename
+        thisphoto = flickr_photo.Photo(id,location,caption,width,height)
+        photo_list.append(thisphoto)
       album_file.close()
       all_info_file.close()
 
-      book_list = []
+      page_list = []
       current_page = flickr_photo.Page()
       for thisphoto in photo_list:
         if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
@@ -43,20 +43,20 @@ def parse_file():
         elif (thisphoto.orientation == 'P') and (current_page.canfit_p()):
           current_page.add_photo(thisphoto)
         else:
-          book_list.append(current_page)
+          page_list.append(current_page)
           current_page = flickr_photo.Page()
           current_page.add_photo(thisphoto)
       # add final page
-      book_list.append(current_page)
+      page_list.append(current_page)
 
-      my_file = open(filename, 'w') 
-      my_book = flickr_photo.Book(my_file)
+      output_file = open(output_filename, 'w') 
+      this_book = flickr_photo.Book(output_file)
 
-      for thispage in book_list:
+      for thispage in page_list:
           layout = thispage.layout
           photo_list = thispage.photo_list
-          my_book.add_page(thispage)
-      my_book.print_book()
+          this_book.add_page(thispage)
+      this_book.print_book()
     # that's all folks
 
 # Press the green button in the gutter to run the script.
