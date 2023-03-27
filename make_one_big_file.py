@@ -5,6 +5,7 @@
 
 import json
 
+# this is just a utility script that was created to make one big file out of previously downloaded flickr metadata
 def make_one_big_file():
     bighash = {}
     filenamelist = []

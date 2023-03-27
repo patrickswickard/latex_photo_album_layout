@@ -28,6 +28,7 @@ def parse_file():
         # is it really the case that the width and height are all we grab from all_info_hash?
         width = all_info_hash[id]['width_o']
         height = all_info_hash[id]['height_o']
+        # this prefix is unique to environment, currently using pre-downloaded files
         prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
         photo_filename = id + '.jpg'
         location = prefix + photo_filename
