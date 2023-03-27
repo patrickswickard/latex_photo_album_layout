@@ -24,13 +24,14 @@ def parse_file():
       for thisphoto in album_entries:
         caption = thisphoto['title']
         id = thisphoto['id']
-        original_url = all_info_hash[id]['url_o']
+        url = thisphoto['url']
+        # is it really the case that the width and height are all we grab from all_info_hash?
         width = all_info_hash[id]['width_o']
         height = all_info_hash[id]['height_o']
         prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
         photo_filename = id + '.jpg'
         location = prefix + photo_filename
-        thisphoto = flickr_photo.Photo(id,location,caption,width,height)
+        thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
         photo_list.append(thisphoto)
       album_file.close()
       all_info_file.close()
