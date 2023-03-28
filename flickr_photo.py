@@ -53,11 +53,15 @@ class Page:
     def print_landscape_line(self,thisfile,filename):
       thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
 
+    def print_portrait_line(self,thisfile, filename):
+      thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
+
     def print_caption_line(self,thisfile,text):
       thisfile.write(text +'\\\\\n')
 
-    def print_portrait_line(self,thisfile, filename):
-      thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
+    # final line does not need linebreak because of pagebreak
+    def print_caption_line_final(self,thisfile,text):
+      thisfile.write(text +'\n')
 
     def print_ll(self,thisfile):
       land1 = self.photo_list[0].location
@@ -72,7 +76,7 @@ class Page:
       self.print_landscape_line(thisfile, land2)
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_l1)
-      self.print_caption_line(thisfile, capt_l2)
+      self.print_caption_line_final(thisfile, capt_l2)
       thisfile.write('\\pagebreak\n')
 
     def print_l(self,thisfile):
@@ -82,7 +86,7 @@ class Page:
       thisfile.write('% Layout L\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-      self.print_caption_line(thisfile, capt_l1)
+      self.print_caption_line_final(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
     def print_pppp(self,thisfile):
@@ -105,7 +109,7 @@ class Page:
       self.print_caption_line(thisfile, capt_p1)
       self.print_caption_line(thisfile, capt_p2)
       self.print_caption_line(thisfile, capt_p3)
-      self.print_caption_line(thisfile, capt_p4)
+      self.print_caption_line_final(thisfile, capt_p4)
       thisfile.write('\\pagebreak\n')
 
     def print_ppp(self,thisfile):
@@ -124,7 +128,7 @@ class Page:
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_p1)
       self.print_caption_line(thisfile, capt_p2)
-      self.print_caption_line(thisfile, capt_p3)
+      self.print_caption_line_final(thisfile, capt_p3)
       thisfile.write('\\pagebreak\n')
 
     def print_pp(self,thisfile):
@@ -138,7 +142,7 @@ class Page:
       self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_p1)
-      self.print_caption_line(thisfile, capt_p2)
+      self.print_caption_line_final(thisfile, capt_p2)
       thisfile.write('\\pagebreak\n')
 
     def print_p(self,thisfile):
@@ -148,7 +152,7 @@ class Page:
       thisfile.write('% Layout P\n')
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line_final(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
 
     def print_ppl(self,thisfile):
@@ -168,7 +172,7 @@ class Page:
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_p1)
       self.print_caption_line(thisfile, capt_p2)
-      self.print_caption_line(thisfile, capt_l1)
+      self.print_caption_line_final(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
     def print_lpp(self,thisfile):
@@ -188,7 +192,7 @@ class Page:
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_l1)
       self.print_caption_line(thisfile, capt_p1)
-      self.print_caption_line(thisfile, capt_p2)
+      self.print_caption_line_final(thisfile, capt_p2)
       thisfile.write('\\pagebreak\n')
 
     def print_pl(self,thisfile):
@@ -204,7 +208,7 @@ class Page:
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_p1)
-      self.print_caption_line(thisfile, capt_l1)
+      self.print_caption_line_final(thisfile, capt_l1)
       thisfile.write('\\pagebreak\n')
 
     def print_lp(self,thisfile):
@@ -220,7 +224,7 @@ class Page:
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
       self.print_caption_line(thisfile, capt_l1)
-      self.print_caption_line(thisfile, capt_p1)
+      self.print_caption_line_final(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
 
 class Book:
