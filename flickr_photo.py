@@ -239,7 +239,7 @@ class Book:
       self.print_preamble(thisfile)
       self.print_begin(thisfile)
       if self.qr != '':
-        self.print_qr_page(thisfile,self.gr)
+        self.print_qr_page(thisfile,self.qr)
       for thispage in self.page_list:
         if thispage.layout == 'LL':
           thispage.print_ll(thisfile)
