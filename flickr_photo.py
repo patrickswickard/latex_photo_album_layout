@@ -281,7 +281,7 @@ class Book:
       thisfile.write('\n')
       thisfile.write(self.title + '\n\n')
       thisfile.write(self.url + '\n\n')
-      thisfile.write('QR CODE GOES HERE\n')
+      thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
       thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
       thisfile.write('\\pagebreak\n')
 

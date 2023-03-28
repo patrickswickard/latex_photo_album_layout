@@ -70,7 +70,6 @@ def parse_file():
       qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'
       qr_img.save(qr_path)
       this_book.qr = qr_path
-      this_book.qr = ''
       this_book.print_book()
     # that's all folks
 
