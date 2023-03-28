@@ -12,6 +12,8 @@ class Photo:
       self.orientation = 'P'
     else:
       self.orientation = 'L'
+    self.album_title = ''
+    self.album_url = ''
 
 class Page:
     def __init__(self):

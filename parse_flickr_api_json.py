@@ -16,6 +16,8 @@ def parse_file():
       album_list.append(key)
     album_list.sort(key = lambda x: album_hash[x]['title'])
     for this_album in album_list:
+      album_id = this_album
+      album_url = 'https://www.flickr.com/photos/99753978@N03/albums/' + album_id
       album_title = album_hash[this_album]['title']
       print('Creating tex file for ' + album_title)
       output_filename = 'texfiles/' + album_title + '.tex'
@@ -33,6 +35,9 @@ def parse_file():
         photo_filename = id + '.jpg'
         location = prefix + photo_filename
         thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
+        # bonus info
+        thisphoto.album_title = album_title
+        thisphoto.album_url = album_url
         photo_list.append(thisphoto)
       album_file.close()
       all_info_file.close()
