@@ -6,6 +6,7 @@
 import json
 import flickr_photo
 import qrcode
+import re
 
 def parse_file():
     album_file = open('allalbumswithurls2.json', 'r')
@@ -64,7 +65,21 @@ def parse_file():
           layout = thispage.layout
           photo_list = thispage.photo_list
           this_book.add_page(thispage)
+      # commenting this out since I like it better with date in title
+      #regex = re.compile(r"(.*?)\s+([12]\d{3}-\d{2}-\d{2})")
+      #matches = re.match(regex,album_title)
+      #if matches:
+      #    album_title = matches[1]
+      #    album_date = matches[2]
+      #else:
+      #    album_title = album_title
+      #    album_date = ''
+      # hard-coded value for my own purposes
+      album_author = 'Patrick Swickard'
+      album_date = ''
       this_book.title = album_title
+      this_book.author = album_author
+      this_book.date = album_date
       this_book.url = album_url
       qr_img = qrcode.make(album_url)
       qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'

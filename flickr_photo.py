@@ -232,6 +232,8 @@ class Book:
       self.page_list = []
       self.thisfile = thisfile
       self.title = ''
+      self.author = ''
+      self.date = ''
       self.url = ''
       self.qr = ''
 
@@ -276,15 +278,20 @@ class Book:
       thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
       thisfile.write("\\usepackage{graphicx}\n")
       thisfile.write("\\usepackage{float}\n")
-      thisfile.write("\\setlength{\parindent}{0pt}")
+      thisfile.write("\\usepackage{hyperref}\n")
+      thisfile.write("\\setlength{\parindent}{0pt}\n")
+      thisfile.write("\\title{" + self.title + "}\n")
+      thisfile.write("\\author{" + self.author + "}\n")
+      thisfile.write("\\date{" + self.date + "}\n")
 
     def print_begin(self,thisfile):
       thisfile.write('\\begin{document}\n')
 
     def print_qr_page(self,thisfile,qr_location):
       thisfile.write('\n')
-      thisfile.write(self.title + '\n\n')
-      thisfile.write(self.url + '\n\n')
+      #thisfile.write(self.title + '\n\n')
+      thisfile.write('\\maketitle\n\n')
+      thisfile.write('\\url{' + self.url + '}\n\n')
       thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
       thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
       thisfile.write('\\pagebreak\n')
