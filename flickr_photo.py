@@ -268,7 +268,7 @@ class Book:
 
     def print_preamble(self,thisfile):
       thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-      thisfile.write('\\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+      thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
       thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
       thisfile.write("\\usepackage{graphicx}\n")
       thisfile.write("\\usepackage{float}\n")
