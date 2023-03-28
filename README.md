@@ -8,6 +8,11 @@ The eventual goal is to automate this process so that an album of captioned phot
 Note: need to import pylatex package:
 pip3 install pylatex
 
+also need qrcode package:
+pip3 install qrcode
+
+Note that qrcode creation is commented out since it should be static, uncomment if necessary
+
 Usage:
 
 This is currently only configured to work with a hard-coded path with image files on my laptop.
