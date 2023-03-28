@@ -68,7 +68,7 @@ def parse_file():
       this_book.url = album_url
       qr_img = qrcode.make(album_url)
       qr_path = 'qr/qr_for_' + album_id + '.jpg'
-      qr_img.save(qr_path)
+      #qr_img.save(qr_path)
       this_book.qr = qr_path
       this_book.qr = ''
       this_book.print_book()
