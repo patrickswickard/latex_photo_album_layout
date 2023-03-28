@@ -5,6 +5,7 @@
 
 import json
 import flickr_photo
+import qrcode
 
 def parse_file():
     album_file = open('allalbumswithurls2.json', 'r')
@@ -63,6 +64,13 @@ def parse_file():
           layout = thispage.layout
           photo_list = thispage.photo_list
           this_book.add_page(thispage)
+      this_book.title = album_title
+      this_book.url = album_url
+      qr_img = qrcode.make(album_url)
+      qr_path = 'qr/qr_for_' + album_id + '.jpg'
+      qr_img.save(qr_path)
+      this_book.qr = qr_path
+      this_book.qr = ''
       this_book.print_book()
     # that's all folks
 

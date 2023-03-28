@@ -227,6 +227,9 @@ class Book:
     def __init__(self,thisfile):
       self.page_list = []
       self.thisfile = thisfile
+      self.title = ''
+      self.url = ''
+      self.qr = ''
 
     def add_page(self,page):
       self.page_list.append(page)
@@ -235,8 +238,8 @@ class Book:
       thisfile = self.thisfile
       self.print_preamble(thisfile)
       self.print_begin(thisfile)
-      album_title = 'Baltimore 2014-03-20'
-      prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
+      if self.qr != '':
+        self.print_qr_page(thisfile,self.gr)
       for thispage in self.page_list:
         if thispage.layout == 'LL':
           thispage.print_ll(thisfile)
@@ -273,6 +276,14 @@ class Book:
 
     def print_begin(self,thisfile):
       thisfile.write('\\begin{document}\n')
+
+    def print_qr_page(self,thisfile,qr_location):
+      thisfile.write('\n')
+      thisfile.write(self.title + '\n\n')
+      thisfile.write(self.url + '\n\n')
+      thisfile.write('QR CODE GOES HERE\n')
+      thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
+      thisfile.write('\\pagebreak\n')
 
     def print_end(self,thisfile):
       thisfile.write('\\end{document}\n')
