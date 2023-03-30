@@ -85,7 +85,11 @@ def parse_file():
       qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'
       qr_img.save(qr_path)
       this_section.qr = qr_path
-      this_section.print_section()
+      #this_section.print_section()
+      # trying this with one book one section for now:
+      this_book = flickr_photo.Book(output_file)
+      this_book.section_list = [this_section]
+      this_book.print_book()
     # that's all folks
 
 # Press the green button in the gutter to run the script.

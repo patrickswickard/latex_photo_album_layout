@@ -309,3 +309,7 @@ class Book:
       self.date = ''
       self.url = ''
       self.qr = ''
+
+    def print_book(self):
+      for thissection in self.section_list:
+          thissection.print_section()
