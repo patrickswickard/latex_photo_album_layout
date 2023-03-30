@@ -59,12 +59,12 @@ def parse_file():
       page_list.append(current_page)
 
       output_file = open(output_filename, 'w') 
-      this_book = flickr_photo.Book(output_file)
+      this_section = flickr_photo.Section(output_file)
 
       for thispage in page_list:
           layout = thispage.layout
           photo_list = thispage.photo_list
-          this_book.add_page(thispage)
+          this_section.add_page(thispage)
       # commenting this out since I like it better with date in title
       #regex = re.compile(r"(.*?)\s+([12]\d{3}-\d{2}-\d{2})")
       #matches = re.match(regex,album_title)
@@ -77,15 +77,15 @@ def parse_file():
       # hard-coded value for my own purposes
       album_author = 'Patrick Swickard'
       album_date = ''
-      this_book.title = album_title
-      this_book.author = album_author
-      this_book.date = album_date
-      this_book.url = album_url
+      this_section.title = album_title
+      this_section.author = album_author
+      this_section.date = album_date
+      this_section.url = album_url
       qr_img = qrcode.make(album_url)
       qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'
       qr_img.save(qr_path)
-      this_book.qr = qr_path
-      this_book.print_book()
+      this_section.qr = qr_path
+      this_section.print_section()
     # that's all folks
 
 # Press the green button in the gutter to run the script.

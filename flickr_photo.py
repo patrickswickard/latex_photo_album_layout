@@ -227,7 +227,7 @@ class Page:
       self.print_caption_line_final(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
 
-class Book:
+class Section:
     def __init__(self,thisfile):
       self.page_list = []
       self.thisfile = thisfile
@@ -240,7 +240,7 @@ class Book:
     def add_page(self,page):
       self.page_list.append(page)
 
-    def print_book(self):
+    def print_section(self):
       thisfile = self.thisfile
       self.print_preamble(thisfile)
       self.print_begin(thisfile)
