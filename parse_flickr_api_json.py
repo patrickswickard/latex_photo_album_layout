@@ -17,6 +17,7 @@ def parse_file():
     for key in album_hash.keys():
       album_list.append(key)
     album_list.sort(key = lambda x: album_hash[x]['title'])
+    all_section_list = []
     for this_album in album_list:
       album_id = this_album
       album_url = 'https://www.flickr.com/photos/99753978@N03/albums/' + album_id
@@ -85,6 +86,8 @@ def parse_file():
       qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'
       qr_img.save(qr_path)
       this_section.qr = qr_path
+#      all_section_list.append(this_section)
+#    for this_section in all_section_list:
       #this_section.print_section()
       # trying this with one book one section for now:
       this_book = flickr_photo.Book(output_file)
