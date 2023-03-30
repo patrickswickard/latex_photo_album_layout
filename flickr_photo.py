@@ -228,9 +228,9 @@ class Page:
       thisfile.write('\\pagebreak\n')
 
 class Section:
-    def __init__(self,thisfile):
+    def __init__(self):
       self.page_list = []
-      self.thisfile = thisfile
+      #self.thisfile = thisfile
       self.title = ''
       self.author = ''
       self.date = ''
@@ -291,7 +291,9 @@ class Book:
       thisfile = self.thisfile
       self.print_preamble(thisfile)
       self.print_begin(thisfile)
+      # this is dodgy
       for thissection in self.section_list:
+          thissection.thisfile = thisfile
           thissection.print_section()
       self.print_end(thisfile)
       thisfile.close()
