@@ -242,8 +242,6 @@ class Section:
 
     def print_section(self):
       thisfile = self.thisfile
-      self.print_preamble(thisfile)
-      self.print_begin(thisfile)
       if self.qr != '':
         self.print_qr_page(thisfile,self.qr)
       for thispage in self.page_list:
@@ -269,6 +267,32 @@ class Section:
           thispage.print_lp(thisfile)
         else:
           raise 'That did not match any known layouts!'
+
+    def print_qr_page(self,thisfile,qr_location):
+      thisfile.write('\n')
+      #thisfile.write(self.title + '\n\n')
+      thisfile.write('\\maketitle\n\n')
+      thisfile.write('\\url{' + self.url + '}\n\n')
+      thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
+      thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
+      thisfile.write('\\pagebreak\n')
+
+class Book:
+    def __init__(self,thisfile):
+      self.section_list = []
+      self.thisfile = thisfile
+      self.title = ''
+      self.author = ''
+      self.date = ''
+      self.url = ''
+      self.qr = ''
+
+    def print_book(self):
+      thisfile = self.thisfile
+      self.print_preamble(thisfile)
+      self.print_begin(thisfile)
+      for thissection in self.section_list:
+          thissection.print_section()
       self.print_end(thisfile)
       thisfile.close()
 
@@ -288,28 +312,5 @@ class Section:
     def print_begin(self,thisfile):
       thisfile.write('\\begin{document}\n')
 
-    def print_qr_page(self,thisfile,qr_location):
-      thisfile.write('\n')
-      #thisfile.write(self.title + '\n\n')
-      thisfile.write('\\maketitle\n\n')
-      thisfile.write('\\url{' + self.url + '}\n\n')
-      thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
-      thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
-      thisfile.write('\\pagebreak\n')
-
     def print_end(self,thisfile):
       thisfile.write('\\end{document}\n')
-
-class Book:
-    def __init__(self,thisfile):
-      self.section_list = []
-      self.thisfile = thisfile
-      self.title = ''
-      self.author = ''
-      self.date = ''
-      self.url = ''
-      self.qr = ''
-
-    def print_book(self):
-      for thissection in self.section_list:
-          thissection.print_section()

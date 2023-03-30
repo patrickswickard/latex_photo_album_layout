@@ -88,6 +88,12 @@ def parse_file():
       #this_section.print_section()
       # trying this with one book one section for now:
       this_book = flickr_photo.Book(output_file)
+      book_author = 'Patrick Swickard'
+      album_date = ''
+      this_book.title = album_title
+      this_book.author = album_author
+      this_book.date = album_date
+      this_book.url = album_url
       this_book.section_list = [this_section]
       this_book.print_book()
     # that's all folks
