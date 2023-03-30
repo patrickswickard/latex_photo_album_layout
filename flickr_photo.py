@@ -300,3 +300,12 @@ class Section:
     def print_end(self,thisfile):
       thisfile.write('\\end{document}\n')
 
+class Book:
+    def __init__(self,thisfile):
+      self.section_list = []
+      self.thisfile = thisfile
+      self.title = ''
+      self.author = ''
+      self.date = ''
+      self.url = ''
+      self.qr = ''
