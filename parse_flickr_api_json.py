@@ -60,8 +60,12 @@ def parse_file():
           # bonus info
           photo_list.append(thisphoto)
       page_list = get_page_list(photo_list)
-      this_section = get_section(album_title,album_url,album_id,page_list)
-      this_book = get_book(album_title,album_url,album_id,this_album_code,this_section)
+      this_section = get_section(album_title,album_author,album_date,album_url,album_id,page_list)
+      # for now we are restricting books to one section...
+      section_list = [this_section]
+      this_book = get_book(album_title,album_author,album_date,album_url,album_id,this_album_code,section_list)
+      print('Creating tex file for ' + album_title)
+      this_book.print_book()
 
 def create_qr_code(album_url,album_id):
       print('Creating qr code for ' + album_url) 
@@ -86,14 +90,12 @@ def get_page_list(photo_list):
       page_list.append(current_page)
       return page_list
 
-def get_section(album_title,album_url,album_id,page_list):
+def get_section(album_title,album_author,album_date,album_url,album_id,page_list):
       this_section = flickr_photo.Section()
       for thispage in page_list:
           layout = thispage.layout
           photo_list = thispage.photo_list
           this_section.add_page(thispage)
-      album_author = 'Patrick Swickard'
-      album_date = ''
       this_section.title = album_title
       this_section.author = album_author
       this_section.date = album_date
@@ -102,22 +104,16 @@ def get_section(album_title,album_url,album_id,page_list):
       this_section.qr = qr_path
       return this_section
 
-def get_book(album_title,album_url,album_id,this_album_code,this_section):
+def get_book(album_title,album_author,album_date,album_url,album_id,this_album_code,section_list):
       output_filename = 'texfiles/' + album_title + '.tex'
       output_file = open(output_filename, 'w') 
       this_book = flickr_photo.Book(output_file)
-      book_author = 'Patrick Swickard'
-      album_author = 'Patrick Swickard'
-      album_date = ''
       this_book.title = album_title
       this_book.author = album_author
       this_book.date = album_date
       this_book.url = album_url
-      # trying this with one book one section for now:
-      this_book.section_list = [this_section]
-
-      print('Creating tex file for ' + album_title)
-      this_book.print_book()
+      this_book.section_list = section_list
+      return this_book
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
