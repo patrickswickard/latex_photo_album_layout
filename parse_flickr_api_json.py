@@ -39,8 +39,7 @@ def parse_file():
       album_url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + album_id
       album_title = album_hash[this_album_code]['title']
       album_entries = album_hash[this_album_code]['photoset_hash']
-      #photo_list = get_photo_list(this_album_code,album_hash,all_info_hash)
-      photo_list = get_photo_list(this_album_code,album_hash,all_info_hash)
+      photo_list = get_photo_list(this_album_code,album_title,album_entries,all_info_hash)
       page_list = get_page_list(photo_list)
       this_section = get_section(album_title,album_url,album_id,page_list)
       this_book = get_book(album_title,album_url,album_id,this_album_code,this_section)
@@ -71,13 +70,8 @@ def get_photo(thisphoto_hash,all_info_hash,album_title):
 
 # this uses album_hash to get album_title and album_entries
 # this uses all_info_hash to get width and height
-def get_photo_list(this_album_code,album_hash,all_info_hash):
+def get_photo_list(this_album_code,album_title,album_entries,all_info_hash):
       album_id = this_album_code
-      owner_id = '99753978@N03'
-      album_url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + album_id
-      #album_url = 'https://www.flickr.com/photos/99753978@N03/albums/' + album_id
-      album_title = album_hash[this_album_code]['title']
-      album_entries = album_hash[this_album_code]['photoset_hash']
       photo_list = []
       for thisphoto_hash in album_entries:
         thisphoto = get_photo(thisphoto_hash,all_info_hash,album_title)
