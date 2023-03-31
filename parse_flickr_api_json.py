@@ -31,44 +31,44 @@ def parse_file():
     album_code_list.sort(key = lambda x: album_hash[x]['title'])
     # process albums in alphabetical order by title
     for this_album_code in album_code_list:
-      this_album = flickr_photo.Album(this_album_code)
-      # hard-coded params
-      album_author = 'Patrick Swickard'
-      album_date = ''
       # owner_id can be extracted from all_info_file if desired and consistent
       owner_id = '99753978@N03'
-      # params extracted from album_hash
-      album_id = this_album_code
-      album_title = album_hash[this_album_code]['title']
-      album_url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + album_id
-      album_entries = album_hash[this_album_code]['photoset_hash']
+      this_album = flickr_photo.Album(this_album_code)
+      # hard-coded params
+      this_album.id = this_album_code
+      this_album.author = 'Patrick Swickard'
+      this_album.date = ''
+      this_album.title = album_hash[this_album_code]['title']
+      this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
+      this_album.album_entries = album_hash[this_album_code]['photoset_hash']
+
       # build list of photo objects
       photo_list = []
-      for thisphoto_hash in album_entries:
+      for thisphoto_hash in this_album.album_entries:
           id = thisphoto_hash['id']
           url = thisphoto_hash['url']
-          prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
+          prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
           photo_filename = id + '.jpg'
           location = prefix + photo_filename
           caption = thisphoto_hash['title']
           width = all_info_hash[id]['width_o']
           height = all_info_hash[id]['height_o']
           thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
-          thisphoto.album_title = album_title
           # bonus info
+          thisphoto.album_title = this_album.title
           photo_list.append(thisphoto)
       page_list = get_page_list(photo_list)
-      this_section = get_section(album_title,album_author,album_date,album_url,album_id,page_list)
+      this_section = get_section(this_album,page_list)
       # for now we are restricting books to one section...
       section_list = [this_section]
-      this_book = get_book(album_title,album_author,album_date,album_url,album_id,this_album_code,section_list)
-      print('Creating tex file for ' + album_title)
+      this_book = get_book(this_album,section_list)
+      print('Creating tex file for ' + this_album.title)
       this_book.print_book()
 
-def create_qr_code(album_url,album_id):
-      print('Creating qr code for ' + album_url) 
-      qr_img = qrcode.make(album_url)
-      qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'
+def create_qr_code(this_album):
+      print('Creating qr code for ' + this_album.url) 
+      qr_img = qrcode.make(this_album.url)
+      qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + this_album.id + '.jpg'
       qr_img.save(qr_path)
       return qr_path
 
@@ -88,28 +88,28 @@ def get_page_list(photo_list):
       page_list.append(current_page)
       return page_list
 
-def get_section(album_title,album_author,album_date,album_url,album_id,page_list):
+def get_section(this_album,page_list):
       this_section = flickr_photo.Section()
       for thispage in page_list:
           layout = thispage.layout
           photo_list = thispage.photo_list
           this_section.add_page(thispage)
-      this_section.title = album_title
-      this_section.author = album_author
-      this_section.date = album_date
-      this_section.url = album_url
-      qr_path = create_qr_code(album_url,album_id)
+      this_section.title = this_album.title
+      this_section.author = this_album.author
+      this_section.date = this_album.date
+      this_section.url = this_album.url
+      qr_path = create_qr_code(this_album)
       this_section.qr = qr_path
       return this_section
 
-def get_book(album_title,album_author,album_date,album_url,album_id,this_album_code,section_list):
-      output_filename = 'texfiles/' + album_title + '.tex'
+def get_book(this_album,section_list):
+      output_filename = 'texfiles/' + this_album.title + '.tex'
       output_file = open(output_filename, 'w') 
       this_book = flickr_photo.Book(output_file)
-      this_book.title = album_title
-      this_book.author = album_author
-      this_book.date = album_date
-      this_book.url = album_url
+      this_book.title = this_album.title
+      this_book.author = this_album.author
+      this_book.date = this_album.date
+      this_book.url = this_album.url
       this_book.section_list = section_list
       return this_book
 

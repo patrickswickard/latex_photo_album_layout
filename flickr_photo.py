@@ -7,8 +7,7 @@ class Album:
     self.author = ''
     self.date = ''
     self.url = ''
-    self.code = ''
-    self.section_list = []
+    self.album_entries = []
 
 class Photo:
   def __init__(self,id,url,location,caption,width,height):
