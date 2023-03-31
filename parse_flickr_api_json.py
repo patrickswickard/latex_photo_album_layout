@@ -29,10 +29,7 @@ def parse_file():
       album_code_list.append(key)
     # sort by album title
     album_code_list.sort(key = lambda x: album_hash[x]['title'])
-    # album_code_list now contains a bunch of album codes sorted in alphabetical order by album title
-    # from here we dutifully march through every album we parsed out into this list
-    # and as currently written we create one section per album with photos laid out in order
-    # and then we create a book containing exactly one section based on that album
+    # process albums in alphabetical order by title
     for this_album_code in album_code_list:
       # hard-coded params
       album_author = 'Patrick Swickard'
