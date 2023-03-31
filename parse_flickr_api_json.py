@@ -41,7 +41,17 @@ def parse_file():
       album_entries = album_hash[this_album_code]['photoset_hash']
       photo_list = []
       for thisphoto_hash in album_entries:
-          thisphoto = get_photo(thisphoto_hash,all_info_hash,album_title)
+          id = thisphoto_hash['id']
+          caption = thisphoto_hash['title']
+          url = thisphoto_hash['url']
+          prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
+          photo_filename = id + '.jpg'
+          location = prefix + photo_filename
+          width = all_info_hash[id]['width_o']
+          height = all_info_hash[id]['height_o']
+          thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
+          thisphoto.album_title = album_title
+          # bonus info
           photo_list.append(thisphoto)
       page_list = get_page_list(photo_list)
       this_section = get_section(album_title,album_url,album_id,page_list)
@@ -53,22 +63,6 @@ def create_qr_code(album_url,album_id):
       qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + album_id + '.jpg'
       qr_img.save(qr_path)
       return qr_path
-
-def get_photo(thisphoto_hash,all_info_hash,album_title):
-    caption = thisphoto_hash['title']
-    id = thisphoto_hash['id']
-    url = thisphoto_hash['url']
-    # is it really the case that the width and height are all we grab from all_info_hash?
-    width = all_info_hash[id]['width_o']
-    height = all_info_hash[id]['height_o']
-    # this prefix is unique to environment, currently using pre-downloaded files
-    prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
-    photo_filename = id + '.jpg'
-    location = prefix + photo_filename
-    thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
-    # bonus info
-    thisphoto.album_title = album_title
-    return thisphoto
 
 def get_page_list(photo_list):
       page_list = []
