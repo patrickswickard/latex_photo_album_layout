@@ -28,6 +28,5 @@ May also add further enhancements to beautify layout.
 python3 parse_flickr_api_json.py 
 
 Current flaws and room for improvement:
-It would be nice to have urls pointing to individual flickr albums where relevant.  This could be a one-time data harvest, there are about 360 of them.
-It would be nice to be able to generate qr codes that would point the user to individual albums or at least print url for them.
-Separate script to auto-generate PDFs for covers using title and image input.
+Separate script to auto-generate PDFs for covers using title and image input?
+Code for books with multiple albums in multiple sections
