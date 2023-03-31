@@ -31,6 +31,7 @@ def parse_file():
     album_code_list.sort(key = lambda x: album_hash[x]['title'])
     # process albums in alphabetical order by title
     for this_album_code in album_code_list:
+      this_album = flickr_photo.Album(this_album_code)
       # hard-coded params
       album_author = 'Patrick Swickard'
       album_date = ''

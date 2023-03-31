@@ -10,20 +10,6 @@ class Album:
     self.code = ''
     self.section_list = []
 
-  def __init__(self,id,url,location,caption,width,height):
-    self.id = id
-    self.url = url
-    self.location = location
-    self.caption = pylatex.escape_latex(caption)
-    self.width = width
-    self.height = height
-    if width < height:
-      self.orientation = 'P'
-    else:
-      self.orientation = 'L'
-    self.album_title = ''
-    self.album_url = ''
-
 class Photo:
   def __init__(self,id,url,location,caption,width,height):
     self.id = id
