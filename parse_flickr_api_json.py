@@ -34,7 +34,6 @@ def parse_file():
       # owner_id can be extracted from all_info_file if desired and consistent
       owner_id = '99753978@N03'
       this_album = flickr_photo.Album(this_album_code)
-      # hard-coded params
       this_album.id = this_album_code
       this_album.author = 'Patrick Swickard'
       this_album.date = ''
