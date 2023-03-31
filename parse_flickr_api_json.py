@@ -34,19 +34,25 @@ def parse_file():
     # and as currently written we create one section per album with photos laid out in order
     # and then we create a book containing exactly one section based on that album
     for this_album_code in album_code_list:
-      album_id = this_album_code
+      # hard-coded params
+      album_author = 'Patrick Swickard'
+      album_date = ''
+      # owner_id can be extracted from all_info_file if desired and consistent
       owner_id = '99753978@N03'
-      album_url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + album_id
+      # params extracted from album_hash
+      album_id = this_album_code
       album_title = album_hash[this_album_code]['title']
+      album_url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + album_id
       album_entries = album_hash[this_album_code]['photoset_hash']
+      # build list of photo objects
       photo_list = []
       for thisphoto_hash in album_entries:
           id = thisphoto_hash['id']
-          caption = thisphoto_hash['title']
           url = thisphoto_hash['url']
           prefix = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/'
           photo_filename = id + '.jpg'
           location = prefix + photo_filename
+          caption = thisphoto_hash['title']
           width = all_info_hash[id]['width_o']
           height = all_info_hash[id]['height_o']
           thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
