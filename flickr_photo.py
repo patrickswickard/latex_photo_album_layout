@@ -279,8 +279,7 @@ class Section:
 
     def print_qr_page(self,thisfile,qr_location):
       thisfile.write('\n')
-      #thisfile.write(self.title + '\n\n')
-      thisfile.write('\\maketitle\n\n')
+      thisfile.write('\\section*{' + self.title + '}\n\n')
       thisfile.write('\\url{' + self.url + '}\n\n')
       thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
       thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
