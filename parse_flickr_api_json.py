@@ -62,7 +62,13 @@ def parse_file():
       this_section = get_section(this_album,page_list)
       # for now we are restricting books to one section...
       section_list = [this_section]
-      this_book = get_book(this_album,section_list)
+      output_filename = 'texfiles/' + this_album.title + '.tex'
+      book_title = this_album.title
+      book_author = this_album.author
+      book_date = this_album.date
+      book_url = this_album.url
+      #this_book = get_book(this_album,output_filename,book_title,book_author,book_date,book_url,section_list)
+      this_book = get_book(output_filename,book_title,book_author,book_date,book_url,section_list)
       print('Creating tex file for ' + this_album.title)
       this_book.print_book()
 
@@ -103,14 +109,13 @@ def get_section(this_album,page_list):
       this_section.qr = qr_path
       return this_section
 
-def get_book(this_album,section_list):
-      output_filename = 'texfiles/' + this_album.title + '.tex'
+def get_book(output_filename,book_title,book_author,book_date,book_url,section_list):
       output_file = open(output_filename, 'w') 
       this_book = flickr_photo.Book(output_file)
-      this_book.title = this_album.title
-      this_book.author = this_album.author
-      this_book.date = this_album.date
-      this_book.url = this_album.url
+      #this_book.title = this_album.title
+      #this_book.author = this_album.author
+      #this_book.date = this_album.date
+      #this_book.url = this_album.url
       this_book.section_list = section_list
       return this_book
 
