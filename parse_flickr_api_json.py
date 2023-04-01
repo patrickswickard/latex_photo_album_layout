@@ -68,12 +68,12 @@ def parse_file():
       output_filename = 'texfiles/' + this_section.title + '.tex'
       output_file = open(output_filename, 'w') 
       this_book = flickr_photo.Book(output_file)
-      this_book.title = this_album.title
-      this_book.author = this_album.author
-      this_book.date = this_album.date
-      this_book.url = this_album.url
+      this_book.title = this_section.title
+      this_book.author = this_section.author
+      this_book.date = this_section.date
+      this_book.url = this_section.url
       this_book.section_list = section_list
-      print('Creating tex file for ' + this_album.title)
+      print('Creating tex file for ' + this_section.title)
       this_book.print_book()
 
 def create_qr_code(this_album):
