@@ -30,6 +30,7 @@ def parse_file():
     # sort by album title
     album_code_list.sort(key = lambda x: album_hash[x]['title'])
     # process albums in alphabetical order by title
+    album_list = []
     for this_album_code in album_code_list:
       # owner_id can be extracted from all_info_file if desired and consistent
       owner_id = '99753978@N03'
@@ -40,7 +41,8 @@ def parse_file():
       this_album.title = album_hash[this_album_code]['title']
       this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
       this_album.album_entries = album_hash[this_album_code]['photoset_hash']
-
+      album_list.append(this_album)
+    for this_album in album_list:
       # build list of photo objects
       photo_list = []
       for thisphoto_hash in this_album.album_entries:
