@@ -42,6 +42,7 @@ def parse_file():
       this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
       this_album.album_entries = album_hash[this_album_code]['photoset_hash']
       album_list.append(this_album)
+    all_sections = []
     for this_album in album_list:
       # build list of photo objects
       photo_list = []
@@ -60,16 +61,12 @@ def parse_file():
           photo_list.append(thisphoto)
       page_list = get_page_list(photo_list)
       this_section = get_section(this_album,page_list)
+      all_sections.append(this_section)
+    for this_section in all_sections:
       # for now we are restricting books to one section...
       section_list = [this_section]
-      output_filename = 'texfiles/' + this_album.title + '.tex'
+      output_filename = 'texfiles/' + this_section.title + '.tex'
       output_file = open(output_filename, 'w') 
-      #book_title = this_album.title
-      #book_author = this_album.author
-      #book_date = this_album.date
-      #book_url = this_album.url
-      #this_book = get_book(this_album,output_filename,book_title,book_author,book_date,book_url,section_list)
-      #this_book = get_book(output_filename,book_title,book_author,book_date,book_url,section_list)
       this_book = flickr_photo.Book(output_file)
       this_book.title = this_album.title
       this_book.author = this_album.author
@@ -115,16 +112,6 @@ def get_section(this_album,page_list):
       qr_path = create_qr_code(this_album)
       this_section.qr = qr_path
       return this_section
-
-def get_book(output_filename,book_title,book_author,book_date,book_url,section_list):
-      output_file = open(output_filename, 'w') 
-      this_book = flickr_photo.Book(output_file)
-      this_book.title = book_title
-      this_book.author = book_author
-      this_book.date = book_date
-      this_book.url = book_url
-      this_book.section_list = section_list
-      return this_book
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
