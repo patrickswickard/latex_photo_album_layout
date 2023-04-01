@@ -63,19 +63,6 @@ def parse_file():
       this_section = get_section(this_album,page_list)
       all_sections.append(this_section)
     make_all_single_section_books(all_sections)
-#    for this_section in all_sections:
-#      # for now we are restricting books to one section...
-#      section_list = [this_section]
-#      output_filename = 'texfiles/' + this_section.title + '.tex'
-#      output_file = open(output_filename, 'w') 
-#      this_book = flickr_photo.Book(output_file)
-#      this_book.title = this_section.title
-#      this_book.author = this_section.author
-#      this_book.date = this_section.date
-#      this_book.url = this_section.url
-#      this_book.section_list = section_list
-#      print('Creating tex file for ' + this_section.title)
-#      this_book.print_book()
 
 def make_all_single_section_books(all_sections):
     for this_section in all_sections:
