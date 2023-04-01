@@ -62,7 +62,24 @@ def parse_file():
       page_list = get_page_list(photo_list)
       this_section = get_section(this_album,page_list)
       all_sections.append(this_section)
-    make_all_single_section_books(all_sections)
+    #make_all_single_section_books(all_sections)
+    make_one_multi_section_book(all_sections)
+
+def make_one_multi_section_book(all_sections):
+    section_list = []
+    for this_section in all_sections:
+        section_list.append(this_section)
+    section_list = section_list[0:5]
+    output_filename = 'texfiles2/' + 'my_special_unique_book' + '.tex'
+    output_file = open(output_filename, 'w') 
+    this_book = flickr_photo.Book(output_file)
+    this_book.title = 'My dumb book'
+    this_book.author = 'Mr. Crappy Programmer'
+    this_book.date = '2023-04-01'
+    this_book.url = 'http://isabevigodadead.com/'
+    this_book.section_list = section_list
+    print('Creating tex file for ' + this_book.title)
+    this_book.print_book()
 
 def make_all_single_section_books(all_sections):
     for this_section in all_sections:
