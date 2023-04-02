@@ -69,14 +69,16 @@ def make_one_multi_section_book(all_sections):
     section_list = []
     for this_section in all_sections:
         section_list.append(this_section)
-    section_list = section_list[0:5]
-    output_filename = 'texfiles2/' + 'my_special_unique_book' + '.tex'
+    #section_list = section_list[0:5]
+    #section_list = section_list[5:8]
+    section_list = section_list[8:10]
+    output_filename = 'texfiles2/' + 'my_special_unique_book_3' + '.tex'
     output_file = open(output_filename, 'w') 
     this_book = flickr_photo.Book(output_file)
-    this_book.title = 'My dumb book'
-    this_book.author = 'Mr. Crappy Programmer'
-    this_book.date = '2023-04-01'
-    this_book.url = 'http://isabevigodadead.com/'
+    this_book.title = ''
+    this_book.author = ''
+    this_book.date = ''
+    this_book.url = ''
     this_book.section_list = section_list
     print('Creating tex file for ' + this_book.title)
     this_book.print_book()
