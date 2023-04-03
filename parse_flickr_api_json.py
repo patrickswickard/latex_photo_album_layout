@@ -72,10 +72,16 @@ def make_one_multi_section_book(all_sections):
     #section_list = section_list[0:5]
     #section_list = section_list[5:8]
     #section_list = section_list[8:10]
-    section_list = section_list[10:15]
+    book_filename = 'my_special_unique_book_4'
+    section_list = section_list[10:14]
+    total_pages = 0
     for this_section in section_list:
       print(this_section.title)
-    output_filename = 'texfiles2/' + 'my_special_unique_book_4' + '.tex'
+      pages_in_section = len(this_section.page_list)
+      print("Pages in section: " + str(pages_in_section))
+      total_pages += len(this_section.page_list)
+      print("Pages in book so far: " + str(total_pages))
+    output_filename = 'texfiles2/' + book_filename + '.tex'
     output_file = open(output_filename, 'w') 
     this_book = flickr_photo.Book(output_file)
     this_book.title = ''
@@ -83,7 +89,7 @@ def make_one_multi_section_book(all_sections):
     this_book.date = ''
     this_book.url = ''
     this_book.section_list = section_list
-    print('Creating tex file for ' + this_book.title)
+    print('Creating tex file for ' + book_filename)
     this_book.print_book()
 
 def make_all_single_section_books(all_sections):
