@@ -71,8 +71,11 @@ def make_one_multi_section_book(all_sections):
         section_list.append(this_section)
     #section_list = section_list[0:5]
     #section_list = section_list[5:8]
-    section_list = section_list[8:10]
-    output_filename = 'texfiles2/' + 'my_special_unique_book_3' + '.tex'
+    #section_list = section_list[8:10]
+    section_list = section_list[10:15]
+    for this_section in section_list:
+      print(this_section.title)
+    output_filename = 'texfiles2/' + 'my_special_unique_book_4' + '.tex'
     output_file = open(output_filename, 'w') 
     this_book = flickr_photo.Book(output_file)
     this_book.title = ''
