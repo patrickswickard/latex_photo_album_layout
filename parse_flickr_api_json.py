@@ -69,19 +69,19 @@ def make_one_multi_section_book(all_sections):
     section_list = []
     for this_section in all_sections:
         section_list.append(this_section)
-    #book_filename = 'my_special_unique_book_1'
+    #book_filename = 'ctr_001'
     #section_list = section_list[0:5]
-    #book_filename = 'my_special_unique_book_2'
+    #book_filename = 'ctr_002'
     #section_list = section_list[5:8]
-    #book_filename = 'my_special_unique_book_3'
+    #book_filename = 'ctr_003'
     #section_list = section_list[8:10]
-    #book_filename = 'my_special_unique_book_4'
+    #book_filename = '_ctr_004'
     #section_list = section_list[10:14]
-    #book_filename = 'my_special_unique_book_5'
+    #book_filename = 'ctr_005'
     #section_list = section_list[14:18]
-    #book_filename = 'my_special_unique_book_6'
+    #book_filename = 'ctr_006'
     #section_list = section_list[18:23]
-    book_filename = 'my_special_unique_book_7'
+    book_filename = 'my_special_unique_book_007'
     section_list = section_list[23:27]
     total_pages = 0
     for this_section in section_list:
