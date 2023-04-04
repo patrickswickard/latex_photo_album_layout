@@ -62,8 +62,8 @@ def parse_file():
       page_list = get_page_list(photo_list)
       this_section = get_section(this_album,page_list)
       all_sections.append(this_section)
-    #make_all_single_section_books(all_sections)
-    make_one_multi_section_book(all_sections)
+    make_all_single_section_books(all_sections)
+    #make_one_multi_section_book(all_sections)
 
 def make_one_multi_section_book(all_sections):
     section_list = []
