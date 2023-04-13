@@ -1,0 +1,102 @@
+Note that Flickr has a tool that allows you to download your own photos in a zip file that will be created for you.  However, the files from this are somewhat haphazardly named, not necessarily the size the user wishes to download, and the files themselves may be difficult to associate with metadata obtained elsewhere.  I have found the following methodology useful for matching photos with the metadata I care about in an organized manner.
+
+To download albums from a particular photoset on flickr:
+
+We're going to use as our example the following album by Elvert Barnes (a regional street photographer I admire).
+
+The album url is:
+https://www.flickr.com/photos/perspective/albums/72177720306885814
+
+We are going to use the api call described at https://www.flickr.com/services/api/flickr.photosets.getPhotos.html to get information
+
+The photoset id (which we can find from examining the photo album url) is 72177720306885814
+
+If we put this in the API explorer at https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos and choose Output: JSON and choose "Do not sign call", we see a url is generated that looks like, in general:
+
+https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=STUFF&photoset_id=72177720306885814&format=json&nojsoncallback=1
+
+(grab the actual STUFF from the explorer, it may be subject to change).
+
+in general:
+
+https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=STUFF&photoset_id=PHOTOSET_ID&format=json&nojsoncallback=1
+
+Output will look like:
+
+{"photoset":{"id":"72177720306885814","primary":"52761721138","owner":"95413346@N00","ownername":"Elvert Barnes","photo":[{"id":"52789356845","secret":"958cdc5a5b","server":"65535","farm":66,"title":"01.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52789426618","secret":"087d0a6807","server":"65535","farm":66,"title":"02a.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788420287","secret":"62bdc4784c","server":"65535","farm":66,"title":"03.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788420112","secret":"2156e81db8","server":"65535","farm":66,"title":"04.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788975331","secret":"8264b39a69","server":"65535","farm":66,"title":"05.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788419592","secret":"ff330beb91","server":"65535","farm":66,"title":"06.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788447842","secret":"2951ba6e01","server":"65535","farm":66,"title":"07.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52789453978","secret":"b6ddd02c93","server":"65535","farm":66,"title":"08a.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52789394590","secret":"bfdbaa4fdc","server":"65535","farm":66,"title":"09.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52789394440","secret":"9d9d7dbc37","server":"65535","farm":66,"title":"10.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788447122","secret":"4a1ceb8f3e","server":"65535","farm":66,"title":"11.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},{"id":"52788446937","secret":"073c0b00de","server":"65535","farm":66,"title":"12a.Waterfront.Yards.WDC.16April2022","isprimary":"0","ispublic":1,"isfriend":0,"isfamily":0},
+...
+],"page":1,"per_page":500,"perpage":500,"pages":1,"title":"Saturday afternoon, 16 April 2022 National Cherry Blossom Festival PETALPALOOZA at Capitol Riverfront Waterfront at Yards, SE, Washington DC","total":56},"stat":"ok"}
+
+There are three important bits of this:
+
+1.  You can grab the title of the photoset with the title key.  
+
+2.  You can grab the owner id of the phtoset and the owner with:
+owner_id = BIGHASH['photoset']['owner'] # 95413346@N00
+owner_name = BIGHASH['photoset']['ownername'] # Elvert Barnes
+
+3: You can grab the id and title from each individual image by getting the array of photo info from:
+photo_list = BIGHASH['photoset']['photo'] 
+and then for each thisphoto in the array grabbing 
+photo_id = thisphoto['id']
+photo_server = thisphoto['server']
+photo_title = thisphoto['title']
+
+This gets us part of the way toward getting to an individual photo.  Suppose we want the first photo in the set, the one with id 52789356845 and title "01.Waterfront.Yards.WDC.16April2022"
+
+If we go directly to that photo in Flickr some poking about shows that we can find the photo at
+
+https://www.flickr.com/photos/95413346@N00/52789356845
+
+in general:
+
+https://www.flickr.com/photos/owner_id/photo_id
+
+This however does not lead directly to the photo.
+
+If you press the download button (down-arrow pointing to a line) and choose View All Sizes you are taken to a page with various sizes.  Choosing "Original" takes you to a page with the original-sized photo on it.  If you open the image in a new tab you will see:
+
+https://live.staticflickr.com/65535/52789356845_5502678edd_o.jpg
+
+*Parts* of this url are predictable, but not everything.  It follows the form:
+https://live.staticflickr.com/PHOTO_SERVER/PHOTO_ID_?????_o.jpg
+We don't know and can't really predict the 5502678edd part
+
+We can however for each photo do a request to get the url for each size and get the dimensions to boot!
+
+Once again at https://www.flickr.com/services/api/ we choose https://www.flickr.com/services/api/flickr.photos.getSizes.html and play with API explorer at https://www.flickr.com/services/api/explore/flickr.photos.getSizes
+
+Put in photo_id and choose json and do not sign call and you get url that looks like:
+
+https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=API_KEY_VALUE&photo_id=52789356845&format=json&nojsoncallback=1
+
+and in general
+
+https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=API_KEY_VALUE&photo_id=PHOTO_ID&format=json&nojsoncallback=1
+
+and this leads to output that looks like:
+
+{ "sizes": { "canblog": 0, "canprint": 0, "candownload": 1, 
+    "size": [
+      { "label": "Square", "width": 75, "height": 75, "source": "https:\/\/live.staticflickr.com\/65535\/52789356845_958cdc5a5b_s.jpg", "url": "https:\/\/www.flickr.com\/photos\/perspective\/52789356845\/sizes\/sq\/", "media": "photo" },
+...
+      { "label": "Original", "width": "6000", "height": "4000", "source": "https:\/\/live.staticflickr.com\/65535\/52789356845_5502678edd_o.jpg", "url": "https:\/\/www.flickr.com\/photos\/perspective\/52789356845\/sizes\/o\/", "media": "photo" }
+    ] }, "stat": "ok" }
+
+So again you get
+photo_size_list = BIGHASH['sizes']['size']
+
+"Original" is always one of the options, so for this_size from that array
+this_width = this_size['width']
+this_height = this_size['height']
+this_url = source['source']
+
+So to grab the image file for PHOTO_ID:
+
+1.  Go to https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=API_KEY_VALUE&photo_id=PHOTO_ID&format=json&nojsoncallback=1
+2.  Parse the json that comes back and grab the "Original" entry fromthe size table
+3.  Grab the source entry from the hash corresponding to the Original entry
+
+You can save this in an organized manner using, say, to the file PHOTOSET_ID/PHOTO_ID.jpg and repeat for every PHOTOSET_ID and PHOTO_ID that you care about, along with metadata you pick up along the way.
+
+This puts you within easy reach of modifying code in this repository to lay out your own albums in the same manner I have done with your own photos.  I would advise being respectful of copyright and not doing this in an obnoxious manner that places too much stress on Flickr's API and site.
