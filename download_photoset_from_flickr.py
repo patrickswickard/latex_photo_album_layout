@@ -3,8 +3,9 @@ import qrcode
 import re
 import requests
 import os
+import shutil
 
-api_key = '2cbb81fdd60e30dcea6410c4433fd246' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
+api_key = '8527d229f179d5cbe4f3f59138a058e7' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
 
 photoset_id_list = [
   '72177720306885814'
@@ -29,6 +30,13 @@ for this_photoset_id in photoset_id_list:
   thisalbum_hash_entry['owner_id'] = owner_id
   thisalbum_hash_entry['owner_name'] = owner_name
   thisalbum_hash_entry['photoset_hash'] = []
+  base_path = './cache/' + this_photoset_id
+  isExist = os.path.exists(base_path)
+  if not isExist:
+    os.makedirs(base_path)
+  else:
+    print('wtf')
+
   for this_photo_info in photo_info_list:
     this_photo_info_hash = {}
     this_photo_id = this_photo_info['id']
@@ -58,5 +66,11 @@ for this_photoset_id in photoset_id_list:
         this_photo_info_hash['height'] = height
         this_photo_info_hash['source'] = source
         thisalbum_hash_entry['photoset_hash'].append(this_photo_info_hash)
+        url_response = requests.get(source, stream=True)
+        photo_filename = base_path + '/' + this_photo_id + '.jpg'
+        with open(photo_filename, 'wb') as out_file:
+          shutil.copyfileobj(url_response.raw, out_file)
   all_photo_hash['this_photoset_id'] = thisalbum_hash_entry
-print(all_photo_hash)
+  all_info_file = open(base_path + '/photoset_info.json','w')
+  all_info_file.write(json.dumps(all_photo_hash))
+  all_info_file.close()
