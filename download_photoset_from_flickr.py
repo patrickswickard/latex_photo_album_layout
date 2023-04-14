@@ -70,7 +70,7 @@ for this_photoset_id in photoset_id_list:
         photo_filename = base_path + '/' + this_photo_id + '.jpg'
         with open(photo_filename, 'wb') as out_file:
           shutil.copyfileobj(url_response.raw, out_file)
-  all_photo_hash['this_photoset_id'] = thisalbum_hash_entry
+  all_photo_hash[this_photoset_id] = thisalbum_hash_entry
   all_info_file = open(base_path + '/photoset_info.json','w')
   all_info_file.write(json.dumps(all_photo_hash))
   all_info_file.close()
