@@ -17,7 +17,7 @@ class Photo:
     self.caption = pylatex.escape_latex(caption)
     self.width = width
     self.height = height
-    if width < height:
+    if width <= height:
       self.orientation = 'P'
     else:
       self.orientation = 'L'
@@ -66,11 +66,17 @@ class Page:
       thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
 
     def print_caption_line(self,thisfile,text):
-      thisfile.write(text +'\\\\\n')
+      if text:
+        thisfile.write(text +'\\\\\n')
+      else:
+        thisfile.write('\n')
 
     # final line does not need linebreak because of pagebreak
     def print_caption_line_final(self,thisfile,text):
-      thisfile.write(text +'\n')
+      if text:
+        thisfile.write(text +'\n')
+      else:
+        thisfile.write('\n')
 
     def print_ll(self,thisfile):
       land1 = self.photo_list[0].location

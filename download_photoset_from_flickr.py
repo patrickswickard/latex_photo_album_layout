@@ -55,7 +55,7 @@ for this_photoset_id in photoset_id_list:
     getsizes_hash = json.loads(getsizes_api_output.text)
     this_photo_sizelist = getsizes_hash['sizes']['size']
     for this_size in this_photo_sizelist:
-      if this_size['label'] == 'Original':
+      if this_size['label'] == 'Large':
         width = this_size['width']
         height = this_size['height']
         source = this_size['source']

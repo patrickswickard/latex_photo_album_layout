@@ -12,7 +12,7 @@ def parse_file():
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
-    album_code = '72177720306885814'
+    album_code = 'REPLACEME'
     album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
     album_hash = json.load(album_file)
     album_file.close()
@@ -25,19 +25,20 @@ def parse_file():
     all_info_file = open('all_info_file.json', 'r')
     all_info_hash = json.load(all_info_file)
     all_info_file.close()
-    album_code_list = [album_code]
+    album_code_list = []
     for key in album_hash.keys():
       album_code_list.append(key)
     # sort by album title
     album_code_list.sort(key = lambda x: album_hash[x]['title'])
+    print(album_code_list)
     # process albums in alphabetical order by title
     album_list = []
     for this_album_code in album_code_list:
       # owner_id can be extracted from all_info_file if desired and consistent
-      owner_id = 'REPLACEME'
+      owner_id = 'patrickjoust'
       this_album = flickr_photo.Album(this_album_code)
       this_album.id = this_album_code
-      this_album.author = 'REPLACEME'
+      this_album.author = 'Patrick Joust'
       this_album.date = ''
       this_album.title = album_hash[this_album_code]['title']
       this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
