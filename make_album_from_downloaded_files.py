@@ -12,7 +12,7 @@ def parse_file():
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
-    album_code = 'REPLACEME'
+    album_code = '72157621908701594'
     album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
     album_hash = json.load(album_file)
     album_file.close()

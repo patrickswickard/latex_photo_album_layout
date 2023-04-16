@@ -60,10 +60,10 @@ class Page:
       return False
 
     def print_landscape_line(self,thisfile,filename):
-      thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
 
     def print_portrait_line(self,thisfile, filename):
-      thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
 
     def print_caption_line(self,thisfile,text):
       if text:
