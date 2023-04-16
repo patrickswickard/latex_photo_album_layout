@@ -3,7 +3,9 @@ layout for 8.5x11" photo album with LaTeX
 
 The problem being solved here is to sequentially display landscape photos and portrait photos on a page of dimensions 8.5"x11" in a compact, uniform, and aesthetically-pleasing fashion for print, with as many as four portrait photographs or two landscape photographs per page or some combination thereof.  Python code is being used to generate LaTeX which can then be used to generate PDF files for print or electronic publication.
 
-The eventual goal is to automate this process so that an album of captioned photos in those formats may be submitted to the script and a LaTeX file automatically generated from the photos and captions.  This may eventually be done incorporating the Flickr API described at https://www.flickr.com/services/api/
+The eventual goal was to automate this process so that an album of captioned photos in those formats may be submitted to the script and a LaTeX file automatically generated from the photos and captions.  This may eventually be done incorporating the Flickr API described at https://www.flickr.com/services/api/
+
+This project was originally done to create a fifty-volume run of roughly 30,000 of the author's own photos located on his Flickr account.  This project was completed and then some of the code was expanded to make it possible for other users to download their own albums if desired.  See Usage section below.
 
 Note: need to import pylatex package:
 pip3 install pylatex
