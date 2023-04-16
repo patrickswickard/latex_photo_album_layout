@@ -34,10 +34,10 @@ def parse_file():
     album_list = []
     for this_album_code in album_code_list:
       # owner_id can be extracted from all_info_file if desired and consistent
-      owner_id = '95413346@N00'
+      owner_id = 'REPLACEME'
       this_album = flickr_photo.Album(this_album_code)
       this_album.id = this_album_code
-      this_album.author = 'Elvert Barnes'
+      this_album.author = 'REPLACEME'
       this_album.date = ''
       this_album.title = album_hash[this_album_code]['title']
       this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
