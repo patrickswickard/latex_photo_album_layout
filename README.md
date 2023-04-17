@@ -29,7 +29,7 @@ The second is an api key.  This can be requested from Flickr or, sneakily, may b
 Downloaded photos will be stored in the cache directory in a folder created that is keyed on the album id.  This folder will also contain a photoset_info.json file containing metadata for that album.
 
 make_album_from_downloaded_files.py
-This makes a .tex file from the downloaded files in the cache directory.  Some tweaking will need to be done by the user to point to appropriate directories for the qr codes and the file where the photos are actually located.  This should be obvious, but there is room for improvement here.
+This makes a .tex file from the downloaded files in the cache directory.  The output .tex file will be stored in this directory.  The user will need to specify the album id, swapping out REPLACEME for the desired album id.  
 
 
 Current flaws and room for improvement:

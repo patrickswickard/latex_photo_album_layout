@@ -54,8 +54,22 @@ for this_photoset_id in photoset_id_list:
     getsizes_api_output = requests.get(api_getsizes_url)
     getsizes_hash = json.loads(getsizes_api_output.text)
     this_photo_sizelist = getsizes_hash['sizes']['size']
+    # weird hack here - Flickr is inconsistent with which sizes
+    # are available  We prefer Original if available 
+    # but may be forced to take Large
+    # or quit if neither are available
+    preferred_size = ''
     for this_size in this_photo_sizelist:
-      if this_size['label'] == 'Large':
+      if this_size['label'] == 'Original':
+        preferred_size = 'Original'
+    if not preferred_size:
+      for this_size in this_photo_sizelist:
+        if this_size['label'] == 'Large':
+          preferred_size = 'Large'
+    if not preferred_size:
+        raise 'Oops, no preferred sizes found!'
+    for this_size in this_photo_sizelist:
+      if this_size['label'] == preferred_size:
         width = this_size['width']
         height = this_size['height']
         source = this_size['source']

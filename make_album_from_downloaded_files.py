@@ -46,8 +46,7 @@ def parse_file():
       for thisphoto_hash in this_album.album_entries:
           id = thisphoto_hash['id']
           url = thisphoto_hash['source']
-          github_home = '/home/swickape/projects/github/' # REPLACEME
-          photo_prefix = github_home + 'latex_photo_album_layout/cache/' + this_album.id + '/'
+          photo_prefix = this_album.id + '/'
           photo_filename = id + '.jpg'
           location = photo_prefix + photo_filename
           caption = thisphoto_hash['title']
@@ -76,7 +75,8 @@ def make_one_multi_section_book(all_sections):
       print("Pages in section: " + str(pages_in_section))
       total_pages += len(this_section.page_list)
       print("Pages in book so far: " + str(total_pages))
-    output_filename = 'texfiles4/' + book_filename + '.tex'
+    #output_filename = 'texfiles4/' + book_filename + '.tex'
+    output_filename = 'cache/' + book_filename + '.tex'
     output_file = open(output_filename, 'w') 
     this_book = flickr_photo.Book(output_file)
     this_book.title = ''
@@ -86,6 +86,7 @@ def make_one_multi_section_book(all_sections):
     this_book.section_list = section_list
     print('Creating tex file for ' + book_filename)
     this_book.print_book()
+    print('Album tex file created, see ' + output_filename)
 
 def make_all_single_section_books(all_sections):
     for this_section in all_sections:
@@ -105,9 +106,8 @@ def make_all_single_section_books(all_sections):
 def create_qr_code(this_album):
       print('Creating qr code for ' + this_album.url) 
       qr_img = qrcode.make(this_album.url)
-      github_home = '/home/swickape/projects/github/' # REPLACEME
-      qr_path = github_home + 'latex_photo_album_layout/qr/' + this_album.id + '.jpg'
-      qr_img.save(qr_path)
+      qr_path = 'qr/' + this_album.id + '.jpg'
+      qr_img.save('cache/' + qr_path)
       return qr_path
 
 def get_page_list(photo_list):
