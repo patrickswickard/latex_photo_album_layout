@@ -1,18 +1,16 @@
-# This )is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 import json
 import flickr_photo
 import qrcode
 import re
+
+# NOTE you will need to replace the three lines with REPLACEME with values appropriate to your system to use this script
 
 def parse_file():
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
     album_code = 'REPLACEME'
+    #album_code = '72157621908701594' # sample album code
     album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
     album_hash = json.load(album_file)
     album_file.close()
@@ -22,23 +20,20 @@ def parse_file():
     # the owner (author) id can be obtained as well which could allow for
     # constructing some of the hard-coded urls used in the code if desired
     # e.g. owner has id 99753978@N03 
-    all_info_file = open('all_info_file.json', 'r')
-    all_info_hash = json.load(all_info_file)
-    all_info_file.close()
     album_code_list = []
     for key in album_hash.keys():
       album_code_list.append(key)
     # sort by album title
     album_code_list.sort(key = lambda x: album_hash[x]['title'])
-    print(album_code_list)
     # process albums in alphabetical order by title
     album_list = []
     for this_album_code in album_code_list:
       # owner_id can be extracted from all_info_file if desired and consistent
-      owner_id = 'patrickjoust'
+      owner_id = album_hash[this_album_code]['owner_id']
+      owner_name = album_hash[this_album_code]['owner_name']
       this_album = flickr_photo.Album(this_album_code)
       this_album.id = this_album_code
-      this_album.author = 'Patrick Joust'
+      this_album.author = owner_name
       this_album.date = ''
       this_album.title = album_hash[this_album_code]['title']
       this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
@@ -51,9 +46,10 @@ def parse_file():
       for thisphoto_hash in this_album.album_entries:
           id = thisphoto_hash['id']
           url = thisphoto_hash['source']
-          prefix = '/home/swickape/projects/github//latex_photo_album_layout/cache/' + this_album.id + '/'
+          github_home = '/home/swickape/projects/github/' # REPLACEME
+          photo_prefix = github_home + 'latex_photo_album_layout/cache/' + this_album.id + '/'
           photo_filename = id + '.jpg'
-          location = prefix + photo_filename
+          location = photo_prefix + photo_filename
           caption = thisphoto_hash['title']
           width = thisphoto_hash['width']
           height = thisphoto_hash['height']
@@ -109,7 +105,8 @@ def make_all_single_section_books(all_sections):
 def create_qr_code(this_album):
       print('Creating qr code for ' + this_album.url) 
       qr_img = qrcode.make(this_album.url)
-      qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + this_album.id + '.jpg'
+      github_home = '/home/swickape/projects/github/' # REPLACEME
+      qr_path = github_home + 'latex_photo_album_layout/qr/' + this_album.id + '.jpg'
       qr_img.save(qr_path)
       return qr_path
 
