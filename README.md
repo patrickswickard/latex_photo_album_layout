@@ -13,6 +13,11 @@ pip3 install pylatex
 also need qrcode package:
 pip3 install qrcode
 
+and
+pip3 install requests
+
+(I think those are all the non-standard ones...)
+
 Usage:
 
 This project contains a lot of messy hacked scripts to deal with some previously-downloaded photo albums and metadata unique to the author's environment and situation.  However, there are two files that can be tweaked for general usage.
@@ -27,5 +32,5 @@ The second is an api key.  This can be requested from Flickr or, sneakily, may b
 Downloaded photos will be stored in the cache directory in a folder created that is keyed on the album id.  This folder will also contain a photoset_info.json file containing metadata for that album.
 
 make_album_from_downloaded_files.py
-This makes a .tex file from the downloaded files in the cache directory.  The output .tex file will be stored in this directory.  The user will need to specify the album id, swapping out REPLACEME for the desired album id.  
+This makes a .tex file from the downloaded files in the cache directory.  The output .tex file will be stored in this directory.  The user will need to specify the album id, swapping out REPLACEME for the desired album id.  The author uses MikTex and TexMaker for this task, which has been tested and works well on Linux.  If you're on Windows...um...good luck...
 
