@@ -32,5 +32,8 @@ The second is an api key.  This can be requested from Flickr or, sneakily, may b
 Downloaded photos will be stored in the cache directory in a folder created that is keyed on the album id.  This folder will also contain a photoset_info.json file containing metadata for that album.
 
 make_album_from_downloaded_files.py
-This makes a .tex file from the downloaded files in the cache directory.  The output .tex file will be stored in this directory.  The user will need to specify the album id, swapping out REPLACEME for the desired album id.  The author uses MikTex and TexMaker for this task, which has been tested and works well on Linux and Windows.
+This makes a .tex file from the downloaded files in the cache directory.  The output .tex file will be stored in this directory.  The user will need to specify the album id, swapping out REPLACEME for the desired album id.  For print publication the tex file should probably be turned into a PDF file.  The author uses MikTex and TexMaker for this task, which has been tested and works well on Linux and Windows.
 
+MikTex: https://miktex.org/
+
+TexMaker: https://www.xm1math.net/texmaker/
