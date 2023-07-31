@@ -35,5 +35,9 @@ make_album_from_downloaded_files.py
 This makes a .tex file from the downloaded files in the cache directory.  The output .tex file will be stored in this directory.  The user will need to specify the album id, swapping out REPLACEME for the desired album id.  For print publication the tex file should probably be turned into a PDF file.  The author uses MikTex and TexMaker for this task, which has been tested and works well on Linux and Windows.
 
 MikTex: https://miktex.org/
+(n.b. MikTex can be a pain to get to work for linux, alternatively maybe try:
+sudo apt-get install texlive-base  )
+
 
 TexMaker: https://www.xm1math.net/texmaker/
+
