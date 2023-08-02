@@ -242,6 +242,38 @@ class Page:
       self.print_caption_line_final(thisfile, capt_p1)
       thisfile.write('\\pagebreak\n')
 
+class PageOneup(Page):
+    def canfit_l(self):
+      if (self.layout == ''):
+        return True
+      return False
+
+    def canfit_p(self):
+      if (self.layout == ''):
+        return True
+      return False
+
+    def print_landscape_line(self,thisfile,filename):
+      # historical 8.5x11 values
+      #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
+#      thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
+#      thisfile.write('\\includegraphics[width=5.0in,height=7.0in,keepaspectratio]{' + filename + '}\n')
+      # use this for 6 x 9 oneup
+      thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
+      # use this for 6 x 9 two-up
+#      thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
+
+    def print_portrait_line(self,thisfile, filename):
+      # historical 8.5x11 values
+      #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
+#      thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
+#      thisfile.write('\\includegraphics[width=5.0in,height=7.0in,keepaspectratio]{' + filename + '}\n')
+      # use this for 6 x 9 oneup
+      thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
+      # use this for 6 x 9 two-up
+#      thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
+
+
 class Section:
     def __init__(self):
       self.page_list = []
@@ -315,11 +347,14 @@ class Book:
     def print_preamble(self,thisfile):
       thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
       thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+      # above is what has historically been used but the margins below are probably better
+      #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
       thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
       thisfile.write("\\usepackage{pslatex}\n")
       thisfile.write("\\usepackage[pdftex]{graphicx}\n")
       thisfile.write("\\usepackage{float}\n")
       thisfile.write("\\usepackage{hyperref}\n")
+
       thisfile.write("\\setlength{\parindent}{0pt}\n")
       thisfile.write("\\title{" + self.title + "}\n")
       thisfile.write("\\author{" + self.author + "}\n")
@@ -330,3 +365,22 @@ class Book:
 
     def print_end(self,thisfile):
       thisfile.write('\\end{document}\n')
+
+class BookOneup(Book):
+    def print_preamble(self,thisfile):
+      thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
+      # 8.5 x 11 format historical
+      #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+      # 8.5 x 11 format
+#      thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
+      # 6 x 9 format
+      thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
+      thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
+      thisfile.write("\\usepackage{pslatex}\n")
+      thisfile.write("\\usepackage[pdftex]{graphicx}\n")
+      thisfile.write("\\usepackage{float}\n")
+      thisfile.write("\\usepackage{hyperref}\n")
+      thisfile.write("\\setlength{\parindent}{0pt}\n")
+      thisfile.write("\\title{" + self.title + "}\n")
+      thisfile.write("\\author{" + self.author + "}\n")
+      thisfile.write("\\date{" + self.date + "}\n")
