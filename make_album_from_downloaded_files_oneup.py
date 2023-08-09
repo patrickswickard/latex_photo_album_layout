@@ -4,13 +4,13 @@ import flickr_photo
 import qrcode
 import re
 
-# NOTE you will need to replace the three lines with REPLACEME with values appropriate to your system to use this script
+# NOTE you will need to replace any line with REPLACEME with values appropriate to your system to use this script
 
 def parse_file():
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
-    album_code = '72177720310176444'
+    album_code = '72177720310176444' #REPLACEME
     #album_code = '72157621908701594' # sample album code
     album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
     album_hash = json.load(album_file)
