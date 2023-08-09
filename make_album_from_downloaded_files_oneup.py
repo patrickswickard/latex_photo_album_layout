@@ -61,9 +61,15 @@ def parse_file():
       this_section = get_section(this_album,page_list)
       all_sections.append(this_section)
     #make_all_single_section_books(all_sections)
-    make_one_multi_section_book(all_sections)
+    my_paper_width = 6.0
+    my_paper_height = 9.0
+    my_top_margin = 0.5
+    my_bottom_margin = 0.5
+    my_left_margin = 0.5
+    my_right_margin = 0.5
+    make_one_multi_section_book(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
 
-def make_one_multi_section_book(all_sections):
+def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
     section_list = []
     for this_section in all_sections:
         section_list.append(this_section)
@@ -81,7 +87,8 @@ def make_one_multi_section_book(all_sections):
     output_file = open(output_filename, 'w') 
     #this_book = flickr_photo.BookOneup(output_file)
     #this_book = flickr_photo.BookOneup(output_file)
-    this_book = flickr_photo.BookOneup(output_file,paper_width=6.0,paper_height=9.0,top_margin=0.5,bottom_margin=0.5,left_margin=0.5,right_margin=0.5)
+    #this_book = flickr_photo.BookOneup(output_file,paper_width=6.0,paper_height=9.0,top_margin=0.5,bottom_margin=0.5,left_margin=0.5,right_margin=0.5)
+    this_book = flickr_photo.BookOneup(output_file,paper_width=paper_width,paper_height=paper_height,top_margin=top_margin,bottom_margin=bottom_margin,left_margin=left_margin,right_margin=right_margin)
     this_book.title = ''
     this_book.author = ''
     this_book.date = ''
@@ -91,7 +98,7 @@ def make_one_multi_section_book(all_sections):
     this_book.print_book()
     print('Album tex file created, see ' + output_filename)
 
-def make_all_single_section_books(all_sections):
+def make_all_single_section_books(all_sections,paper_width,paper_height):
     for this_section in all_sections:
       # for now we are restricting books to one section...
       section_list = [this_section]
