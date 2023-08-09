@@ -7,18 +7,18 @@ import re
 # NOTE you will need to replace any line with REPLACEME with values appropriate to your system to use this script
 
 def parse_file():
-    #my_paper_width = 8.5
-    #my_paper_height = 11.0
-    #my_top_margin = 0.75
-    #my_bottom_margin = 0.75
-    #my_left_margin = 0.5
-    #my_right_margin = 0.5
-    my_paper_width = 6.0
-    my_paper_height = 9.0
-    my_top_margin = 0.5
-    my_bottom_margin = 0.5
+    my_paper_width = 8.5
+    my_paper_height = 11.0
+    my_top_margin = 0.75
+    my_bottom_margin = 0.75
     my_left_margin = 0.5
     my_right_margin = 0.5
+    #my_paper_width = 6.0
+    #my_paper_height = 9.0
+    #my_top_margin = 0.5
+    #my_bottom_margin = 0.5
+    #my_left_margin = 0.5
+    #my_right_margin = 0.5
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
