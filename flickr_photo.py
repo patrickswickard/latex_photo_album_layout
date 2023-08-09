@@ -243,6 +243,20 @@ class Page:
       thisfile.write('\\pagebreak\n')
 
 class PageOneup(Page):
+    #def __init__(self):
+    def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
+      self.photo_list = []
+      self.layout = ''
+      #self.landscape_width = 5.0
+      #self.landscape_height = 7.5
+      #self.portrait_width = 5.0
+      #self.portrait_height = 7.5
+      # currently hard-coded for 6x9
+      self.landscape_width = landscape_width if landscape_width is not None else 5.0
+      self.landscape_height = landscape_height if landscape_height is not None else 7.5
+      self.portrait_width = portrait_width if portrait_width is not None else 5.0
+      self.portrait_height = portrait_height if portrait_height is not None else 7.5
+
     def canfit_l(self):
       if (self.layout == ''):
         return True
@@ -259,7 +273,9 @@ class PageOneup(Page):
 #      thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
 #      thisfile.write('\\includegraphics[width=5.0in,height=7.0in,keepaspectratio]{' + filename + '}\n')
       # use this for 6 x 9 oneup
-      thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
+      #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
+      #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
       # use this for 6 x 9 two-up
 #      thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
 
@@ -269,7 +285,9 @@ class PageOneup(Page):
 #      thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
 #      thisfile.write('\\includegraphics[width=5.0in,height=7.0in,keepaspectratio]{' + filename + '}\n')
       # use this for 6 x 9 oneup
-      thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
+      #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
+      #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
       # use this for 6 x 9 two-up
 #      thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
 
@@ -324,7 +342,8 @@ class Section:
       thisfile.write('\\pagebreak\n')
 
 class Book:
-    def __init__(self,thisfile):
+    #def __init__(self,thisfile):
+    def __init__(self,thisfile,paper_width=None,paper_height=None,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None):
       self.section_list = []
       self.thisfile = thisfile
       self.title = ''
@@ -332,6 +351,18 @@ class Book:
       self.date = ''
       self.url = ''
       self.qr = ''
+      self.paper_width = paper_width if paper_width is not None else 8.5
+      self.paper_height = paper_height if paper_height is not None else 11.0
+      self.top_margin = top_margin if top_margin is not None else 0.75
+      self.bottom_margin = bottom_margin if bottom_margin is not None else 0.75
+      self.left_margin = left_margin if left_margin is not None else 0.5
+      self.right_margin = right_margin if right_margin is not None else 0.5
+      #self.paper_width = paper_width if paper_width is not None else 6.0
+      #self.paper_height = paper_height if paper_height is not None else 9.0
+      #self.top_margin = top_margin if top_margin is not None else 0.5
+      #self.bottom_margin = bottom_margin if bottom_margin is not None else 0.5
+      #self.left_margin = left_margin if left_margin is not None else 0.5
+      #self.right_margin = right_margin if right_margin is not None else 0.5
 
     def print_book(self):
       thisfile = self.thisfile
@@ -344,7 +375,7 @@ class Book:
       self.print_end(thisfile)
       thisfile.close()
 
-    def print_preamble(self,thisfile):
+    def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None,paper_width=None,paper_height=None):
       thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
       thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
       # above is what has historically been used but the margins below are probably better
@@ -374,7 +405,8 @@ class BookOneup(Book):
       # 8.5 x 11 format
 #      thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
       # 6 x 9 format
-      thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
+      #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
+      thisfile.write('\\usepackage[top=' + str(self.top_margin) + 'in, bottom=' + str(self.bottom_margin) + 'in, left=' + str(self.left_margin) + 'in, right='  + str(self.right_margin) + 'in, paperwidth=' + str(self.paper_width) + 'in, paperheight=' + str(self.paper_height) + 'in]{geometry}\n')
       thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
       thisfile.write("\\usepackage{pslatex}\n")
       thisfile.write("\\usepackage[pdftex]{graphicx}\n")

@@ -79,7 +79,9 @@ def make_one_multi_section_book(all_sections):
     #output_filename = 'texfiles4/' + book_filename + '.tex'
     output_filename = 'cache/' + book_filename + '.tex'
     output_file = open(output_filename, 'w') 
-    this_book = flickr_photo.BookOneup(output_file)
+    #this_book = flickr_photo.BookOneup(output_file)
+    #this_book = flickr_photo.BookOneup(output_file)
+    this_book = flickr_photo.BookOneup(output_file,paper_width=6.0,paper_height=9.0,top_margin=0.5,bottom_margin=0.5,left_margin=0.5,right_margin=0.5)
     this_book.title = ''
     this_book.author = ''
     this_book.date = ''

@@ -5,10 +5,10 @@ import requests
 import os
 import shutil
 
-api_key = 'REPLACEME' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
+api_key = 'fb0ab5899ada022b4148bf206a47fc50' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
 
 photoset_id_list = [
-  'REPLACEME'
+  '72177720310176444'
 ]
 
 
