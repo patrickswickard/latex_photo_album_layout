@@ -18,6 +18,15 @@ pip3 install requests
 
 (I think those are all the non-standard ones...)
 
+Current push:
+
+I am currently trying to parameterize for custom page widths besides 8.5x11.0 .  I now have 6.0 x 9.0 working as far as I can tell.  A bit more math and refactoring and I may be able to do this for other album sizes.
+TODO: 
+For oneup these images should probably be centered on the page better.
+Do the math to calculate margins based on page width
+Handle more than oneup (four-up?)
+When we do the math can we do font size as well?  We currently have 10pt hard-coded.  72pt/in...
+
 Usage:
 
 This project contains a lot of messy hacked scripts to deal with some previously-downloaded photo albums and metadata unique to the author's environment and situation.  However, there are two files that can be tweaked for general usage.
