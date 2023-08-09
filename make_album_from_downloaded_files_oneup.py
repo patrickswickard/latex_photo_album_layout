@@ -7,6 +7,18 @@ import re
 # NOTE you will need to replace any line with REPLACEME with values appropriate to your system to use this script
 
 def parse_file():
+    #my_paper_width = 8.5
+    #my_paper_height = 11.0
+    #my_top_margin = 0.75
+    #my_bottom_margin = 0.75
+    #my_left_margin = 0.5
+    #my_right_margin = 0.5
+    my_paper_width = 6.0
+    my_paper_height = 9.0
+    my_top_margin = 0.5
+    my_bottom_margin = 0.5
+    my_left_margin = 0.5
+    my_right_margin = 0.5
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
@@ -57,16 +69,10 @@ def parse_file():
           # bonus info
           thisphoto.album_title = this_album.title
           photo_list.append(thisphoto)
-      page_list = get_page_list(photo_list)
+      page_list = get_page_list(photo_list,paper_width=my_paper_width,paper_height=my_paper_height)
       this_section = get_section(this_album,page_list)
       all_sections.append(this_section)
     #make_all_single_section_books(all_sections)
-    my_paper_width = 6.0
-    my_paper_height = 9.0
-    my_top_margin = 0.5
-    my_bottom_margin = 0.5
-    my_left_margin = 0.5
-    my_right_margin = 0.5
     make_one_multi_section_book(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
 
 def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
@@ -120,9 +126,25 @@ def create_qr_code(this_album):
       qr_img.save('cache/' + qr_path)
       return qr_path
 
-def get_page_list(photo_list):
+def get_page_list(photo_list,paper_width,paper_height):
+      if paper_width == 8.5 and paper_height == 11.0:
+        landscape_width = 7.5
+        landscape_height = 9.0
+        portrait_width = 7.5
+        portrait_height = 9.0
+      elif paper_width == 6.0 and paper_height == 9.0:
+        landscape_width = 5.0
+        landscape_height = 7.5
+        portrait_width = 5.0
+        portrait_height = 7.5
+      else:
+        landscape_width = 5.0
+        landscape_height = 7.5
+        portrait_width = 5.0
+        portrait_height = 7.5
       page_list = []
-      current_page = flickr_photo.PageOneup()
+      #current_page = flickr_photo.PageOneup(landscape_width=5.0,landscape_height=7.5,portrait_width=5.0,portrait_height=7.5)
+      current_page = flickr_photo.PageOneup(landscape_width=landscape_width,landscape_height=landscape_height,portrait_width=portrait_width,portrait_height=portrait_height)
       for thisphoto in photo_list:
         if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
           current_page.add_photo(thisphoto)
@@ -130,7 +152,7 @@ def get_page_list(photo_list):
           current_page.add_photo(thisphoto)
         else:
           page_list.append(current_page)
-          current_page = flickr_photo.PageOneup()
+          current_page = flickr_photo.PageOneup(landscape_width=landscape_width,landscape_height=landscape_height,portrait_width=portrait_width,portrait_height=portrait_height)
           current_page.add_photo(thisphoto)
       # add final page
       page_list.append(current_page)

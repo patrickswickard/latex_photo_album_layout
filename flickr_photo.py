@@ -287,7 +287,7 @@ class PageOneup(Page):
       # use this for 6 x 9 oneup
       #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
       #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
-      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,height=' + str(self.portrait_height) + 'in,keepaspectratio]{' + filename + '}\n')
       # use this for 6 x 9 two-up
 #      thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
 
