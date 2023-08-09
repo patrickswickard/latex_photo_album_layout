@@ -73,6 +73,7 @@ def parse_file():
       this_section = get_section(this_album,page_list)
       all_sections.append(this_section)
     #make_all_single_section_books(all_sections)
+    #make_all_single_section_books(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
     make_one_multi_section_book(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
 
 def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
@@ -104,13 +105,14 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin
     this_book.print_book()
     print('Album tex file created, see ' + output_filename)
 
-def make_all_single_section_books(all_sections,paper_width,paper_height):
+def make_all_single_section_books(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
     for this_section in all_sections:
       # for now we are restricting books to one section...
       section_list = [this_section]
       output_filename = 'texfiles/' + this_section.title + '.tex'
       output_file = open(output_filename, 'w') 
-      this_book = flickr_photo.BookOneup(output_file)
+      #this_book = flickr_photo.BookOneup(output_file)
+      this_book = flickr_photo.BookOneup(output_file,paper_width=paper_width,paper_height=paper_height,top_margin=top_margin,bottom_margin=bottom_margin,left_margin=left_margin,right_margin=right_margin)
       this_book.title = this_section.title
       this_book.author = this_section.author
       this_book.date = this_section.date
