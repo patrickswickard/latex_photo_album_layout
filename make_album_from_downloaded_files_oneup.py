@@ -9,12 +9,18 @@ import re
 def parse_file():
     my_paper_width = 8.5
     my_paper_height = 11.0
-    my_top_margin = 0.75
-    my_bottom_margin = 0.75
+    my_top_margin = 0.5
+    my_bottom_margin = 0.5
     my_left_margin = 0.5
     my_right_margin = 0.5
     #my_paper_width = 6.0
     #my_paper_height = 9.0
+    #my_top_margin = 0.5
+    #my_bottom_margin = 0.5
+    #my_left_margin = 0.5
+    #my_right_margin = 0.5
+    #my_paper_width = 4.0
+    #my_paper_height = 6.0
     #my_top_margin = 0.5
     #my_bottom_margin = 0.5
     #my_left_margin = 0.5
@@ -69,8 +75,8 @@ def parse_file():
           # bonus info
           thisphoto.album_title = this_album.title
           photo_list.append(thisphoto)
-      page_list = get_page_list(photo_list,paper_width=my_paper_width,paper_height=my_paper_height)
-      this_section = get_section(this_album,page_list)
+      page_list = get_page_list(photo_list,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
+      this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
       all_sections.append(this_section)
     #make_all_single_section_books(all_sections)
     #make_all_single_section_books(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
@@ -128,22 +134,26 @@ def create_qr_code(this_album):
       qr_img.save('cache/' + qr_path)
       return qr_path
 
-def get_page_list(photo_list,paper_width,paper_height):
-      if paper_width == 8.5 and paper_height == 11.0:
-        landscape_width = 7.5
-        landscape_height = 9.0
-        portrait_width = 7.5
-        portrait_height = 9.0
-      elif paper_width == 6.0 and paper_height == 9.0:
-        landscape_width = 5.0
-        landscape_height = 7.5
-        portrait_width = 5.0
-        portrait_height = 7.5
-      else:
-        landscape_width = 5.0
-        landscape_height = 7.5
-        portrait_width = 5.0
-        portrait_height = 7.5
+def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+      landscape_width = paper_width - left_margin - right_margin
+      portrait_width = paper_width - left_margin - right_margin
+      landscape_height = paper_height - top_margin - bottom_margin - 0.5
+      portrait_height = paper_height - top_margin - bottom_margin - 0.5
+#      if paper_width == 8.5 and paper_height == 11.0:
+#        landscape_width = 7.5
+#        landscape_height = 9.0
+#        portrait_width = 7.5
+#        portrait_height = 9.0
+#      elif paper_width == 6.0 and paper_height == 9.0:
+#        landscape_width = 5.0
+#        landscape_height = 7.5
+#        portrait_width = 5.0
+#        portrait_height = 7.5
+#      else:
+#        landscape_width = 5.0
+#        landscape_height = 7.5
+#        portrait_width = 5.0
+#        portrait_height = 7.5
       page_list = []
       #current_page = flickr_photo.PageOneup(landscape_width=5.0,landscape_height=7.5,portrait_width=5.0,portrait_height=7.5)
       current_page = flickr_photo.PageOneup(landscape_width=landscape_width,landscape_height=landscape_height,portrait_width=portrait_width,portrait_height=portrait_height)
@@ -160,8 +170,14 @@ def get_page_list(photo_list,paper_width,paper_height):
       page_list.append(current_page)
       return page_list
 
-def get_section(this_album,page_list):
+def get_section(this_album,page_list,paper_width,left_margin,right_margin):
       this_section = flickr_photo.Section()
+      qrdimmax = paper_width - left_margin - right_margin
+      if qrdimmax < 5.19:
+          qrdim = qrdimmax
+      else:
+          qrdim = 5.19
+      this_section.qrdim = qrdim
       for thispage in page_list:
           layout = thispage.layout
           photo_list = thispage.photo_list

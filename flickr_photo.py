@@ -289,18 +289,18 @@ class PageOneup(Page):
       # use this for 6 x 9 oneup
       #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
       #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
-      thisfile.write('\\begin{center}')
+      thisfile.write('\\begin{center}\n')
       thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,height=' + str(self.portrait_height) + 'in,keepaspectratio]{' + filename + '}\n')
-      thisfile.write('\\end{center}')
+      thisfile.write('\\end{center}\n')
       # use this for 6 x 9 two-up
 #      thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
 
     # this maybe only looks okay for one-up?
     def print_caption_line(self,thisfile,text):
       if text:
-        thisfile.write('\\begin{center}')
+        thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\\\\\n')
-        thisfile.write('\\end{center}')
+        thisfile.write('\\end{center}\n')
       else:
         thisfile.write('\n')
 
@@ -308,9 +308,9 @@ class PageOneup(Page):
     # final line does not need linebreak because of pagebreak
     def print_caption_line_final(self,thisfile,text):
       if text:
-        thisfile.write('\\begin{center}')
+        thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\n')
-        thisfile.write('\\end{center}')
+        thisfile.write('\\end{center}\n')
       else:
         thisfile.write('\n')
 
@@ -323,6 +323,7 @@ class Section:
       self.date = ''
       self.url = ''
       self.qr = ''
+      self.qrdim = 5.19
 
     def add_page(self,page):
       self.page_list.append(page)
@@ -360,7 +361,9 @@ class Section:
       thisfile.write('\\section*{' + self.title + '}\n\n')
       thisfile.write('\\url{' + self.url + '}\n\n')
       thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
-      thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
+      thisfile.write('\\begin{center}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.qrdim) + 'in]{' + qr_location + '}\n')
+      thisfile.write('\\end{center}\n')
       thisfile.write('\\pagebreak\n')
 
 class Book:
