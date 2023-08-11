@@ -425,6 +425,7 @@ class Book:
 class BookOneup(Book):
     def print_preamble(self,thisfile):
       thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
+      thisfile.write('\\pagenumbering{gobble}\n')
       # 8.5 x 11 format historical
       #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
       # 8.5 x 11 format
