@@ -135,10 +135,12 @@ def create_qr_code(this_album):
       return qr_path
 
 def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+      # four lines of 10pt or 12pt font fit in 0.5in
+      text_height = 0.5
       landscape_width = paper_width - left_margin - right_margin
       portrait_width = paper_width - left_margin - right_margin
-      landscape_height = paper_height - top_margin - bottom_margin - 0.5
-      portrait_height = paper_height - top_margin - bottom_margin - 0.5
+      landscape_height = paper_height - top_margin - bottom_margin - text_height
+      portrait_height = paper_height - top_margin - bottom_margin - text_height
 #      if paper_width == 8.5 and paper_height == 11.0:
 #        landscape_width = 7.5
 #        landscape_height = 9.0
