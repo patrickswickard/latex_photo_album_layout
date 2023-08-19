@@ -324,6 +324,7 @@ class Section:
       self.url = ''
       self.qr = ''
       self.qrdim = 5.19
+      self.blank_after_qr = False
 
     def add_page(self,page):
       self.page_list.append(page)
@@ -356,6 +357,13 @@ class Section:
         else:
           raise 'That did not match any known layouts!'
 
+    def print_blank_page(self,thisfile):
+      thisfile.write('\\newpage\n')
+      thisfile.write('\n')
+      thisfile.write('\ % The empty page\n')
+      thisfile.write('\n')
+      thisfile.write('\\newpage\n')
+
     def print_qr_page(self,thisfile,qr_location):
       thisfile.write('\n')
       thisfile.write('\\section*{' + self.title + '}\n\n')
@@ -365,6 +373,13 @@ class Section:
       thisfile.write('\\includegraphics[width=' + str(self.qrdim) + 'in]{' + qr_location + '}\n')
       thisfile.write('\\end{center}\n')
       thisfile.write('\\pagebreak\n')
+      if self.blank_after_qr:
+        self.print_blank_page(thisfile)
+      #thisfile.write('\\newpage\n')
+      #thisfile.write('\n')
+      #thisfile.write('\ % The empty page\n')
+      #thisfile.write('\n')
+      #thisfile.write('\\newpage\n')
 
 class Book:
     #def __init__(self,thisfile):

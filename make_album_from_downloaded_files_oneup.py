@@ -28,7 +28,8 @@ def parse_file():
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
-    album_code = '72177720310176444' #REPLACEME
+    album_code = '72177720310546202' #REPLACEME
+#    album_code = '72177720310176444' #REPLACEME
     #album_code = '72157621908701594' # sample album code
     album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
     album_hash = json.load(album_file)
@@ -77,6 +78,7 @@ def parse_file():
           photo_list.append(thisphoto)
       page_list = get_page_list(photo_list,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
       this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
+      this_section.blank_after_qr = True
       all_sections.append(this_section)
     #make_all_single_section_books(all_sections)
     #make_all_single_section_books(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
