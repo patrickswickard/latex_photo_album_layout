@@ -1,5 +1,5 @@
 generic_poem_title_1 = 'TITLE1'
-generic_poem_title_2 = 'TITLE1'
+generic_poem_title_2 = 'TITLE2'
 generic_poem_body_1 = [
   'LINE1-1',
   'LINE1-2',
@@ -23,6 +23,24 @@ class Poem:
     self.body = []
     self.image = 'cache/GENERIC/noimage.jpg'
 
+  def return_section(self):
+    section_string =  """% Layout ???
+\\begin{center}\includegraphics[width=5.0in,height=6.5in,keepaspectratio]{GENERIC/GENERIC1.jpg}
+\\end{center}
+\\begin{center}
+\\textbf{"""
+    section_string += self.title
+    section_string += """}\\\\
+\\vskip 0.2in
+"""
+    for thisline in self.body:
+      section_string += thisline
+      section_string += """\\\\\n"""
+    section_string += """\end{center}
+\pagebreak
+"""
+    return section_string
+
 poem_1 = Poem()
 poem_2 = Poem()
 
@@ -41,3 +59,5 @@ poem_list.append(poem_2)
 
 for thispoem in poem_list:
   print(thispoem.title)
+  poem_section = thispoem.return_section()
+  print(poem_section)
