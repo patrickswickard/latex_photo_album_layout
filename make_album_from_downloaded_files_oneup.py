@@ -13,22 +13,23 @@ def parse_file():
     #my_bottom_margin = 0.5
     #my_left_margin = 0.5
     #my_right_margin = 0.5
-    #my_paper_width = 6.0
-    #my_paper_height = 9.0
-    #my_top_margin = 0.5
-    #my_bottom_margin = 0.5
-    #my_left_margin = 0.5
-    #my_right_margin = 0.5
-    my_paper_width = 4.0
-    my_paper_height = 6.0
+    my_paper_width = 6.0
+    my_paper_height = 9.0
     my_top_margin = 0.5
     my_bottom_margin = 0.5
     my_left_margin = 0.5
     my_right_margin = 0.5
+    #my_paper_width = 4.0
+    #my_paper_height = 6.0
+    #my_top_margin = 0.5
+    #my_bottom_margin = 0.5
+    #my_left_margin = 0.5
+    #my_right_margin = 0.5
     # this file contains json hash keyed on album id
     # entries are an album title and sequential list of photos
     # with id caption and url
-    album_code = '72177720310657841' #REPLACEME
+    album_code = 'CHANGEME' #REPLACEME
+    #album_code = '72177720311316693' #REPLACEME
     #album_code = '72177720310604095' #REPLACEME
     #album_code = '72177720310546202' #REPLACEME
 #    album_code = '72177720310176444' #REPLACEME
@@ -90,7 +91,7 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin
     section_list = []
     for this_section in all_sections:
         section_list.append(this_section)
-    book_filename = 'dicksjr_46_interior'
+    book_filename = 'CHANGEME'
     section_list = section_list
     total_pages = 0
     for this_section in section_list:
