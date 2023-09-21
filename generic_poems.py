@@ -41,6 +41,30 @@ class Poem:
 """
     return section_string
 
+  def return_web(self):
+    section_string =  """<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>"""
+    section_string += "<img src=\""
+    section_string += "images/cancorps/GENERIC/noimage.jpg"
+    section_string += "\">\n"
+    section_string += "<H1>"
+    section_string += "TITLE1"
+    section_string += "</H1>\n"
+    section_string += "<P>\n"
+    for thisline in self.body:
+      section_string += thisline
+      section_string += "<BR>\n"
+    section_string += """<P>
+</body>
+</html>
+"""
+    return section_string
+
 poem_1 = Poem()
 poem_2 = Poem()
 
@@ -61,3 +85,5 @@ for thispoem in poem_list:
   print(thispoem.title)
   poem_section = thispoem.return_section()
   print(poem_section)
+  poem_webpage = thispoem.return_web()
+  print(poem_webpage)
