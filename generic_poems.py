@@ -1,7 +1,8 @@
+"""Utility file for producing cannibal corpse limerick book"""
 from mypoem import Poem
 
-generic_poem_title_1 = 'TITLE1'
-generic_poem_title_2 = 'TITLE2'
+GENERIC_POEM_TITLE_1 = 'TITLE1'
+GENERIC_POEM_TITLE_2 = 'TITLE2'
 generic_poem_body_1 = [
   'LINE1-1',
   'LINE1-2',
@@ -16,8 +17,8 @@ generic_poem_body_2 = [
   'LINE2-4',
   'LINE2-5',
 ]
-generic_poem_image_1 = 'cache/GENERIC/GENERIC1.jpg'
-generic_poem_image_2 = 'cache/GENERIC/GENERIC2.jpg'
+GENERIC_POEM_IMAGE_1 = 'cache/GENERIC/GENERIC1.jpg'
+GENERIC_POEM_IMAGE_2 = 'cache/GENERIC/GENERIC2.jpg'
 
 #class Poem:
 #  def __init__(self):
@@ -70,14 +71,14 @@ generic_poem_image_2 = 'cache/GENERIC/GENERIC2.jpg'
 poem_1 = Poem()
 poem_2 = Poem()
 
-poem_1.title = generic_poem_title_1
-poem_2.title = generic_poem_title_2
+poem_1.title = GENERIC_POEM_TITLE_1
+poem_2.title = GENERIC_POEM_TITLE_2
 
 poem_1.body = generic_poem_body_1
 poem_2.body = generic_poem_body_2
 
-poem_1.image = generic_poem_image_1
-poem_2.image = generic_poem_image_2
+poem_1.image = GENERIC_POEM_IMAGE_1
+poem_2.image = GENERIC_POEM_IMAGE_2
 
 poem_list = []
 poem_list.append(poem_1)
