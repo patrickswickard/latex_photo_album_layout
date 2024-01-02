@@ -34,28 +34,28 @@ class Page:
     self.layout += photo.orientation
 
   def canfit_l(self):
-    if (self.layout == ''):
+    if self.layout == '':
       return True
-    if (self.layout == 'L'):
+    if self.layout == 'L':
       return True
-    if (self.layout == 'P'):
+    if self.layout == 'P':
       return True
-    if (self.layout == 'PP'):
+    if self.layout == 'PP':
       return True
     return False
 
   def canfit_p(self):
-    if (self.layout == ''):
+    if self.layout == '':
       return True
-    if (self.layout == 'L'):
+    if self.layout == 'L':
       return True
-    if (self.layout == 'LP'):
+    if self.layout == 'LP':
       return True
-    if (self.layout == 'P'):
+    if self.layout == 'P':
       return True
-    if (self.layout == 'PP'):
+    if self.layout == 'PP':
       return True
-    if (self.layout == 'PPP'):
+    if self.layout == 'PPP':
       return True
     return False
 
@@ -257,12 +257,12 @@ class PageOneup(Page):
     self.portrait_height = portrait_height if portrait_height is not None else 7.5
 
   def canfit_l(self):
-    if (self.layout == ''):
+    if self.layout == '':
       return True
     return False
 
   def canfit_p(self):
-    if (self.layout == ''):
+    if self.layout == '':
       return True
     return False
 
