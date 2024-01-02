@@ -1,3 +1,4 @@
+"""Script for spitting out covers to html for webpage"""
 import re
 
 for i in range(1,51):
