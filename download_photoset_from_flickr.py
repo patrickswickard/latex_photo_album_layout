@@ -1,19 +1,19 @@
-import json
-import qrcode
-import re
-import requests
+"""Download a photo set from Flickr by id"""
 import os
 import shutil
+import json
+import requests
 
-api_key = 'bf00f1ea85b0e95d6b48d48efd0e15f0' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
+api_key = '58a070ff5b6e76c60a2fe806d578ae38' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
 
 photoset_id_list = [
-  'CHANGEME'
+  #'CHANGEME'
   #'72177720311316693'
   #'72177720310176444'
   #'72177720310546202'
   #'72177720310604095'
-#  '72177720310657841'
+  '72177720310657841'
+  #'72177720312512993'
 ]
 
 
@@ -60,7 +60,7 @@ for this_photoset_id in photoset_id_list:
     getsizes_hash = json.loads(getsizes_api_output.text)
     this_photo_sizelist = getsizes_hash['sizes']['size']
     # weird hack here - Flickr is inconsistent with which sizes
-    # are available  We prefer Original if available 
+    # are available  We prefer Original if available
     # but may be forced to take Large
     # or quit if neither are available
     preferred_size = ''
@@ -72,7 +72,7 @@ for this_photoset_id in photoset_id_list:
         if this_size['label'] == 'Large':
           preferred_size = 'Large'
     if not preferred_size:
-        raise 'Oops, no preferred sizes found!'
+      raise 'Oops, no preferred sizes found!'
     for this_size in this_photo_sizelist:
       if this_size['label'] == preferred_size:
         width = this_size['width']
