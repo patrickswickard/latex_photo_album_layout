@@ -356,7 +356,8 @@ class Section:
       else:
         raise 'That did not match any known layouts!'
 
-  def print_blank_page(self,thisfile):
+  @staticmethod
+  def print_blank_page(thisfile):
     thisfile.write('\\newpage\n')
     thisfile.write('\n')
     thisfile.write('\ % The empty page\n')
@@ -373,7 +374,7 @@ class Section:
     thisfile.write('\\end{center}\n')
     thisfile.write('\\pagebreak\n')
     if self.blank_after_qr:
-      self.print_blank_page(thisfile)
+      Section.print_blank_page(thisfile)
     #thisfile.write('\\newpage\n')
     #thisfile.write('\n')
     #thisfile.write('\ % The empty page\n')
@@ -406,17 +407,25 @@ class Book:
   def print_book(self):
     thisfile = self.thisfile
     self.print_preamble(thisfile)
-    self.print_begin(thisfile)
+    Book.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
       thissection.thisfile = thisfile
       thissection.print_section()
-    self.print_end(thisfile)
+    Book.print_end(thisfile)
     thisfile.close()
 
   def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None,paper_width=None,paper_height=None):
+    # ignore inputs for now
+    top_margin = '0.75in'
+    bottom_margin = '0.75in'
+    left_margin = '0.75in'
+    right_margin = '0.75in'
+    paper_width = '0.5in'
+    paper_height = '11in'
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+    #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+    thisfile.write('\\usepackage[top=' + top_margin + ', bottom=' + bottom_margin + ', left=' + left_margin + ', right=' + right_margin + ', paperwidth=' + paper_width + ', paperheight=' + paper_height + ']{geometry}\n')
     # above is what has historically been used but the margins below are probably better
     #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
@@ -430,10 +439,12 @@ class Book:
     thisfile.write("\\author{" + self.author + "}\n")
     thisfile.write("\\date{" + self.date + "}\n")
 
-  def print_begin(self,thisfile):
+  @staticmethod
+  def print_begin(thisfile):
     thisfile.write('\\begin{document}\n')
 
-  def print_end(self,thisfile):
+  @staticmethod
+  def print_end(thisfile):
     thisfile.write('\\end{document}\n')
 
 class BookOneup(Book):
