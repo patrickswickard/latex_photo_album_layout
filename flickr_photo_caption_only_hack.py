@@ -60,26 +60,33 @@ class Page:
     return False
 
   def print_landscape_line(self,thisfile,filename):
+    """Print a landscape line"""
     thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
+    """Print a portrait line"""
     thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
 
   def print_caption_line(self,thisfile,text):
+    """Print a caption line"""
     thisfile.write(text +'\\\\\n')
 
   # final line does not need linebreak because of pagebreak
   def print_caption_line_final(self,thisfile,text):
+    """Print the final caption line (special case)"""
     thisfile.write(text +'\n')
 
   def print_caption_line_co(self,thisfile,text):
+    """Print a caption line caption only"""
     thisfile.write(text +'\\\\\n')
 
   # final line does not need linebreak because of pagebreak
   def print_caption_line_final_co(self,thisfile,text):
+    """Print the final caption line (special case) caption only"""
     thisfile.write(text +'\n')
 
   def print_ll(self,thisfile):
+    """Print a page with LL orientation"""
     land1 = self.photo_list[0].location
     land2 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
@@ -96,6 +103,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_l(self,thisfile):
+    """Print a page with L orientation"""
     land1 = self.photo_list[0].location
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
@@ -106,6 +114,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_pppp(self,thisfile):
+    """Print a page with PPPP orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     port3 = self.photo_list[2].location
@@ -129,6 +138,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_ppp(self,thisfile):
+    """Print a page with PPP orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     port3 = self.photo_list[2].location
@@ -148,6 +158,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_pp(self,thisfile):
+    """Print a page with PP orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
@@ -162,6 +173,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_p(self,thisfile):
+    """Print a page with P orientation"""
     port1 = self.photo_list[0].location
     capt_p1 = self.photo_list[0].caption
     thisfile.write('\n')
@@ -172,6 +184,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_ppl(self,thisfile):
+    """Print a page with PPL orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     land1 = self.photo_list[2].location
@@ -192,6 +205,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_lpp(self,thisfile):
+    """Print a page with LPP orientation"""
     land1 = self.photo_list[0].location
     port1 = self.photo_list[1].location
     port2 = self.photo_list[2].location
@@ -212,6 +226,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_pl(self,thisfile):
+    """Print a page with PL orientation"""
     port1 = self.photo_list[0].location
     land1 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
@@ -228,6 +243,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_lp(self,thisfile):
+    """Print a page with LP orientation"""
     land1 = self.photo_list[0].location
     port1 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
@@ -244,8 +260,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_llco(self,thisfile):
-    land1 = self.photo_list[0].location
-    land2 = self.photo_list[1].location
+    """Print a page with LL orientation caption only"""
     capt_l1 = self.photo_list[0].caption
     capt_l2 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -253,16 +268,13 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_l2)
 
   def print_lco(self,thisfile):
-    land1 = self.photo_list[0].location
+    """Print a page with L orientation caption only"""
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
     self.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_ppppco(self,thisfile):
-    port1 = self.photo_list[0].location
-    port2 = self.photo_list[1].location
-    port3 = self.photo_list[2].location
-    port4 = self.photo_list[3].location
+    """Print a page with PPPP orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
@@ -274,9 +286,7 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_p4)
 
   def print_pppco(self,thisfile):
-    port1 = self.photo_list[0].location
-    port2 = self.photo_list[1].location
-    port3 = self.photo_list[2].location
+    """Print a page with PPP orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
@@ -286,8 +296,7 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_p3)
 
   def print_ppco(self,thisfile):
-    port1 = self.photo_list[0].location
-    port2 = self.photo_list[1].location
+    """Print a page with PP orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -295,15 +304,13 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_p2)
 
   def print_pco(self,thisfile):
-    port1 = self.photo_list[0].location
+    """Print a page with P orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     thisfile.write('\n')
     self.print_caption_line_final_co(thisfile, capt_p1)
 
   def print_pplco(self,thisfile):
-    port1 = self.photo_list[0].location
-    port2 = self.photo_list[1].location
-    land1 = self.photo_list[2].location
+    """Print a page with PPL orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_l1 = self.photo_list[2].caption
@@ -313,9 +320,7 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_lppco(self,thisfile):
-    land1 = self.photo_list[0].location
-    port1 = self.photo_list[1].location
-    port2 = self.photo_list[2].location
+    """Print a page with LPP orientation caption only"""
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     capt_p2 = self.photo_list[2].caption
@@ -325,8 +330,7 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_p2)
 
   def print_plco(self,thisfile):
-    port1 = self.photo_list[0].location
-    land1 = self.photo_list[1].location
+    """Print a page with PL orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_l1 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -334,8 +338,7 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_lpco(self,thisfile):
-    land1 = self.photo_list[0].location
-    port1 = self.photo_list[1].location
+    """Print a page with LP orientation caption only"""
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -343,6 +346,7 @@ class Page:
     self.print_caption_line_final_co(thisfile, capt_p1)
 
 class Section:
+  """Class representing a Book section representing a group of related Pages"""
   def __init__(self):
     self.page_list = []
     #self.thisfile = thisfile
@@ -353,9 +357,11 @@ class Section:
     self.qr = ''
 
   def add_page(self,page):
+    """Append a page to section"""
     self.page_list.append(page)
 
   def print_section(self):
+    """Print a section of book"""
     thisfile = self.thisfile
     if self.qr != '':
       self.print_qr_page(thisfile,self.qr)
@@ -384,6 +390,7 @@ class Section:
         raise 'That did not match any known layouts!'
 
   def print_section_caption_only(self):
+    """Print a section of book caption only"""
     thisfile = self.thisfile
     if self.qr != '':
       self.print_qr_page(thisfile,self.qr)
@@ -413,6 +420,7 @@ class Section:
     thisfile.write('\\pagebreak\n')
 
   def print_qr_page(self,thisfile,qr_location):
+    """Print a page with a qr code"""
     thisfile.write('\n')
     thisfile.write('\\section*{' + self.title + '}\n\n')
     thisfile.write('\\url{' + self.url + '}\n\n')
@@ -421,6 +429,7 @@ class Section:
     thisfile.write('\\pagebreak\n')
 
 class Book:
+  """Book class representing a single photo book"""
   def __init__(self,thisfile):
     self.section_list = []
     self.thisfile = thisfile
@@ -431,6 +440,7 @@ class Book:
     self.qr = ''
 
   def print_book(self):
+    """Print book to .tex file"""
     thisfile = self.thisfile
     self.print_preamble(thisfile)
     Book.print_begin(thisfile)
@@ -442,6 +452,7 @@ class Book:
     thisfile.close()
 
   def print_book_caption_only(self):
+    """Print caption only book to .tex file"""
     thisfile = self.thisfile
     self.print_preamble(thisfile)
     Book.print_begin(thisfile)
@@ -453,6 +464,7 @@ class Book:
     thisfile.close()
 
   def print_preamble(self,thisfile):
+    """Print preamble of latex document with hard-coded margins"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
@@ -467,8 +479,10 @@ class Book:
 
   @staticmethod
   def print_begin(thisfile):
+    """Print beginning of latex document"""
     thisfile.write('\\begin{document}\n')
 
   @staticmethod
   def print_end(thisfile):
+    """Print end of latex document"""
     thisfile.write('\\end{document}\n')
