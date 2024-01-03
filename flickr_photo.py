@@ -1,6 +1,8 @@
+"""This class has tools to create photo books with captions in .tex format"""
 import pylatex
 
 class Album:
+  """Album class for representing a collection of Photos"""
   def __init__(self,id):
     self.id = id
     self.title = ''
@@ -10,6 +12,7 @@ class Album:
     self.album_entries = []
 
 class Photo:
+  """Photo class with metadata for a single photo"""
   def __init__(self,id,url,location,caption,width,height):
     self.id = id
     self.url = url
@@ -25,15 +28,18 @@ class Photo:
     self.album_url = ''
 
 class Page:
+  """Class representing a single page with checks to see what layouts can work"""
   def __init__(self):
     self.photo_list = []
     self.layout = ''
 
   def add_photo(self,photo):
+    """Try to add next photo to page"""
     self.photo_list.append(photo)
     self.layout += photo.orientation
 
   def canfit_l(self):
+    """Determine if page can fit another image in landscape orientation"""
     if self.layout == '':
       return True
     if self.layout == 'L':
@@ -45,6 +51,7 @@ class Page:
     return False
 
   def canfit_p(self):
+    """Determine if page can fit another image in portrait orientation"""
     if self.layout == '':
       return True
     if self.layout == 'L':
@@ -60,12 +67,15 @@ class Page:
     return False
 
   def print_landscape_line(self,thisfile,filename):
+    """Print a photo inline in landscape format"""
     thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
+    """Print a photo inline in portrait format"""
     thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
 
   def print_caption_line(self,thisfile,text):
+    """Print a caption line"""
     if text:
       thisfile.write(text +'\\\\\n')
     else:
@@ -73,12 +83,14 @@ class Page:
 
   # final line does not need linebreak because of pagebreak
   def print_caption_line_final(self,thisfile,text):
+    """Print the final caption line (special case)"""
     if text:
       thisfile.write(text +'\n')
     else:
       thisfile.write('\n')
 
   def print_ll(self,thisfile):
+    """Print a page with LL orientation"""
     land1 = self.photo_list[0].location
     land2 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
@@ -95,6 +107,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_l(self,thisfile):
+    """Print a page with L orientation"""
     land1 = self.photo_list[0].location
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
@@ -105,6 +118,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_pppp(self,thisfile):
+    """Print a page with PPPP orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     port3 = self.photo_list[2].location
@@ -128,6 +142,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_ppp(self,thisfile):
+    """Print a page with PPP orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     port3 = self.photo_list[2].location
@@ -147,6 +162,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_pp(self,thisfile):
+    """Print a page with PP orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
@@ -161,6 +177,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_p(self,thisfile):
+    """Print a page with P orientation"""
     port1 = self.photo_list[0].location
     capt_p1 = self.photo_list[0].caption
     thisfile.write('\n')
@@ -171,6 +188,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_ppl(self,thisfile):
+    """Print a page with PPL orientation"""
     port1 = self.photo_list[0].location
     port2 = self.photo_list[1].location
     land1 = self.photo_list[2].location
@@ -191,6 +209,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_lpp(self,thisfile):
+    """Print a page with LPP orientation"""
     land1 = self.photo_list[0].location
     port1 = self.photo_list[1].location
     port2 = self.photo_list[2].location
@@ -211,6 +230,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_pl(self,thisfile):
+    """Print a page with PL orientation"""
     port1 = self.photo_list[0].location
     land1 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
@@ -227,6 +247,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
   def print_lp(self,thisfile):
+    """Print a page with LP orientation"""
     land1 = self.photo_list[0].location
     port1 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
@@ -243,6 +264,7 @@ class Page:
     thisfile.write('\\pagebreak\n')
 
 class PageOneup(Page):
+  """Special instance of Page class except we force one image per page"""
   def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
     self.photo_list = []
     self.layout = ''
@@ -314,6 +336,7 @@ class PageOneup(Page):
       thisfile.write('\n')
 
 class Section:
+  """Class representing a Book section representing a group of related Pages"""
   def __init__(self):
     self.page_list = []
     #self.thisfile = thisfile
@@ -326,9 +349,11 @@ class Section:
     self.blank_after_qr = False
 
   def add_page(self,page):
+    """Append a page to section"""
     self.page_list.append(page)
 
   def print_section(self):
+    """Print a section of book"""
     thisfile = self.thisfile
     if self.qr != '':
       self.print_qr_page(thisfile,self.qr)
@@ -358,6 +383,7 @@ class Section:
 
   @staticmethod
   def print_blank_page(thisfile):
+    """Print a blank page"""
     thisfile.write('\\newpage\n')
     thisfile.write('\n')
     thisfile.write('\ % The empty page\n')
@@ -365,6 +391,7 @@ class Section:
     thisfile.write('\\newpage\n')
 
   def print_qr_page(self,thisfile,qr_location):
+    """Print a page with a qr code"""
     thisfile.write('\n')
     thisfile.write('\\section*{' + self.title + '}\n\n')
     thisfile.write('\\url{' + self.url + '}\n\n')
@@ -382,6 +409,7 @@ class Section:
     #thisfile.write('\\newpage\n')
 
 class Book:
+  """Book class representing a single photo book"""
   #def __init__(self,thisfile):
   def __init__(self,thisfile,paper_width=None,paper_height=None,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None):
     self.section_list = []
@@ -405,6 +433,7 @@ class Book:
     #self.right_margin = right_margin if right_margin is not None else 0.5
 
   def print_book(self):
+    """Print book to .tex file"""
     thisfile = self.thisfile
     self.print_preamble(thisfile)
     Book.print_begin(thisfile)
@@ -416,12 +445,13 @@ class Book:
     thisfile.close()
 
   def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None,paper_width=None,paper_height=None):
+    """Print preamble of latex document given margins which are currently ignored"""
     # ignore inputs for now
     top_margin = '0.75in'
     bottom_margin = '0.75in'
     left_margin = '0.75in'
     right_margin = '0.75in'
-    paper_width = '0.5in'
+    paper_width = '8.5in'
     paper_height = '11in'
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
@@ -441,14 +471,18 @@ class Book:
 
   @staticmethod
   def print_begin(thisfile):
+    """Print beginning of latex document"""
     thisfile.write('\\begin{document}\n')
 
   @staticmethod
   def print_end(thisfile):
+    """Print end of latex document"""
     thisfile.write('\\end{document}\n')
 
 class BookOneup(Book):
+  """Class representing a book that has one image per page"""
   def print_preamble(self,thisfile):
+    """Print the latex preamble for a one-up book"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     thisfile.write('\\pagenumbering{gobble}\n')
     # 8.5 x 11 format historical
