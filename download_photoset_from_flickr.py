@@ -4,7 +4,9 @@ import shutil
 import json
 import requests
 
-api_key = '58a070ff5b6e76c60a2fe806d578ae38' #REPLACEME this changes regularly, see e.g. https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
+# REPLACEME this changes regularly, see e.g.
+# https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
+api_key = '7f9c6b0bba210782b21c6408a88aae4a'
 
 photoset_id_list = [
   #'CHANGEME'
@@ -90,6 +92,5 @@ for this_photoset_id in photoset_id_list:
         with open(photo_filename, 'wb') as out_file:
           shutil.copyfileobj(url_response.raw, out_file)
   all_photo_hash[this_photoset_id] = thisalbum_hash_entry
-  all_info_file = open(base_path + '/photoset_info.json','w')
-  all_info_file.write(json.dumps(all_photo_hash))
-  all_info_file.close()
+  with open(base_path + '/photoset_info.json', 'w', encoding='utf-8') as myoutfile:
+    myoutfile.write(json.dumps(all_photo_hash))
