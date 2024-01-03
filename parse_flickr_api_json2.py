@@ -10,6 +10,7 @@ import PIL
 import flickr_photo
 
 def parse_file():
+  """Parse json file containing photo metadata"""
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
@@ -78,6 +79,7 @@ def parse_file():
   #make_one_big_book_all_text(all_sections)
 
 def make_one_multi_section_book(all_sections):
+  """Make one book with multiple sections"""
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -198,6 +200,7 @@ def make_one_multi_section_book(all_sections):
   this_book.print_book()
 
 def make_all_single_section_books(all_sections):
+  """Make all books with a single section section"""
   for this_section in all_sections:
     # for now we are restricting books to one section...
     section_list = [this_section]
@@ -213,6 +216,7 @@ def make_all_single_section_books(all_sections):
     this_book.print_book()
 
 def make_one_big_book_all_text(all_sections):
+  """Make a text-only book with just captions"""
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -237,6 +241,7 @@ def create_qr_code(this_album):
   return qr_path
 
 def get_page_list(photo_list):
+  """Get page list"""
   page_list = []
   current_page = flickr_photo.Page()
   for thisphoto in photo_list:
@@ -253,6 +258,7 @@ def get_page_list(photo_list):
   return page_list
 
 def get_section(this_album,page_list):
+  """Get book section"""
   this_section = flickr_photo.Section()
   for thispage in page_list:
     layout = thispage.layout
