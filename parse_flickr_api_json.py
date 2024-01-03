@@ -13,18 +13,16 @@ def parse_file():
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
-  album_file = open('allalbumswithurls2.json', 'r', encoding='utf-8')
-  album_hash = json.load(album_file)
-  album_file.close()
+  with open('allalbumswithurls2.json', 'r', encoding='utf-8') as myinfile:
+    album_hash = json.load(myinfile)
   # this file contains a json hash keyed on photo id
   # entries are metadata for individual photos
   # with additional data about datetaken (possibly inaccurate) width and height
   # the owner (author) id can be obtained as well which could allow for
   # constructing some of the hard-coded urls used in the code if desired
   # e.g. owner has id 99753978@N03
-  all_info_file = open('all_info_file.json', 'r', encoding='utf-8')
-  all_info_hash = json.load(all_info_file)
-  all_info_file.close()
+  with open('all_info_file.json', 'r', encoding='utf-8') as myinfile:
+    all_info_hash = json.load(myinfile)
   album_code_list = []
   for key in album_hash.keys():
     album_code_list.append(key)
