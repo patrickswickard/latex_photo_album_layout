@@ -433,23 +433,23 @@ class Book:
   def print_book(self):
     thisfile = self.thisfile
     self.print_preamble(thisfile)
-    self.print_begin(thisfile)
+    Book.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
       thissection.thisfile = thisfile
       thissection.print_section()
-    self.print_end(thisfile)
+    Book.print_end(thisfile)
     thisfile.close()
 
   def print_book_caption_only(self):
     thisfile = self.thisfile
     self.print_preamble(thisfile)
-    self.print_begin(thisfile)
+    Book.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
       thissection.thisfile = thisfile
       thissection.print_section_caption_only()
-    self.print_end(thisfile)
+    Book.print_end(thisfile)
     thisfile.close()
 
   def print_preamble(self,thisfile):
@@ -465,8 +465,10 @@ class Book:
     thisfile.write("\\author{" + self.author + "}\n")
     thisfile.write("\\date{" + self.date + "}\n")
 
-  def print_begin(self,thisfile):
+  @staticmethod
+  def print_begin(thisfile):
     thisfile.write('\\begin{document}\n')
 
-  def print_end(self,thisfile):
+  @staticmethod
+  def print_end(thisfile):
     thisfile.write('\\end{document}\n')
