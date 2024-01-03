@@ -215,6 +215,7 @@ def make_one_big_book_all_text(all_sections):
   this_book.print_book_caption_only()
 
 def create_qr_code(this_album):
+  """Create a qr code jpg image that points to an album/section"""
   print('Creating qr code for ' + this_album.url)
   qr_img = qrcode.make(this_album.url)
   qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + this_album.id + '.jpg'

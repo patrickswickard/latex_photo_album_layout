@@ -1,3 +1,4 @@
+"""Script used to construct a series of photo books"""
 # This )is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -8,6 +9,7 @@ import qrcode
 import flickr_photo
 
 def parse_file():
+  """Parse the file of all photo albums with urls"""
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
@@ -65,6 +67,7 @@ def parse_file():
   make_one_multi_section_book(all_sections)
 
 def make_one_multi_section_book(all_sections):
+  """Make a single book with multiple sections"""
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -198,6 +201,7 @@ def make_all_single_section_books(all_sections):
     this_book.print_book()
 
 def create_qr_code(this_album):
+  """Create a qr code jpg image that points to an album/section"""
   print('Creating qr code for ' + this_album.url)
   qr_img = qrcode.make(this_album.url)
   qr_path = '/home/swickape/Pictures/flickr/Downloads/qr/' + this_album.id + '.jpg'
