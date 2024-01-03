@@ -13,7 +13,7 @@ def parse_file():
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
-  album_file = open('allalbumswithurls2.json', 'r')
+  album_file = open('allalbumswithurls2.json', 'r', encoding='utf-8')
   album_hash = json.load(album_file)
   album_file.close()
   # this file contains a json hash keyed on photo id
@@ -22,7 +22,7 @@ def parse_file():
   # the owner (author) id can be obtained as well which could allow for
   # constructing some of the hard-coded urls used in the code if desired
   # e.g. owner has id 99753978@N03
-  all_info_file = open('all_info_file.json', 'r')
+  all_info_file = open('all_info_file.json', 'r', encoding='utf-8')
   all_info_hash = json.load(all_info_file)
   all_info_file.close()
   album_code_list = []
@@ -175,7 +175,7 @@ def make_one_multi_section_book(all_sections):
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
   output_filename = 'texfiles2/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w')
+  output_file = open(output_filename, 'w', encoding='utf-8')
   this_book = flickr_photo.Book(output_file)
   this_book.title = ''
   this_book.author = ''
