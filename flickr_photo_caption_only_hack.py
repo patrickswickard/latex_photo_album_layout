@@ -436,8 +436,8 @@ class Book:
     self.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
-        thissection.thisfile = thisfile
-        thissection.print_section()
+      thissection.thisfile = thisfile
+      thissection.print_section()
     self.print_end(thisfile)
     thisfile.close()
 
@@ -447,8 +447,8 @@ class Book:
     self.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
-        thissection.thisfile = thisfile
-        thissection.print_section_caption_only()
+      thissection.thisfile = thisfile
+      thissection.print_section_caption_only()
     self.print_end(thisfile)
     thisfile.close()
 
@@ -460,7 +460,7 @@ class Book:
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
     thisfile.write("\\usepackage{float}\n")
     thisfile.write("\\usepackage{hyperref}\n")
-    thisfile.write("\\setlength{\parindent}{0pt}\n")
+    thisfile.write("\\setlength{\\parindent}{0pt}\n")
     thisfile.write("\\title{" + self.title + "}\n")
     thisfile.write("\\author{" + self.author + "}\n")
     thisfile.write("\\date{" + self.date + "}\n")
