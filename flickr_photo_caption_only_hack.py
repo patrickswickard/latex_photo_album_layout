@@ -1,6 +1,8 @@
+"""This class has tools to create photo books with no captions in .tex format"""
 import pylatex
 
 class Album:
+  """Album class for representing a collection of Photos"""
   def __init__(self,id):
     self.id = id
     self.title = ''
@@ -10,6 +12,7 @@ class Album:
     self.album_entries = []
 
 class Photo:
+  """Photo class with metadata for a single photo"""
   def __init__(self,id,url,location,caption,width,height):
     self.id = id
     self.url = url
@@ -25,15 +28,18 @@ class Photo:
     self.album_url = ''
 
 class Page:
+  """Class representing a single page with checks to see what layouts can work"""
   def __init__(self):
     self.photo_list = []
     self.layout = ''
 
   def add_photo(self,photo):
+    """Add a new photo"""
     self.photo_list.append(photo)
     self.layout += photo.orientation
 
   def canfit_l(self):
+    """Check if canfit another landscape photo inline"""
     if self.layout == '':
       return True
     if self.layout == 'L':
@@ -45,6 +51,7 @@ class Page:
     return False
 
   def canfit_p(self):
+    """Check if canfit another portrait photo inline"""
     if self.layout == '':
       return True
     if self.layout == 'L':
@@ -59,29 +66,35 @@ class Page:
       return True
     return False
 
-  def print_landscape_line(self,thisfile,filename):
+  @staticmethod
+  def print_landscape_line(thisfile,filename):
     """Print a landscape line"""
     thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
 
-  def print_portrait_line(self,thisfile, filename):
+  @staticmethod
+  def print_portrait_line(thisfile, filename):
     """Print a portrait line"""
     thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
 
-  def print_caption_line(self,thisfile,text):
+  @staticmethod
+  def print_caption_line(thisfile,text):
     """Print a caption line"""
     thisfile.write(text +'\\\\\n')
 
   # final line does not need linebreak because of pagebreak
-  def print_caption_line_final(self,thisfile,text):
+  @staticmethod
+  def print_caption_line_final(thisfile,text):
     """Print the final caption line (special case)"""
     thisfile.write(text +'\n')
 
-  def print_caption_line_co(self,thisfile,text):
+  @staticmethod
+  def print_caption_line_co(thisfile,text):
     """Print a caption line caption only"""
     thisfile.write(text +'\\\\\n')
 
   # final line does not need linebreak because of pagebreak
-  def print_caption_line_final_co(self,thisfile,text):
+  @staticmethod
+  def print_caption_line_final_co(thisfile,text):
     """Print the final caption line (special case) caption only"""
     thisfile.write(text +'\n')
 
@@ -93,13 +106,13 @@ class Page:
     capt_l2 = self.photo_list[1].caption
     thisfile.write('\n')
     thisfile.write('% Layout LL\n')
-    self.print_landscape_line(thisfile, land1)
+    Page.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
     thisfile.write('\\vspace{0.25in}\n')
-    self.print_landscape_line(thisfile, land2)
+    Page.print_landscape_line(thisfile, land2)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_l1)
-    self.print_caption_line_final(thisfile, capt_l2)
+    Page.print_caption_line(thisfile, capt_l1)
+    Page.print_caption_line_final(thisfile, capt_l2)
     thisfile.write('\\pagebreak\n')
 
   def print_l(self,thisfile):
@@ -108,9 +121,9 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
     thisfile.write('% Layout L\n')
-    self.print_landscape_line(thisfile, land1)
+    Page.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
-    self.print_caption_line_final(thisfile, capt_l1)
+    Page.print_caption_line_final(thisfile, capt_l1)
     thisfile.write('\\pagebreak\n')
 
   def print_pppp(self,thisfile):
@@ -125,16 +138,16 @@ class Page:
     capt_p4 = self.photo_list[3].caption
     thisfile.write('\n')
     thisfile.write('% Layout PPPP\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
+    Page.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
-    self.print_portrait_line(thisfile, port3)
-    self.print_portrait_line(thisfile, port4)
+    Page.print_portrait_line(thisfile, port3)
+    Page.print_portrait_line(thisfile, port4)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line(thisfile, capt_p2)
-    self.print_caption_line(thisfile, capt_p3)
-    self.print_caption_line_final(thisfile, capt_p4)
+    Page.print_caption_line(thisfile, capt_p1)
+    Page.print_caption_line(thisfile, capt_p2)
+    Page.print_caption_line(thisfile, capt_p3)
+    Page.print_caption_line_final(thisfile, capt_p4)
     thisfile.write('\\pagebreak\n')
 
   def print_ppp(self,thisfile):
@@ -147,14 +160,14 @@ class Page:
     capt_p3 = self.photo_list[2].caption
     thisfile.write('\n')
     thisfile.write('% Layout PPP\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
+    Page.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
-    self.print_portrait_line(thisfile, port3)
+    Page.print_portrait_line(thisfile, port3)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line(thisfile, capt_p2)
-    self.print_caption_line_final(thisfile, capt_p3)
+    Page.print_caption_line(thisfile, capt_p1)
+    Page.print_caption_line(thisfile, capt_p2)
+    Page.print_caption_line_final(thisfile, capt_p3)
     thisfile.write('\\pagebreak\n')
 
   def print_pp(self,thisfile):
@@ -165,11 +178,11 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     thisfile.write('\n')
     thisfile.write('% Layout PP\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
+    Page.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line_final(thisfile, capt_p2)
+    Page.print_caption_line(thisfile, capt_p1)
+    Page.print_caption_line_final(thisfile, capt_p2)
     thisfile.write('\\pagebreak\n')
 
   def print_p(self,thisfile):
@@ -178,9 +191,9 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     thisfile.write('\n')
     thisfile.write('% Layout P\n')
-    self.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port1)
     thisfile.write('\n')
-    self.print_caption_line_final(thisfile, capt_p1)
+    Page.print_caption_line_final(thisfile, capt_p1)
     thisfile.write('\\pagebreak\n')
 
   def print_ppl(self,thisfile):
@@ -193,15 +206,15 @@ class Page:
     capt_l1 = self.photo_list[2].caption
     thisfile.write('\n')
     thisfile.write('% Layout PPL\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
+    Page.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
     thisfile.write('\\vspace{0.25in}\n')
-    self.print_landscape_line(thisfile, land1)
+    Page.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line(thisfile, capt_p2)
-    self.print_caption_line_final(thisfile, capt_l1)
+    Page.print_caption_line(thisfile, capt_p1)
+    Page.print_caption_line(thisfile, capt_p2)
+    Page.print_caption_line_final(thisfile, capt_l1)
     thisfile.write('\\pagebreak\n')
 
   def print_lpp(self,thisfile):
@@ -214,15 +227,15 @@ class Page:
     capt_p2 = self.photo_list[2].caption
     thisfile.write('\n')
     thisfile.write('% Layout LPP\n')
-    self.print_landscape_line(thisfile, land1)
+    Page.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
     thisfile.write('\\vspace{0.25in}\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
+    Page.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_l1)
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line_final(thisfile, capt_p2)
+    Page.print_caption_line(thisfile, capt_l1)
+    Page.print_caption_line(thisfile, capt_p1)
+    Page.print_caption_line_final(thisfile, capt_p2)
     thisfile.write('\\pagebreak\n')
 
   def print_pl(self,thisfile):
@@ -233,13 +246,13 @@ class Page:
     capt_l1 = self.photo_list[1].caption
     thisfile.write('\n')
     thisfile.write('% Layout PL\n')
-    self.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port1)
     thisfile.write('\n')
     thisfile.write('\\vspace{0.25in}\n')
-    self.print_landscape_line(thisfile, land1)
+    Page.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line_final(thisfile, capt_l1)
+    Page.print_caption_line(thisfile, capt_p1)
+    Page.print_caption_line_final(thisfile, capt_l1)
     thisfile.write('\\pagebreak\n')
 
   def print_lp(self,thisfile):
@@ -250,13 +263,13 @@ class Page:
     capt_p1 = self.photo_list[1].caption
     thisfile.write('\n')
     thisfile.write('% Layout LP\n')
-    self.print_landscape_line(thisfile, land1)
+    Page.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
     thisfile.write('\\vspace{0.25in}\n')
-    self.print_portrait_line(thisfile, port1)
+    Page.print_portrait_line(thisfile, port1)
     thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_l1)
-    self.print_caption_line_final(thisfile, capt_p1)
+    Page.print_caption_line(thisfile, capt_l1)
+    Page.print_caption_line_final(thisfile, capt_p1)
     thisfile.write('\\pagebreak\n')
 
   def print_llco(self,thisfile):
@@ -264,14 +277,14 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     capt_l2 = self.photo_list[1].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_l1)
-    self.print_caption_line_final_co(thisfile, capt_l2)
+    Page.print_caption_line_co(thisfile, capt_l1)
+    Page.print_caption_line_final_co(thisfile, capt_l2)
 
   def print_lco(self,thisfile):
     """Print a page with L orientation caption only"""
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
-    self.print_caption_line_final_co(thisfile, capt_l1)
+    Page.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_ppppco(self,thisfile):
     """Print a page with PPPP orientation caption only"""
@@ -280,10 +293,10 @@ class Page:
     capt_p3 = self.photo_list[2].caption
     capt_p4 = self.photo_list[3].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_co(thisfile, capt_p2)
-    self.print_caption_line_co(thisfile, capt_p3)
-    self.print_caption_line_final_co(thisfile, capt_p4)
+    Page.print_caption_line_co(thisfile, capt_p1)
+    Page.print_caption_line_co(thisfile, capt_p2)
+    Page.print_caption_line_co(thisfile, capt_p3)
+    Page.print_caption_line_final_co(thisfile, capt_p4)
 
   def print_pppco(self,thisfile):
     """Print a page with PPP orientation caption only"""
@@ -291,23 +304,23 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_co(thisfile, capt_p2)
-    self.print_caption_line_final_co(thisfile, capt_p3)
+    Page.print_caption_line_co(thisfile, capt_p1)
+    Page.print_caption_line_co(thisfile, capt_p2)
+    Page.print_caption_line_final_co(thisfile, capt_p3)
 
   def print_ppco(self,thisfile):
     """Print a page with PP orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_final_co(thisfile, capt_p2)
+    Page.print_caption_line_co(thisfile, capt_p1)
+    Page.print_caption_line_final_co(thisfile, capt_p2)
 
   def print_pco(self,thisfile):
     """Print a page with P orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     thisfile.write('\n')
-    self.print_caption_line_final_co(thisfile, capt_p1)
+    Page.print_caption_line_final_co(thisfile, capt_p1)
 
   def print_pplco(self,thisfile):
     """Print a page with PPL orientation caption only"""
@@ -315,9 +328,9 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_l1 = self.photo_list[2].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_co(thisfile, capt_p2)
-    self.print_caption_line_final_co(thisfile, capt_l1)
+    Page.print_caption_line_co(thisfile, capt_p1)
+    Page.print_caption_line_co(thisfile, capt_p2)
+    Page.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_lppco(self,thisfile):
     """Print a page with LPP orientation caption only"""
@@ -325,25 +338,25 @@ class Page:
     capt_p1 = self.photo_list[1].caption
     capt_p2 = self.photo_list[2].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_l1)
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_final_co(thisfile, capt_p2)
+    Page.print_caption_line_co(thisfile, capt_l1)
+    Page.print_caption_line_co(thisfile, capt_p1)
+    Page.print_caption_line_final_co(thisfile, capt_p2)
 
   def print_plco(self,thisfile):
     """Print a page with PL orientation caption only"""
     capt_p1 = self.photo_list[0].caption
     capt_l1 = self.photo_list[1].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_final_co(thisfile, capt_l1)
+    Page.print_caption_line_co(thisfile, capt_p1)
+    Page.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_lpco(self,thisfile):
     """Print a page with LP orientation caption only"""
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_l1)
-    self.print_caption_line_final_co(thisfile, capt_p1)
+    Page.print_caption_line_co(thisfile, capt_l1)
+    Page.print_caption_line_final_co(thisfile, capt_p1)
 
 class Section:
   """Class representing a Book section representing a group of related Pages"""
