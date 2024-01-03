@@ -1,4 +1,6 @@
+"""Quickie class to do a poem book"""
 class Poem:
+  """Quickie class to do a poem book"""
   def __init__(self):
     self.title = 'UNTITLED'
     self.body = []
@@ -7,8 +9,9 @@ class Poem:
     self.webfilename_part = ''
 
   def return_section(self):
+    """Return a section of poem book"""
     section_string =  """% Layout ???
-\\begin{center}\includegraphics[width=5.0in,height=6.5in,keepaspectratio]{GENERIC/GENERIC1.jpg}
+\\begin{center}\\includegraphics[width=5.0in,height=6.5in,keepaspectratio]{GENERIC/GENERIC1.jpg}
 \\end{center}
 \\begin{center}
 \\textbf{"""
@@ -19,12 +22,13 @@ class Poem:
     for thisline in self.body:
       section_string += thisline
       section_string += """\\\\\n"""
-    section_string += """\end{center}
-\pagebreak
+    section_string += """\\end{center}
+\\pagebreak
 """
     return section_string
 
   def return_web(self):
+    """Return a section of poem book for web"""
     section_string =  """<!DOCTYPE html>
 <html>
 <head>
