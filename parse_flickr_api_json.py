@@ -209,6 +209,7 @@ def create_qr_code(this_album):
   return qr_path
 
 def get_page_list(photo_list):
+  """Get page list"""
   page_list = []
   current_page = flickr_photo.Page()
   for thisphoto in photo_list:
@@ -225,6 +226,7 @@ def get_page_list(photo_list):
   return page_list
 
 def get_section(this_album,page_list):
+  """Get section"""
   this_section = flickr_photo.Section()
   for thispage in page_list:
     layout = thispage.layout
