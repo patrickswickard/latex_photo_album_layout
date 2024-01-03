@@ -9,6 +9,7 @@ import qrcode
 import flickr_photo_caption_only_hack
 
 def parse_file():
+  """Parse json file with all image metadata"""
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
@@ -67,6 +68,7 @@ def parse_file():
   make_one_big_book_all_text(all_sections)
 
 def make_one_multi_section_book(all_sections):
+  """Make a single multi-section book"""
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -185,6 +187,7 @@ def make_one_multi_section_book(all_sections):
   this_book.print_book()
 
 def make_all_single_section_books(all_sections):
+  """Make all books with a single section"""
   for this_section in all_sections:
     # for now we are restricting books to one section...
     section_list = [this_section]
@@ -200,12 +203,13 @@ def make_all_single_section_books(all_sections):
     this_book.print_book()
 
 def make_one_big_book_all_text(all_sections):
+  """Make one big book with text only captions"""
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
   book_filename = 'everything2'
   output_filename = 'texfiles3/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w')
+  output_file = open(output_filename, 'w', encoding='utf-8')
   this_book = flickr_photo_caption_only_hack.Book(output_file)
   this_book.title = ''
   this_book.author = ''
@@ -224,6 +228,7 @@ def create_qr_code(this_album):
   return qr_path
 
 def get_page_list(photo_list):
+  """Get page list"""
   page_list = []
   current_page = flickr_photo_caption_only_hack.Page()
   for thisphoto in photo_list:
@@ -240,6 +245,7 @@ def get_page_list(photo_list):
   return page_list
 
 def get_section(this_album,page_list):
+  """Get section"""
   this_section = flickr_photo_caption_only_hack.Section()
   for thispage in page_list:
     layout = thispage.layout

@@ -222,7 +222,7 @@ def make_one_big_book_all_text(all_sections):
     section_list.append(this_section)
   book_filename = 'everything3'
   output_filename = 'texfiles3/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w')
+  output_file = open(output_filename, 'w', encoding='utf-8')
   this_book = flickr_photo.Book(output_file)
   this_book.title = ''
   this_book.author = ''
