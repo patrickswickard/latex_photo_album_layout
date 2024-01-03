@@ -390,7 +390,7 @@ class Section:
     """Print a blank page"""
     thisfile.write('\\newpage\n')
     thisfile.write('\n')
-    thisfile.write('\ % The empty page\n')
+    thisfile.write('\\ % The empty page\n')
     thisfile.write('\n')
     thisfile.write('\\newpage\n')
 
@@ -468,7 +468,7 @@ class Book:
     thisfile.write("\\usepackage{float}\n")
     thisfile.write("\\usepackage{hyperref}\n")
 
-    thisfile.write("\\setlength{\parindent}{0pt}\n")
+    thisfile.write("\\setlength{\\parindent}{0pt}\n")
     thisfile.write("\\title{" + self.title + "}\n")
     thisfile.write("\\author{" + self.author + "}\n")
     thisfile.write("\\date{" + self.date + "}\n")
@@ -501,7 +501,7 @@ class BookOneup(Book):
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
     thisfile.write("\\usepackage{float}\n")
     thisfile.write("\\usepackage{hyperref}\n")
-    thisfile.write("\\setlength{\parindent}{0pt}\n")
+    thisfile.write("\\setlength{\\parindent}{0pt}\n")
     thisfile.write("\\title{" + self.title + "}\n")
     thisfile.write("\\author{" + self.author + "}\n")
     thisfile.write("\\date{" + self.date + "}\n")
