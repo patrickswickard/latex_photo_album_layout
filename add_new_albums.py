@@ -21,7 +21,9 @@ def add_albums():
     #print(owner)
     #username = 'citythatreads'
     #print(username)
-    special_hash_filename = '/home/swickape/Pictures/flickr/Downloads/' + album_title + '/album_info.json'
+    special_hash_filename = ('/home/swickape/Pictures/flickr/Downloads/'
+                             + album_title
+                             + '/album_info.json')
     with open(special_hash_filename,'r',encoding='utf-8') as myinfile:
       special_hash = json.load(myinfile)
     photo_list = special_hash['photoset']['photo']
