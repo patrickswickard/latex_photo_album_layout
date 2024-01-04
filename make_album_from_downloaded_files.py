@@ -43,18 +43,18 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-        id = thisphoto_hash['id']
-        url = thisphoto_hash['source']
-        photo_prefix = this_album.id + '/'
-        photo_filename = id + '.jpg'
-        location = photo_prefix + photo_filename
-        caption = thisphoto_hash['title']
-        width = thisphoto_hash['width']
-        height = thisphoto_hash['height']
-        thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
-        # bonus info
-        thisphoto.album_title = this_album.title
-        photo_list.append(thisphoto)
+      id = thisphoto_hash['id']
+      url = thisphoto_hash['source']
+      photo_prefix = this_album.id + '/'
+      photo_filename = id + '.jpg'
+      location = photo_prefix + photo_filename
+      caption = thisphoto_hash['title']
+      width = thisphoto_hash['width']
+      height = thisphoto_hash['height']
+      thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
+      # bonus info
+      thisphoto.album_title = this_album.title
+      photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
     all_sections.append(this_section)
