@@ -31,9 +31,6 @@ def add_albums():
     all_albums_with_urls_clone[album_id] = {}
     all_albums_with_urls_clone[album_id]['title'] = album_title
     all_albums_with_urls_clone[album_id]['photoset_hash'] = photo_list
-  #all_old_albums_file = open('/home/swickape/projects/github/latex_photo_album_layout/allalbumswithurls3.json','r')
-  #all_old_albums_hash = json.load(all_old_albums_file)
-  #all_old_albums_file.close()
   with open('/home/swickape/projects/github/latex_photo_album_layout/allalbumswithurls3.json','r',encoding='utf-8') as myinfile:
     all_old_albums_hash = json.load(myinfile)
   clone_keys = all_albums_with_urls_clone.keys()
