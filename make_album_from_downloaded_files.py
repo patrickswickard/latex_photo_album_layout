@@ -12,9 +12,8 @@ def parse_file():
   # with id caption and url
   album_code = '72177720310657841'
   #album_code = '72157621908701594' # sample album code
-  album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
-  album_hash = json.load(album_file)
-  album_file.close()
+  with open('./cache/' + album_code + '/photoset_info.json', 'r', encoding='utf-8') as myinfile:
+    album_hash = json.load(myinfile)
   # this file contains a json hash keyed on photo id
   # entries are metadata for individual photos
   # with additional data about datetaken (possibly inaccurate) width and height
@@ -45,15 +44,15 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-      id = thisphoto_hash['id']
+      myid = thisphoto_hash['id']
       url = thisphoto_hash['source']
       photo_prefix = this_album.id + '/'
-      photo_filename = id + '.jpg'
+      photo_filename = myid + '.jpg'
       location = photo_prefix + photo_filename
       caption = thisphoto_hash['title']
       width = thisphoto_hash['width']
       height = thisphoto_hash['height']
-      thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
+      thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
       # bonus info
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
