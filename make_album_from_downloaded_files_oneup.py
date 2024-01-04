@@ -104,7 +104,7 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,top_marg
     # for now we are restricting books to one section...
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
-    output_file = open(output_filename, 'w') 
+    output_file = open(output_filename, 'w', encoding='utf-8') 
     this_book = flickr_photo.BookOneup(output_file,paper_width=paper_width,paper_height=paper_height,top_margin=top_margin,bottom_margin=bottom_margin,left_margin=left_margin,right_margin=right_margin)
     this_book.title = this_section.title
     this_book.author = this_section.author
