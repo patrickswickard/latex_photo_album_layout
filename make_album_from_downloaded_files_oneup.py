@@ -131,7 +131,13 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,top_marg
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
     output_file = open(output_filename, 'w', encoding='utf-8')
-    this_book = flickr_photo.BookOneup(output_file,paper_width=paper_width,paper_height=paper_height,top_margin=top_margin,bottom_margin=bottom_margin,left_margin=left_margin,right_margin=right_margin)
+    this_book = flickr_photo.BookOneup(output_file,
+                                       paper_width=paper_width,
+                                       paper_height=paper_height,
+                                       top_margin=top_margin,
+                                       bottom_margin=bottom_margin,
+                                       left_margin=left_margin,
+                                       right_margin=right_margin)
     this_book.title = this_section.title
     this_book.author = this_section.author
     this_book.date = this_section.date
@@ -172,7 +178,10 @@ def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,l
 #    portrait_width = 5.0
 #    portrait_height = 7.5
   page_list = []
-  current_page = flickr_photo.PageOneup(landscape_width=landscape_width,landscape_height=landscape_height,portrait_width=portrait_width,portrait_height=portrait_height)
+  current_page = flickr_photo.PageOneup(landscape_width=landscape_width,
+                                        landscape_height=landscape_height,
+                                        portrait_width=portrait_width,
+                                        portrait_height=portrait_height)
   for thisphoto in photo_list:
     if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
       current_page.add_photo(thisphoto)
@@ -180,7 +189,10 @@ def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,l
       current_page.add_photo(thisphoto)
     else:
       page_list.append(current_page)
-      current_page = flickr_photo.PageOneup(landscape_width=landscape_width,landscape_height=landscape_height,portrait_width=portrait_width,portrait_height=portrait_height)
+      current_page = flickr_photo.PageOneup(landscape_width=landscape_width,
+                                            landscape_height=landscape_height,
+                                            portrait_width=portrait_width,
+                                            portrait_height=portrait_height)
       current_page.add_photo(thisphoto)
   # add final page
   page_list.append(current_page)
