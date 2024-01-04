@@ -70,11 +70,13 @@ class Page:
   def print_landscape_line(thisfile,filename):
     """Print a photo inline in landscape format"""
     thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
+    #thisfile.write('\\includegraphics[width=7.5in,height=9.5in,keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_portrait_line(thisfile, filename):
     """Print a photo inline in portrait format"""
     thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
+    #thisfile.write('\\includegraphics[width=7.5in,height=9.5in,keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_caption_line(thisfile,text):
