@@ -1,8 +1,7 @@
 import json
-import flickr_photo
-#import flickr_photo_oneup
 import qrcode
-import re
+#import flickr_photo_oneup
+import flickr_photo
 
 # NOTE you will need to replace any line with REPLACEME with values appropriate to your system to use this script
 
