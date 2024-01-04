@@ -4,7 +4,8 @@ import qrcode
 #import flickr_photo_oneup
 import flickr_photo
 
-# NOTE you will need to replace any line with REPLACEME with values appropriate to your system to use this script
+# NOTE you will need to replace any line with REPLACEME
+# with values appropriate to your system to use this script
 
 def parse_file():
   """This is the main method which creates the book"""
@@ -82,7 +83,6 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin
   for this_section in all_sections:
     section_list.append(this_section)
   book_filename = 'DFTM_REVISED_AGAIN_SUCKA'
-  section_list = section_list
   total_pages = 0
   for this_section in section_list:
     print(this_section.title)
