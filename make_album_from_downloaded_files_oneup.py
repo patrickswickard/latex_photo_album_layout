@@ -23,7 +23,7 @@ def parse_file():
   #album_code = '72177720310546202' #REPLACEME
   #album_code = '72177720310176444' #REPLACEME
   #album_code = '72157621908701594' # sample album code
-  album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
+  album_file = open('./cache/' + album_code + '/photoset_info.json', 'r', encoding='utf-8')
   album_hash = json.load(album_file)
   album_file.close()
   # this file contains a json hash keyed on photo id
