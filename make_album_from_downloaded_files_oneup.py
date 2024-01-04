@@ -57,16 +57,16 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-      id = thisphoto_hash['id']
+      myid = thisphoto_hash['id']
       url = thisphoto_hash['source']
       photo_prefix = this_album.id + '/'
-      photo_filename = id + '.jpg'
+      photo_filename = myid + '.jpg'
       location = photo_prefix + photo_filename
       caption = thisphoto_hash['title']
       #caption = ''
       width = thisphoto_hash['width']
       height = thisphoto_hash['height']
-      thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
+      thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
       # bonus info
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
