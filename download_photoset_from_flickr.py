@@ -6,7 +6,7 @@ import requests
 
 # REPLACEME this changes regularly, see e.g.
 # https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
-api_key = '7f9c6b0bba210782b21c6408a88aae4a'
+API_KEY = 'd4cbf5c4f18509a1c5b35c4be69395ef'
 
 photoset_id_list = [
   #'CHANGEME'
@@ -18,10 +18,9 @@ photoset_id_list = [
   #'72177720312512993'
 ]
 
-
 all_photo_hash = {}
 for this_photoset_id in photoset_id_list:
-  api_get_photolist_url = 'https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + api_key + '&photoset_id=' + this_photoset_id + '&format=json&nojsoncallback=1'
+  api_get_photolist_url = 'https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + API_KEY + '&photoset_id=' + this_photoset_id + '&format=json&nojsoncallback=1'
   print(api_get_photolist_url)
   photolist_api_output = requests.get(api_get_photolist_url)
   photolist_hash = json.loads(photolist_api_output.text)
@@ -38,8 +37,8 @@ for this_photoset_id in photoset_id_list:
   thisalbum_hash_entry['owner_name'] = owner_name
   thisalbum_hash_entry['photoset_hash'] = []
   base_path = './cache/' + this_photoset_id
-  isExist = os.path.exists(base_path)
-  if not isExist:
+  is_exist = os.path.exists(base_path)
+  if not is_exist:
     os.makedirs(base_path)
   else:
     print('wtf')
@@ -56,7 +55,7 @@ for this_photoset_id in photoset_id_list:
     this_photo_info_hash['server'] = this_photo_server
     this_photo_info_hash['title'] = this_photo_title
     # we now can leverage the getSizes api method to grab original size photo urls
-    api_getsizes_url = 'https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=' + api_key + '&photo_id=' + this_photo_id + '&format=json&nojsoncallback=1'
+    api_getsizes_url = 'https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=' + API_KEY + '&photo_id=' + this_photo_id + '&format=json&nojsoncallback=1'
     print(api_getsizes_url)
     getsizes_api_output = requests.get(api_getsizes_url)
     getsizes_hash = json.loads(getsizes_api_output.text)
