@@ -13,9 +13,10 @@ def parse_file():
   my_bottom_margin = 0.5
   my_left_margin = 0.5
   my_right_margin = 0.5
-  # this file contains json hash keyed on album id
-  # entries are an album title and sequential list of photos
-  # with id caption and url
+  # if you run the script for downloading all files from a flickr photoset
+  # then the files will be in a directory in ./cache/ corresponding to an album code
+  # and metadata about those images will be in a file in cache
+  # called photoset_info.json
   album_code = '72177720312512993' #REPLACEME
   #album_code = '72177720310657841' #REPLACEME
   #album_code = '72177720311316693' #REPLACEME
