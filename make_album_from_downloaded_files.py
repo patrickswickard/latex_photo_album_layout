@@ -66,7 +66,6 @@ def make_one_multi_section_book(all_sections):
   for this_section in all_sections:
     section_list.append(this_section)
   book_filename = 'downloaded_album_666'
-  section_list = section_list
   total_pages = 0
   for this_section in section_list:
     print(this_section.title)
