@@ -1,3 +1,4 @@
+"""This script should create a single one-up book from an album"""
 import json
 import qrcode
 #import flickr_photo_oneup
@@ -6,6 +7,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME with values appropriate to your system to use this script
 
 def parse_file():
+  """This is the main method which creates the book"""
   my_paper_width = 8.5
   my_paper_height = 11.0
   my_top_margin = 0.5
@@ -75,6 +77,7 @@ def parse_file():
   make_one_multi_section_book(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
 
 def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+  """This method makes one multi-section book"""
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -100,6 +103,7 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin
   print('Album tex file created, see ' + output_filename)
 
 def make_all_single_section_books(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+  """Make all single section books"""
   for this_section in all_sections:
     # for now we are restricting books to one section...
     section_list = [this_section]
@@ -115,6 +119,7 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,top_marg
     this_book.print_book()
 
 def create_qr_code(this_album):
+  """Create a qr code corresponding to url for an album"""
   print('Creating qr code for ' + this_album.url) 
   qr_img = qrcode.make(this_album.url)
   qr_path = 'qr/' + this_album.id + '.jpg'
@@ -122,6 +127,7 @@ def create_qr_code(this_album):
   return qr_path
 
 def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+  """Get list of pages"""
   # four lines of 10pt or 12pt font fit in 0.5in
   text_height = 0.5
   landscape_width = paper_width - left_margin - right_margin
@@ -159,6 +165,7 @@ def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,l
   return page_list
 
 def get_section(this_album,page_list,paper_width,left_margin,right_margin):
+  """Get a single section with qr code """
   this_section = flickr_photo.Section()
   qrdimmax = paper_width - left_margin - right_margin
   if qrdimmax < 5.19:
