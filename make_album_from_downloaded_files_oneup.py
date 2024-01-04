@@ -13,18 +13,6 @@ def parse_file():
   my_bottom_margin = 0.5
   my_left_margin = 0.5
   my_right_margin = 0.5
-  #my_paper_width = 6.0
-  #my_paper_height = 9.0
-  #my_top_margin = 0.5
-  #my_bottom_margin = 0.5
-  #my_left_margin = 0.5
-  #my_right_margin = 0.5
-  #my_paper_width = 4.0
-  #my_paper_height = 6.0
-  #my_top_margin = 0.5
-  #my_bottom_margin = 0.5
-  #my_left_margin = 0.5
-  #my_right_margin = 0.5
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
@@ -33,7 +21,7 @@ def parse_file():
   #album_code = '72177720311316693' #REPLACEME
   #album_code = '72177720310604095' #REPLACEME
   #album_code = '72177720310546202' #REPLACEME
-#  album_code = '72177720310176444' #REPLACEME
+  #album_code = '72177720310176444' #REPLACEME
   #album_code = '72157621908701594' # sample album code
   album_file = open('./cache/' + album_code + '/photoset_info.json', 'r')
   album_hash = json.load(album_file)
@@ -74,7 +62,7 @@ def parse_file():
       photo_filename = id + '.jpg'
       location = photo_prefix + photo_filename
       caption = thisphoto_hash['title']
-#      caption = ''
+      #caption = ''
       width = thisphoto_hash['width']
       height = thisphoto_hash['height']
       thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
@@ -85,8 +73,6 @@ def parse_file():
     this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
     this_section.blank_after_qr = True
     all_sections.append(this_section)
-  #make_all_single_section_books(all_sections)
-  #make_all_single_section_books(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
   make_one_multi_section_book(all_sections,paper_width=my_paper_width,paper_height=my_paper_height,top_margin=my_top_margin,bottom_margin=my_bottom_margin,left_margin=my_left_margin,right_margin=my_right_margin)
 
 def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
@@ -102,12 +88,8 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin
     print("Pages in section: " + str(pages_in_section))
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
-  #output_filename = 'texfiles4/' + book_filename + '.tex'
   output_filename = 'cache/' + book_filename + '.tex'
   output_file = open(output_filename, 'w') 
-  #this_book = flickr_photo.BookOneup(output_file)
-  #this_book = flickr_photo.BookOneup(output_file)
-  #this_book = flickr_photo.BookOneup(output_file,paper_width=6.0,paper_height=9.0,top_margin=0.5,bottom_margin=0.5,left_margin=0.5,right_margin=0.5)
   this_book = flickr_photo.BookOneup(output_file,paper_width=paper_width,paper_height=paper_height,top_margin=top_margin,bottom_margin=bottom_margin,left_margin=left_margin,right_margin=right_margin)
   this_book.title = ''
   this_book.author = ''
@@ -124,7 +106,6 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,top_marg
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
     output_file = open(output_filename, 'w') 
-    #this_book = flickr_photo.BookOneup(output_file)
     this_book = flickr_photo.BookOneup(output_file,paper_width=paper_width,paper_height=paper_height,top_margin=top_margin,bottom_margin=bottom_margin,left_margin=left_margin,right_margin=right_margin)
     this_book.title = this_section.title
     this_book.author = this_section.author
@@ -164,7 +145,6 @@ def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,l
 #    portrait_width = 5.0
 #    portrait_height = 7.5
   page_list = []
-  #current_page = flickr_photo.PageOneup(landscape_width=5.0,landscape_height=7.5,portrait_width=5.0,portrait_height=7.5)
   current_page = flickr_photo.PageOneup(landscape_width=landscape_width,landscape_height=landscape_height,portrait_width=portrait_width,portrait_height=portrait_height)
   for thisphoto in photo_list:
     if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
@@ -199,8 +179,5 @@ def get_section(this_album,page_list,paper_width,left_margin,right_margin):
   this_section.qr = qr_path
   return this_section
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
   parse_file()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
