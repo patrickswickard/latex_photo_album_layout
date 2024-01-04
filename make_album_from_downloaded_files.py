@@ -18,7 +18,7 @@ def parse_file():
   # with additional data about datetaken (possibly inaccurate) width and height
   # the owner (author) id can be obtained as well which could allow for
   # constructing some of the hard-coded urls used in the code if desired
-  # e.g. owner has id 99753978@N03 
+  # e.g. owner has id 99753978@N03
   album_code_list = []
   for key in album_hash.keys():
     album_code_list.append(key)
@@ -64,7 +64,7 @@ def parse_file():
 def make_one_multi_section_book(all_sections):
   section_list = []
   for this_section in all_sections:
-      section_list.append(this_section)
+    section_list.append(this_section)
   book_filename = 'downloaded_album_666'
   section_list = section_list
   total_pages = 0
@@ -76,7 +76,7 @@ def make_one_multi_section_book(all_sections):
     print("Pages in book so far: " + str(total_pages))
   #output_filename = 'texfiles4/' + book_filename + '.tex'
   output_filename = 'cache/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w', encoding='utf-8') 
+  output_file = open(output_filename, 'w', encoding='utf-8')
   this_book = flickr_photo.Book(output_file)
   this_book.title = ''
   this_book.author = ''
@@ -92,7 +92,7 @@ def make_all_single_section_books(all_sections):
     # for now we are restricting books to one section...
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
-    output_file = open(output_filename, 'w', encoding='utf-8') 
+    output_file = open(output_filename, 'w', encoding='utf-8')
     this_book = flickr_photo.Book(output_file)
     this_book.title = this_section.title
     this_book.author = this_section.author
@@ -103,7 +103,7 @@ def make_all_single_section_books(all_sections):
     this_book.print_book()
 
 def create_qr_code(this_album):
-  print('Creating qr code for ' + this_album.url) 
+  print('Creating qr code for ' + this_album.url)
   qr_img = qrcode.make(this_album.url)
   qr_path = 'qr/' + this_album.id + '.jpg'
   qr_img.save('cache/' + qr_path)
