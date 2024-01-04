@@ -76,7 +76,7 @@ def make_one_multi_section_book(all_sections):
     print("Pages in book so far: " + str(total_pages))
   #output_filename = 'texfiles4/' + book_filename + '.tex'
   output_filename = 'cache/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w') 
+  output_file = open(output_filename, 'w', encoding='utf-8') 
   this_book = flickr_photo.Book(output_file)
   this_book.title = ''
   this_book.author = ''
