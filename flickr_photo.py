@@ -29,21 +29,10 @@ class Photo:
 
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
-  #def __init__(self):
-  #  self.photo_list = []
-  #  self.layout = ''
-  #  self.landscape_width = 7.5
-  #  self.landscape_height = 4
-  #  self.portrait_width = 7.5
-  #  self.portrait_height = 4
   def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
     self.photo_list = []
     self.layout = ''
-    #self.landscape_width = 5.0
-    #self.landscape_height = 7.5
-    #self.portrait_width = 5.0
-    #self.portrait_height = 7.5
-    # currently hard-coded for 6x9
+    # currently hard-coded for 8.5x11
     self.landscape_width = landscape_width if landscape_width is not None else 7.5
     self.landscape_height = landscape_height if landscape_height is not None else 4
     self.portrait_width = portrait_width if portrait_width is not None else 7.5
@@ -84,23 +73,10 @@ class Page:
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
-    #self.landscape_width = 7.5
-    #self.landscape_height = 4
-    #self.portrait_width = 7.5
-    #self.landscape_height = 4
-    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=7.5in,height=9.5in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=' + '7.5' + 'in,height=' + '4' + 'in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
-    #self.landscape_width = 7.5
-    #self.landscape_height = 4
-    #self.portrait_width = 7.5
-    #self.landscape_height = 4
-    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=7.5in,height=9.5in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,height=' + str(self.portrait_height) + 'in,keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
@@ -299,10 +275,6 @@ class PageOneup(Page):
   def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
     self.photo_list = []
     self.layout = ''
-    #self.landscape_width = 5.0
-    #self.landscape_height = 7.5
-    #self.portrait_width = 5.0
-    #self.portrait_height = 7.5
     # currently hard-coded for 6x9
     self.landscape_width = landscape_width if landscape_width is not None else 5.0
     self.landscape_height = landscape_height if landscape_height is not None else 7.5
@@ -322,30 +294,27 @@ class PageOneup(Page):
   def print_landscape_line(self,thisfile,filename):
     # historical 8.5x11 values
     #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-#    thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
-#    thisfile.write('\\includegraphics[width=5.0in,height=7.0in,keepaspectratio]{' + filename + '}\n')
+    #thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
     # use this for 6 x 9 oneup
     #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
+    # use this for 6 x 9 two-up
+    #thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\begin{center}')
     thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\end{center}')
-    # use this for 6 x 9 two-up
-#    thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     # historical 8.5x11 values
     #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-#    thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
-#    thisfile.write('\\includegraphics[width=5.0in,height=7.0in,keepaspectratio]{' + filename + '}\n')
+    #thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
     # use this for 6 x 9 oneup
     #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
     #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
+    # use this for 6 x 9 two-up
+    #thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\begin{center}\n')
     thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,height=' + str(self.portrait_height) + 'in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\end{center}\n')
-    # use this for 6 x 9 two-up
-#    thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
 
   # this maybe only looks okay for one-up?
   def print_caption_line(self,thisfile,text):
@@ -518,8 +487,6 @@ class BookOneup(Book):
     thisfile.write('\\pagenumbering{gobble}\n')
     # 8.5 x 11 format historical
     #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
-    # 8.5 x 11 format
-#    thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
     # 6 x 9 format
     #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
     thisfile.write('\\usepackage[top=' + str(self.top_margin) + 'in, bottom=' + str(self.bottom_margin) + 'in, left=' + str(self.left_margin) + 'in, right='  + str(self.right_margin) + 'in, paperwidth=' + str(self.paper_width) + 'in, paperheight=' + str(self.paper_height) + 'in]{geometry}\n')
