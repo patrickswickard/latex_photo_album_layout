@@ -3,7 +3,8 @@ import json
 import qrcode
 import flickr_photo
 
-# NOTE you will need to replace the three lines with REPLACEME with values appropriate to your system to use this script
+# NOTE you will need to replace the three lines with REPLACEME
+# with values appropriate to your system to use this script
 
 def parse_file():
   """This is the main method which creates the book"""
