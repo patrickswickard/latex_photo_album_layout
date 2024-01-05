@@ -227,8 +227,6 @@ def get_section(this_album,page_list):
   """Get section"""
   this_section = flickr_photo.Section()
   for thispage in page_list:
-    layout = thispage.layout
-    photo_list = thispage.photo_list
     this_section.add_page(thispage)
   this_section.title = this_album.title
   this_section.author = this_album.author
