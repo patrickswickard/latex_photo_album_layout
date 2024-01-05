@@ -158,7 +158,9 @@ def create_qr_code(this_album):
   qr_img.save('cache/' + qr_path)
   return qr_path
 
-def get_page_list(photo_list,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+def get_page_list(photo_list,paper_width,paper_height,
+                  top_margin,bottom_margin,
+                  left_margin,right_margin):
   """Get list of pages"""
   # four lines of 10pt or 12pt font fit in 0.5in
   text_height = 0.5
