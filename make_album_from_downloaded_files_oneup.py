@@ -168,6 +168,7 @@ def get_page_list(photo_list,paper_width,paper_height,
   portrait_width = paper_width - left_margin - right_margin
   landscape_height = paper_height - top_margin - bottom_margin - text_height
   portrait_height = paper_height - top_margin - bottom_margin - text_height
+  print('Using: LW ' + str(landscape_width) + ' LH ' + str(landscape_height) + ' PW ' + str(portrait_width) + ' PH ' + str(portrait_height))
 #  if paper_width == 8.5 and paper_height == 11.0:
 #    landscape_width = 7.5
 #    landscape_height = 9.0

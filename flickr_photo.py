@@ -32,6 +32,11 @@ class Page:
   def __init__(self):
     self.photo_list = []
     self.layout = ''
+    # same as page oneup
+    self.landscape_width = 5.0
+    self.landscape_height = 7.5
+    self.portrait_width = 5.0
+    self.portrait_height = 7.5
 
   def add_photo(self,photo):
     """Try to add next photo to page"""
