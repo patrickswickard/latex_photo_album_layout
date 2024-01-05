@@ -1,10 +1,12 @@
+"""Redundant script to test printing book"""
 # This is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 def print_book():
-  thisfile = open("splayout.tex", 'w')
+  """Print a book"""
+  thisfile = open("splayout.tex", 'w',encoding='utf-8')
   print_preamble(thisfile)
   print_begin(thisfile)
   land1 = 'landscape.jpg'
@@ -33,29 +35,36 @@ def print_book():
   thisfile.close()
 
 def print_preamble(thisfile):
+  """Print .tex file preamble"""
   thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
   thisfile.write('\\usepackage[top=1in, bottom=1in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
   thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
   thisfile.write("\\usepackage{graphicx}\n")
   thisfile.write("\\usepackage{float}\n")
-  thisfile.write("\\setlength{\parindent}{0pt}")
+  thisfile.write("\\setlength{\\parindent}{0pt}")
 
 def print_begin(thisfile):
+  """Print the begin statement"""
   thisfile.write('\\begin{document}\n')
 
 def print_end(thisfile):
+  """Print the end statement"""
   thisfile.write('\\end{document}\n')
 
 def print_landscape_line(thisfile,filename):
+  """Print a landscape line"""
   thisfile.write('\\includegraphics[width=5.19in]{landscape.jpg}\n')
 
-def print_caption_line(thisfile,text):
-  thisfile.write(text +'\\\\\n')
-
-def print_portrait_line(thisfile, filename):
+def print_portrait_line(thisfile,filename):
+  """Print a portrait line"""
   thisfile.write('\\includegraphics[height=4in]{portrait.jpg}\n')
 
+def print_caption_line(thisfile,text):
+  """Print a caption line"""
+  thisfile.write(text +'\\\\\n')
+
 def print_ll(thisfile,land1,land2,capt_l1,capt_l2):
+  """Print LL layout"""
   thisfile.write('\n')
   thisfile.write('% Layout LL\n')
   print_landscape_line(thisfile, land1)
@@ -68,6 +77,7 @@ def print_ll(thisfile,land1,land2,capt_l1,capt_l2):
   thisfile.write('\\pagebreak\n')
 
 def print_l(thisfile,land1,capt_l1):
+  """Print L layout"""
   thisfile.write('\n')
   thisfile.write('% Layout L\n')
   print_landscape_line(thisfile, land1)
@@ -76,6 +86,7 @@ def print_l(thisfile,land1,capt_l1):
   thisfile.write('\\pagebreak\n')
 
 def print_pppp(thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4):
+  """Print PPPP layout"""
   thisfile.write('\n')
   thisfile.write('% Layout PPPP\n')
   print_portrait_line(thisfile, port1)
@@ -91,6 +102,7 @@ def print_pppp(thisfile,port1,port2,port3,port4,capt_p1,capt_p2,capt_p3,capt_p4)
   thisfile.write('\\pagebreak\n')
 
 def print_ppp(thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3):
+  """Print PPP layout"""
   thisfile.write('\n')
   thisfile.write('% Layout PPP\n')
   print_portrait_line(thisfile, port1)
@@ -104,6 +116,7 @@ def print_ppp(thisfile,port1,port2,port3,capt_p1,capt_p2,capt_p3):
   thisfile.write('\\pagebreak\n')
 
 def print_pp(thisfile,port1,port2,capt_p1,capt_p2):
+  """Print PP layout"""
   thisfile.write('\n')
   thisfile.write('% Layout PP\n')
   print_portrait_line(thisfile, port1)
@@ -114,6 +127,7 @@ def print_pp(thisfile,port1,port2,capt_p1,capt_p2):
   thisfile.write('\\pagebreak\n')
 
 def print_p(thisfile,port1,capt_p1):
+  """Print P layout"""
   thisfile.write('\n')
   thisfile.write('% Layout P\n')
   print_portrait_line(thisfile, port1)
@@ -122,6 +136,7 @@ def print_p(thisfile,port1,capt_p1):
   thisfile.write('\\pagebreak\n')
 
 def print_ppl(thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1):
+  """Print PPL layout"""
   thisfile.write('\n')
   thisfile.write('% Layout PPL\n')
   print_portrait_line(thisfile, port1)
@@ -136,6 +151,7 @@ def print_ppl(thisfile,port1,port2,land1,capt_p1,capt_p2,capt_l1):
   thisfile.write('\\pagebreak\n')
 
 def print_lpp(thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2):
+  """Print LPP layout"""
   thisfile.write('\n')
   thisfile.write('% Layout LPP\n')
   print_landscape_line(thisfile, land1)
@@ -150,6 +166,7 @@ def print_lpp(thisfile,land1,port1,port2,capt_l1,capt_p1,capt_p2):
   thisfile.write('\\pagebreak\n')
 
 def print_pl(thisfile,port1,land1,capt_p1,capt_l1):
+  """Print PL layout"""
   thisfile.write('\n')
   thisfile.write('% Layout PL\n')
   print_portrait_line(thisfile, port1)
@@ -162,6 +179,7 @@ def print_pl(thisfile,port1,land1,capt_p1,capt_l1):
   thisfile.write('\\pagebreak\n')
 
 def print_lp(thisfile,land1,port1,capt_l1,capt_p1):
+  """Print LP layout"""
   thisfile.write('\n')
   thisfile.write('% Layout LP\n')
   print_landscape_line(thisfile, land1)
@@ -173,8 +191,5 @@ def print_lp(thisfile,land1,port1,capt_l1,capt_p1):
   print_caption_line(thisfile, capt_p1)
   thisfile.write('\\pagebreak\n')
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
   print_book()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
