@@ -93,7 +93,9 @@ def parse_file():
                               left_margin=my_left_margin,
                               right_margin=my_right_margin)
 
-def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+def make_one_multi_section_book(all_sections,paper_width,paper_height,
+                                top_margin,bottom_margin,
+                                left_margin,right_margin):
   """This method makes one multi-section book"""
   section_list = []
   for this_section in all_sections:
@@ -124,7 +126,9 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,top_margin
   this_book.print_book()
   print('Album tex file created, see ' + output_filename)
 
-def make_all_single_section_books(all_sections,paper_width,paper_height,top_margin,bottom_margin,left_margin,right_margin):
+def make_all_single_section_books(all_sections,paper_width,paper_height,
+                                  top_margin,bottom_margin,
+                                  left_margin,right_margin):
   """Make all single section books"""
   for this_section in all_sections:
     # for now we are restricting books to one section...
