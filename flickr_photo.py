@@ -29,13 +29,25 @@ class Photo:
 
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
-  def __init__(self):
+  #def __init__(self):
+  #  self.photo_list = []
+  #  self.layout = ''
+  #  self.landscape_width = 7.5
+  #  self.landscape_height = 4
+  #  self.portrait_width = 7.5
+  #  self.portrait_height = 4
+  def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
     self.photo_list = []
     self.layout = ''
-    self.landscape_width = 7.5
-    self.landscape_height = 4
-    self.portrait_width = 7.5
-    self.portrait_height = 4
+    #self.landscape_width = 5.0
+    #self.landscape_height = 7.5
+    #self.portrait_width = 5.0
+    #self.portrait_height = 7.5
+    # currently hard-coded for 6x9
+    self.landscape_width = landscape_width if landscape_width is not None else 7.5
+    self.landscape_height = landscape_height if landscape_height is not None else 4
+    self.portrait_width = portrait_width if portrait_width is not None else 7.5
+    self.portrait_height = portrait_height if portrait_height is not None else 4
 
   def add_photo(self,photo):
     """Try to add next photo to page"""
@@ -72,13 +84,15 @@ class Page:
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
-    thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
+    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
     #thisfile.write('\\includegraphics[width=7.5in,height=9.5in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + '7.5' + 'in,height=' + '4' + 'in,keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
-    thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
+    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
     #thisfile.write('\\includegraphics[width=7.5in,height=9.5in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + '7.5' + 'in,height=' + '4' + 'in,keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_caption_line(thisfile,text):
