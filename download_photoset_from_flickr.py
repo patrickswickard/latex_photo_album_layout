@@ -21,6 +21,7 @@ photoset_id_list = [
 all_photo_hash = {}
 
 def get_this_photoset(this_photoset_id):
+  """Get this photoset from flickr and do too much stuff"""
   api_get_photolist_url = 'https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + API_KEY + '&photoset_id=' + this_photoset_id + '&format=json&nojsoncallback=1'
   print(api_get_photolist_url)
   photolist_api_output = requests.get(api_get_photolist_url)
