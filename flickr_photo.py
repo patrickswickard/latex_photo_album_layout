@@ -279,6 +279,7 @@ class PageOneup(Page):
   """Special instance of Page class except we force one image per page"""
   def __init__(self,landscape_width = None, landscape_height = None,
                portrait_width = None, portrait_height = None):
+    super().__init__()
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 6x9
@@ -364,7 +365,6 @@ class Section:
 
   def print_section(self):
     """Print a section of book"""
-    #thisfile = self.thisfile
     if self.qr != '':
       self.print_qr_page(self.thisfile,self.qr)
     for thispage in self.page_list:
