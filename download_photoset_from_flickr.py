@@ -6,7 +6,7 @@ import requests
 
 # REPLACEME this changes regularly, see e.g.
 # https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
-API_KEY = 'd4cbf5c4f18509a1c5b35c4be69395ef'
+API_KEY = 'c0132aec5a7e83def506b7c9dfdeded0'
 
 photoset_id_list = [
   #'CHANGEME'
@@ -19,7 +19,8 @@ photoset_id_list = [
 ]
 
 all_photo_hash = {}
-for this_photoset_id in photoset_id_list:
+
+def get_this_photoset(this_photoset_id):
   api_get_photolist_url = 'https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + API_KEY + '&photoset_id=' + this_photoset_id + '&format=json&nojsoncallback=1'
   print(api_get_photolist_url)
   photolist_api_output = requests.get(api_get_photolist_url)
@@ -90,6 +91,10 @@ for this_photoset_id in photoset_id_list:
         photo_filename = base_path + '/' + this_photo_id + '.jpg'
         with open(photo_filename, 'wb') as out_file:
           shutil.copyfileobj(url_response.raw, out_file)
+
   all_photo_hash[this_photoset_id] = thisalbum_hash_entry
   with open(base_path + '/photoset_info.json', 'w', encoding='utf-8') as myoutfile:
     myoutfile.write(json.dumps(all_photo_hash))
+
+for this_photoset_id in photoset_id_list:
+  get_this_photoset(this_photoset_id)
