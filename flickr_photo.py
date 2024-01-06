@@ -349,7 +349,7 @@ class Section:
   """Class representing a Book section representing a group of related Pages"""
   def __init__(self):
     self.page_list = []
-    #self.thisfile = thisfile
+    self.thisfile = ''
     self.title = ''
     self.author = ''
     self.date = ''
@@ -364,30 +364,30 @@ class Section:
 
   def print_section(self):
     """Print a section of book"""
-    thisfile = self.thisfile
+    #thisfile = self.thisfile
     if self.qr != '':
-      self.print_qr_page(thisfile,self.qr)
+      self.print_qr_page(self.thisfile,self.qr)
     for thispage in self.page_list:
       if thispage.layout == 'LL':
-        thispage.print_ll(thisfile)
+        thispage.print_ll(self.thisfile)
       elif thispage.layout == 'L':
-        thispage.print_l(thisfile)
+        thispage.print_l(self.thisfile)
       elif thispage.layout == 'PPPP':
-        thispage.print_pppp(thisfile)
+        thispage.print_pppp(self.thisfile)
       elif thispage.layout == 'PPP':
-        thispage.print_ppp(thisfile)
+        thispage.print_ppp(self.thisfile)
       elif thispage.layout == 'PP':
-        thispage.print_pp(thisfile)
+        thispage.print_pp(self.thisfile)
       elif thispage.layout == 'P':
-        thispage.print_p(thisfile)
+        thispage.print_p(self.thisfile)
       elif thispage.layout == 'PPL':
-        thispage.print_ppl(thisfile)
+        thispage.print_ppl(self.thisfile)
       elif thispage.layout == 'LPP':
-        thispage.print_lpp(thisfile)
+        thispage.print_lpp(self.thisfile)
       elif thispage.layout == 'PL':
-        thispage.print_pl(thisfile)
+        thispage.print_pl(self.thisfile)
       elif thispage.layout == 'LP':
-        thispage.print_lp(thisfile)
+        thispage.print_lp(self.thisfile)
       else:
         raise 'That did not match any known layouts!'
 
