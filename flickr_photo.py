@@ -29,7 +29,8 @@ class Photo:
 
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
-  def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
+  def __init__(self,landscape_width = None, landscape_height = None,
+               portrait_width = None, portrait_height = None):
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 8.5x11
@@ -73,11 +74,15 @@ class Page:
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
-    thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
+                   + 'in,height=' + str(self.landscape_height)
+                   + 'in,keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
-    thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,height=' + str(self.portrait_height) + 'in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
+                   + 'in,height=' + str(self.portrait_height)
+                   + 'in,keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_caption_line(thisfile,text):
@@ -272,7 +277,8 @@ class Page:
 
 class PageOneup(Page):
   """Special instance of Page class except we force one image per page"""
-  def __init__(self,landscape_width = None, landscape_height = None, portrait_width = None, portrait_height = None):
+  def __init__(self,landscape_width = None, landscape_height = None,
+               portrait_width = None, portrait_height = None):
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 6x9
@@ -300,7 +306,9 @@ class PageOneup(Page):
     # use this for 6 x 9 two-up
     #thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\begin{center}')
-    thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,height=' + str(self.landscape_height) + 'in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
+                   + 'in,height=' + str(self.landscape_height)
+                   + 'in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\end{center}')
 
   def print_portrait_line(self,thisfile, filename):
@@ -313,7 +321,9 @@ class PageOneup(Page):
     # use this for 6 x 9 two-up
     #thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\begin{center}\n')
-    thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,height=' + str(self.portrait_height) + 'in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
+                   + 'in,height=' + str(self.portrait_height)
+                   + 'in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\end{center}\n')
 
   # this maybe only looks okay for one-up?
@@ -410,8 +420,9 @@ class Section:
 
 class Book:
   """Book class representing a single photo book"""
-  #def __init__(self,thisfile):
-  def __init__(self,thisfile,paper_width=None,paper_height=None,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None):
+  def __init__(self,thisfile,paper_width=None,paper_height=None,
+               top_margin=None,bottom_margin=None,
+               left_margin=None,right_margin=None):
     self.section_list = []
     self.thisfile = thisfile
     self.title = ''
@@ -444,7 +455,9 @@ class Book:
     Book.print_end(thisfile)
     thisfile.close()
 
-  def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,left_margin=None,right_margin=None,paper_width=None,paper_height=None):
+  def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,
+                     left_margin=None,right_margin=None,
+                     paper_width=None,paper_height=None):
     """Print preamble of latex document given margins which are currently ignored"""
     # ignore inputs for now
     top_margin = '0.75in'
@@ -455,7 +468,10 @@ class Book:
     paper_height = '11in'
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
-    thisfile.write('\\usepackage[top=' + top_margin + ', bottom=' + bottom_margin + ', left=' + left_margin + ', right=' + right_margin + ', paperwidth=' + paper_width + ', paperheight=' + paper_height + ']{geometry}\n')
+    thisfile.write('\\usepackage[top=' + top_margin + ', bottom=' + bottom_margin
+                   + ', left=' + left_margin + ', right=' + right_margin
+                   + ', paperwidth=' + paper_width + ', paperheight=' + paper_height
+                   + ']{geometry}\n')
     # above is what has historically been used but the margins below are probably better
     #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
@@ -489,7 +505,13 @@ class BookOneup(Book):
     #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
     # 6 x 9 format
     #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
-    thisfile.write('\\usepackage[top=' + str(self.top_margin) + 'in, bottom=' + str(self.bottom_margin) + 'in, left=' + str(self.left_margin) + 'in, right='  + str(self.right_margin) + 'in, paperwidth=' + str(self.paper_width) + 'in, paperheight=' + str(self.paper_height) + 'in]{geometry}\n')
+    thisfile.write('\\usepackage[top=' + str(self.top_margin) + 'in,'
+                   + ' bottom=' + str(self.bottom_margin) + 'in,'
+                   + ' left=' + str(self.left_margin) + 'in,'
+                   + ' right='  + str(self.right_margin) + 'in,'
+                   + ' paperwidth=' + str(self.paper_width) + 'in,'
+                   + ' paperheight=' + str(self.paper_height) + 'in'
+                   + ']{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
