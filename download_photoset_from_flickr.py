@@ -21,7 +21,7 @@ photoset_id_list = [
 all_photo_hash = {}
 
 def get_photoset_info(this_photoset_id):
-  """Get this photoset from flickr and do too much stuff"""
+  """Get info about this photoset from flickr and do too much stuff"""
   # this url grabs metadata about the photoset from Flickr
   # including things like title, owner_id, owner_name
   # and the actual list of photos in the photoset
