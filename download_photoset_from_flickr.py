@@ -22,7 +22,7 @@ all_photo_hash = {}
 
 def get_photoset_info(this_photoset_id):
   """Get info about this photoset from flickr and do too much stuff"""
-  base_path = './cache/' + this_photoset_id
+  #base_path = './cache/' + this_photoset_id
   # this url grabs metadata about the photoset from Flickr
   # including things like title, owner_id, owner_name
   # and the actual list of photos in the photoset
@@ -33,6 +33,11 @@ def get_photoset_info(this_photoset_id):
   print(api_get_photolist_url)
   photolist_api_output = requests.get(api_get_photolist_url)
   photolist_hash = json.loads(photolist_api_output.text)
+  return photolist_hash
+
+def get_all_photo_hash(photolist_hash,this_photoset_id):
+  """Do other stuff"""
+  base_path = './cache/' + this_photoset_id
   photolist_title = photolist_hash['photoset']['title']
   owner_id = photolist_hash['photoset']['owner']
   owner_name = photolist_hash['photoset']['ownername']
@@ -48,11 +53,6 @@ def get_photoset_info(this_photoset_id):
   thisalbum_hash_entry['owner_id'] = owner_id
   thisalbum_hash_entry['owner_name'] = owner_name
   thisalbum_hash_entry['photoset_hash'] = []
-#  # make a directory in cache to download photos to or confirm it exists
-#  base_path = './cache/' + this_photoset_id
-#  is_exist = os.path.exists(base_path)
-#  if not is_exist:
-#    os.makedirs(base_path)
 
   # for each photo in the photoset we need to grab information about that photo
   # including id server title
@@ -62,8 +62,14 @@ def get_photoset_info(this_photoset_id):
   for this_photo_info in photo_info_list:
     get_photo_info(this_photo_info,base_path,thisalbum_hash_entry)
   all_photo_hash[this_photoset_id] = thisalbum_hash_entry
+  return all_photo_hash
+  #dump_all_photo_json_to_cache_dir(this_photoset_id,all_photo_hash)
+
+def dump_all_photo_json_to_cache_dir(this_photoset_id,this_all_photo_hash):
+  """Write the all values json file to the cache directory"""
+  base_path = './cache/' + this_photoset_id
   with open(base_path + '/photoset_info.json', 'w', encoding='utf-8') as myoutfile:
-    myoutfile.write(json.dumps(all_photo_hash))
+    myoutfile.write(json.dumps(this_all_photo_hash))
 
 def get_photo_info(this_photo_info,base_path,thisalbum_hash_entry):
   """Get photo info and download photo ultimately I guess"""
@@ -139,4 +145,6 @@ def make_directory_for_photoset(photoset_id):
 
 for my_photoset_id in photoset_id_list:
   make_directory_for_photoset(my_photoset_id)
-  get_photoset_info(my_photoset_id)
+  my_photolist_hash = get_photoset_info(my_photoset_id)
+  my_all_photo_hash = get_all_photo_hash(my_photolist_hash,my_photoset_id)
+  dump_all_photo_json_to_cache_dir(my_photoset_id,my_all_photo_hash)
