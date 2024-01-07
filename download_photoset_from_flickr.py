@@ -22,6 +22,9 @@ all_photo_hash = {}
 
 def get_this_photoset(this_photoset_id):
   """Get this photoset from flickr and do too much stuff"""
+  # this url grabs metadata about the photoset from Flickr
+  # including things like title, owner_id, owner_name
+  # and the actual list of photos in the photoset
   api_get_photolist_url = ('https://www.flickr.com/services/rest/?method='
                            + 'flickr.photosets.getPhotos&api_key=' + API_KEY
                            + '&photoset_id=' + this_photoset_id
@@ -35,12 +38,16 @@ def get_this_photoset(this_photoset_id):
   print(photolist_title)
   print(owner_id)
   print(owner_name)
+  # this is the list of photos in the photoset
   photo_info_list = photolist_hash['photoset']['photo']
+  # here we make our own hash for the photoset including the title
+  # owner_id owner_name and an (empty) list we add to later
   thisalbum_hash_entry = {}
   thisalbum_hash_entry['title'] = photolist_title
   thisalbum_hash_entry['owner_id'] = owner_id
   thisalbum_hash_entry['owner_name'] = owner_name
   thisalbum_hash_entry['photoset_hash'] = []
+  # make a directory in cache to download photos to or confirm it exists
   base_path = './cache/' + this_photoset_id
   is_exist = os.path.exists(base_path)
   if not is_exist:
@@ -48,6 +55,11 @@ def get_this_photoset(this_photoset_id):
   else:
     print('wtf')
 
+  # for each photo in the photoset we need to grab information about that photo
+  # including id server title
+  # additionally so we know size and orientation of photo we need to do a query
+  # against a different API for each photo in the list
+  # note that this can be tricky for very large photosets
   for this_photo_info in photo_info_list:
     this_photo_info_hash = {}
     this_photo_id = this_photo_info['id']
@@ -60,6 +72,7 @@ def get_this_photoset(this_photoset_id):
     this_photo_info_hash['server'] = this_photo_server
     this_photo_info_hash['title'] = this_photo_title
     # we now can leverage the getSizes api method to grab original size photo urls
+    # and then ultimately use those urls to download the photoset
     api_getsizes_url = ('https://www.flickr.com/services/rest/'
                         + '?method=flickr.photos.getSizes&api_key=' + API_KEY
                         + '&photo_id=' + this_photo_id
@@ -95,6 +108,8 @@ def get_this_photoset(this_photoset_id):
         this_photo_info_hash['height'] = height
         this_photo_info_hash['source'] = source
         thisalbum_hash_entry['photoset_hash'].append(this_photo_info_hash)
+        # this grabs a photo from its url and saves it with a name we choose
+        # based on the photo_id value
         url_response = requests.get(source, stream=True)
         photo_filename = base_path + '/' + this_photo_id + '.jpg'
         with open(photo_filename, 'wb') as out_file:
