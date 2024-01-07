@@ -6,7 +6,7 @@ import requests
 
 # REPLACEME this changes regularly, see e.g.
 # https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
-API_KEY = 'c0132aec5a7e83def506b7c9dfdeded0'
+API_KEY = '5155583f955799efaf5e2b141de5b10c'
 
 photoset_id_list = [
   #'CHANGEME'
@@ -110,14 +110,18 @@ def get_this_photoset(this_photoset_id):
         thisalbum_hash_entry['photoset_hash'].append(this_photo_info_hash)
         # this grabs a photo from its url and saves it with a name we choose
         # based on the photo_id value
-        url_response = requests.get(source, stream=True)
         photo_filename = base_path + '/' + this_photo_id + '.jpg'
-        with open(photo_filename, 'wb') as out_file:
-          shutil.copyfileobj(url_response.raw, out_file)
+        download_photo_from_web(source,photo_filename)
 
   all_photo_hash[this_photoset_id] = thisalbum_hash_entry
   with open(base_path + '/photoset_info.json', 'w', encoding='utf-8') as myoutfile:
     myoutfile.write(json.dumps(all_photo_hash))
+
+def download_photo_from_web(source,photo_filename):
+  """Given a source url and filename download a photo from web in binary format"""
+  url_response = requests.get(source, stream=True)
+  with open(photo_filename, 'wb') as out_file:
+    shutil.copyfileobj(url_response.raw, out_file)
 
 for photoset_id in photoset_id_list:
   get_this_photoset(photoset_id)
