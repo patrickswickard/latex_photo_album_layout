@@ -20,7 +20,7 @@ photoset_id_list = [
 
 all_photo_hash = {}
 
-def get_this_photoset(this_photoset_id):
+def get_photoset_info(this_photoset_id):
   """Get this photoset from flickr and do too much stuff"""
   # this url grabs metadata about the photoset from Flickr
   # including things like title, owner_id, owner_name
@@ -78,16 +78,7 @@ def get_photo_info(this_photo_info,base_path,thisalbum_hash_entry):
   this_photo_info_hash['id'] = this_photo_id
   this_photo_info_hash['server'] = this_photo_server
   this_photo_info_hash['title'] = this_photo_title
-  # we now can leverage the getSizes api method to grab original size photo urls
-  # and then ultimately use those urls to download the photoset
-  api_getsizes_url = ('https://www.flickr.com/services/rest/'
-                      + '?method=flickr.photos.getSizes&api_key=' + API_KEY
-                      + '&photo_id=' + this_photo_id
-                      + '&format=json&nojsoncallback=1')
-  print(api_getsizes_url)
-  getsizes_api_output = requests.get(api_getsizes_url)
-  getsizes_hash = json.loads(getsizes_api_output.text)
-  this_photo_sizelist = getsizes_hash['sizes']['size']
+  this_photo_sizelist = get_photo_size_info(this_photo_id)
   # weird hack here - Flickr is inconsistent with which sizes
   # are available  We prefer Original if available
   # but may be forced to take Large
@@ -102,7 +93,7 @@ def get_photo_info(this_photo_info,base_path,thisalbum_hash_entry):
         preferred_size = 'Large'
   if not preferred_size:
     print('Oops, no preferred sizes found!')
-#    break
+    #break
   for this_size in this_photo_sizelist:
     if this_size['label'] == preferred_size:
       width = this_size['width']
@@ -120,6 +111,20 @@ def get_photo_info(this_photo_info,base_path,thisalbum_hash_entry):
       photo_filename = base_path + '/' + this_photo_id + '.jpg'
       download_photo_from_web(source,photo_filename)
 
+def get_photo_size_info(this_photo_id):
+  """Given a photo id download the photo size info from Flickr with API"""
+  # we now can leverage the getSizes api method to grab original size photo urls
+  # and then ultimately use those urls to download the photoset
+  api_getsizes_url = ('https://www.flickr.com/services/rest/'
+                      + '?method=flickr.photos.getSizes&api_key=' + API_KEY
+                      + '&photo_id=' + this_photo_id
+                      + '&format=json&nojsoncallback=1')
+  print(api_getsizes_url)
+  getsizes_api_output = requests.get(api_getsizes_url)
+  getsizes_hash = json.loads(getsizes_api_output.text)
+  this_photo_sizelist = getsizes_hash['sizes']['size']
+  return this_photo_sizelist
+
 def download_photo_from_web(source,photo_filename):
   """Given a source url and filename download a photo from web in binary format"""
   url_response = requests.get(source, stream=True)
@@ -127,4 +132,4 @@ def download_photo_from_web(source,photo_filename):
     shutil.copyfileobj(url_response.raw, out_file)
 
 for photoset_id in photoset_id_list:
-  get_this_photoset(photoset_id)
+  get_photoset_info(photoset_id)
