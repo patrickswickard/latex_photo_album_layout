@@ -22,6 +22,7 @@ all_photo_hash = {}
 
 def get_photoset_info(this_photoset_id):
   """Get info about this photoset from flickr and do too much stuff"""
+  base_path = './cache/' + this_photoset_id
   # this url grabs metadata about the photoset from Flickr
   # including things like title, owner_id, owner_name
   # and the actual list of photos in the photoset
@@ -47,13 +48,11 @@ def get_photoset_info(this_photoset_id):
   thisalbum_hash_entry['owner_id'] = owner_id
   thisalbum_hash_entry['owner_name'] = owner_name
   thisalbum_hash_entry['photoset_hash'] = []
-  # make a directory in cache to download photos to or confirm it exists
-  base_path = './cache/' + this_photoset_id
-  is_exist = os.path.exists(base_path)
-  if not is_exist:
-    os.makedirs(base_path)
-  else:
-    print('wtf')
+#  # make a directory in cache to download photos to or confirm it exists
+#  base_path = './cache/' + this_photoset_id
+#  is_exist = os.path.exists(base_path)
+#  if not is_exist:
+#    os.makedirs(base_path)
 
   # for each photo in the photoset we need to grab information about that photo
   # including id server title
@@ -131,5 +130,13 @@ def download_photo_from_web(source,photo_filename):
   with open(photo_filename, 'wb') as out_file:
     shutil.copyfileobj(url_response.raw, out_file)
 
-for photoset_id in photoset_id_list:
-  get_photoset_info(photoset_id)
+def make_directory_for_photoset(photoset_id):
+  """make a directory in cache to download photos to or confirm it exists"""
+  base_path = './cache/' + photoset_id
+  is_exist = os.path.exists(base_path)
+  if not is_exist:
+    os.makedirs(base_path)
+
+for my_photoset_id in photoset_id_list:
+  make_directory_for_photoset(my_photoset_id)
+  get_photoset_info(my_photoset_id)
