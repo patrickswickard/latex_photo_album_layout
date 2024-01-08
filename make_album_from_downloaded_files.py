@@ -3,7 +3,7 @@ import json
 import qrcode
 import flickr_photo
 
-# NOTE you will need to replace the three lines with REPLACEME
+# NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
 def parse_file():
@@ -51,6 +51,7 @@ def parse_file():
       photo_filename = myid + '.jpg'
       location = photo_prefix + photo_filename
       caption = thisphoto_hash['title']
+      #caption = ''
       width = thisphoto_hash['width']
       height = thisphoto_hash['height']
       thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
@@ -59,8 +60,8 @@ def parse_file():
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
+    this_section.blank_after_qr = False
     all_sections.append(this_section)
-  #make_all_single_section_books(all_sections)
   make_one_multi_section_book(all_sections)
 
 def make_one_multi_section_book(all_sections):
@@ -76,7 +77,6 @@ def make_one_multi_section_book(all_sections):
     print("Pages in section: " + str(pages_in_section))
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
-  #output_filename = 'texfiles4/' + book_filename + '.tex'
   output_filename = 'cache/' + book_filename + '.tex'
   output_file = open(output_filename, 'w', encoding='utf-8')
   this_book = flickr_photo.Book(output_file)
