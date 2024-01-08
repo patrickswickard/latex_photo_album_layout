@@ -1,7 +1,6 @@
 """This script should create a single one-up book from an album"""
 import json
 import qrcode
-#import flickr_photo_oneup
 import flickr_photo
 
 # NOTE you will need to replace any line with REPLACEME
