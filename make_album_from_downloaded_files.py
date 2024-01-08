@@ -8,6 +8,12 @@ import flickr_photo
 
 def parse_file():
   """This is the main method which creates the book"""
+  my_paper_width = 8.5
+  my_paper_height = 11.0
+  my_top_margin = 0.5
+  my_bottom_margin = 0.5
+  my_left_margin = 0.5
+  my_right_margin = 0.5
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
@@ -59,7 +65,7 @@ def parse_file():
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
-    this_section = get_section(this_album,page_list)
+    this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
     this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections)
@@ -130,9 +136,15 @@ def get_page_list(photo_list):
   page_list.append(current_page)
   return page_list
 
-def get_section(this_album,page_list):
+def get_section(this_album,page_list,paper_width,left_margin,right_margin):
   """Get a single section with qr code """
   this_section = flickr_photo.Section()
+  qrdimmax = paper_width - left_margin - right_margin
+  if qrdimmax < 5.19:
+    qrdim = qrdimmax
+  else:
+    qrdim = 5.19
+  this_section.qrdim = qrdim
   for thispage in page_list:
     this_section.add_page(thispage)
   this_section.title = this_album.title
