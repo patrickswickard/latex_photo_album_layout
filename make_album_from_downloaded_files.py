@@ -98,16 +98,16 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
   output_filename = 'cache/' + book_filename + '.tex'
-  myoutfile = open(output_filename, 'w', encoding='utf-8')
-  this_book = flickr_photo.Book(myoutfile)
-  this_book.title = ''
-  this_book.author = ''
-  this_book.date = ''
-  this_book.url = ''
-  this_book.section_list = section_list
-  print('Creating tex file for ' + book_filename)
-  this_book.print_book()
-  print('Album tex file created, see ' + output_filename)
+  with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+    this_book = flickr_photo.Book(myoutfile)
+    this_book.title = ''
+    this_book.author = ''
+    this_book.date = ''
+    this_book.url = ''
+    this_book.section_list = section_list
+    print('Creating tex file for ' + book_filename)
+    this_book.print_book()
+    print('Album tex file created, see ' + output_filename)
 
 def make_all_single_section_books(all_sections):
   """Make all single section books"""
@@ -115,15 +115,15 @@ def make_all_single_section_books(all_sections):
     # for now we are restricting books to one section...
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
-    myoutfile = open(output_filename, 'w', encoding='utf-8')
-    this_book = flickr_photo.Book(myoutfile)
-    this_book.title = this_section.title
-    this_book.author = this_section.author
-    this_book.date = this_section.date
-    this_book.url = this_section.url
-    this_book.section_list = section_list
-    print('Creating tex file for ' + this_section.title)
-    this_book.print_book()
+    with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+      this_book = flickr_photo.Book(myoutfile)
+      this_book.title = this_section.title
+      this_book.author = this_section.author
+      this_book.date = this_section.date
+      this_book.url = this_section.url
+      this_book.section_list = section_list
+      print('Creating tex file for ' + this_section.title)
+      this_book.print_book()
 
 def create_qr_code(this_album):
   """Create a qr code corresponding to url for an album"""
