@@ -68,10 +68,24 @@ def parse_file():
     this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
     this_section.blank_after_qr = False
     all_sections.append(this_section)
-  make_one_multi_section_book(all_sections)
+  make_one_multi_section_book(all_sections,
+                              paper_width=my_paper_width,
+                              paper_height=my_paper_height,
+                              top_margin=my_top_margin,
+                              bottom_margin=my_bottom_margin,
+                              left_margin=my_left_margin,
+                              right_margin=my_right_margin)
 
-def make_one_multi_section_book(all_sections):
+def make_one_multi_section_book(all_sections,paper_width,paper_height,
+                                top_margin,bottom_margin,
+                                left_margin,right_margin):
   """This method makes one multi-section book"""
+  print(paper_width)
+  print(paper_height)
+  print(top_margin)
+  print(bottom_margin)
+  print(left_margin)
+  print(right_margin)
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
