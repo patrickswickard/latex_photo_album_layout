@@ -71,7 +71,11 @@ def parse_file():
                               bottom_margin=my_bottom_margin,
                               left_margin=my_left_margin,
                               right_margin=my_right_margin)
-    this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
+    this_section = get_section(this_album,
+                               page_list,
+                               my_paper_width,
+                               my_left_margin,
+                               my_right_margin)
     this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections,
@@ -115,8 +119,16 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,
     this_book.print_book()
     print('Album tex file created, see ' + output_filename)
 
-def make_all_single_section_books(all_sections):
+def make_all_single_section_books(all_sections,paper_width,paper_height,
+                                  top_margin,bottom_margin,
+                                  left_margin,right_margin):
   """Make all single section books"""
+  print(paper_width)
+  print(paper_height)
+  print(top_margin)
+  print(bottom_margin)
+  print(left_margin)
+  print(right_margin)
   for this_section in all_sections:
     # for now we are restricting books to one section...
     section_list = [this_section]
