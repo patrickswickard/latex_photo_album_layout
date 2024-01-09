@@ -96,6 +96,12 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,
                                 top_margin,bottom_margin,
                                 left_margin,right_margin):
   """This method makes one multi-section book"""
+  print(paper_width)
+  print(paper_height)
+  print(top_margin)
+  print(bottom_margin)
+  print(left_margin)
+  print(right_margin)
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -129,6 +135,12 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,
                                   top_margin,bottom_margin,
                                   left_margin,right_margin):
   """Make all single section books"""
+  print(paper_width)
+  print(paper_height)
+  print(top_margin)
+  print(bottom_margin)
+  print(left_margin)
+  print(right_margin)
   for this_section in all_sections:
     # for now we are restricting books to one section...
     section_list = [this_section]
@@ -161,6 +173,12 @@ def get_page_list(photo_list,paper_width,paper_height,
                   top_margin,bottom_margin,
                   left_margin,right_margin):
   """Get list of pages"""
+  print(paper_width)
+  print(paper_height)
+  print(top_margin)
+  print(bottom_margin)
+  print(left_margin)
+  print(right_margin)
   # four lines of 10pt or 12pt font fit in 0.5in
   text_height = 0.5
   landscape_width = paper_width - left_margin - right_margin

@@ -161,6 +161,31 @@ def get_page_list(photo_list,paper_width,paper_height,
   print(bottom_margin)
   print(left_margin)
   print(right_margin)
+  # four lines of 10pt or 12pt font fit in 0.5in
+  text_height = 0.5
+  landscape_width = paper_width - left_margin - right_margin
+  portrait_width = paper_width - left_margin - right_margin
+  landscape_height = paper_height - top_margin - bottom_margin - text_height
+  portrait_height = paper_height - top_margin - bottom_margin - text_height
+  print('Using: LW ' + str(landscape_width) + ' LH '
+        + str(landscape_height) + ' PW '
+        + str(portrait_width) + ' PH '
+        + str(portrait_height))
+#  if paper_width == 8.5 and paper_height == 11.0:
+#    landscape_width = 7.5
+#    landscape_height = 9.0
+#    portrait_width = 7.5
+#    portrait_height = 9.0
+#  elif paper_width == 6.0 and paper_height == 9.0:
+#    landscape_width = 5.0
+#    landscape_height = 7.5
+#    portrait_width = 5.0
+#    portrait_height = 7.5
+#  else:
+#    landscape_width = 5.0
+#    landscape_height = 7.5
+#    portrait_width = 5.0
+#    portrait_height = 7.5
   page_list = []
   current_page = flickr_photo.Page()
   for thisphoto in photo_list:
