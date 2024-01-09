@@ -23,7 +23,10 @@ def parse_file():
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
-  album_code = '72177720312512993' #REPLACEME
+  if ONEUP_FORMAT:
+    album_code = '72177720312512993' #REPLACEME
+  else:
+    album_code = '72177720310657841' #REPLACEME
   # OTHER ALBUM CODES
   #album_code = '72177720310657841' #REPLACEME
   #album_code = '72177720311316693' #REPLACEME
@@ -88,7 +91,10 @@ def parse_file():
                                my_paper_width,
                                my_left_margin,
                                my_right_margin)
-    this_section.blank_after_qr = True
+    if ONEUP_FORMAT:
+      this_section.blank_after_qr = True
+    else:
+      this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections,
                               paper_width=my_paper_width,
@@ -111,7 +117,10 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
-  book_filename = 'DFTM_REVISED_AGAIN_SUCKA2'
+  if ONEUP_FORMAT:
+    book_filename = 'DFTM_REVISED_AGAIN_SUCKA2'
+  else:
+    book_filename = 'downloaded_album_666_2'
   total_pages = 0
   for this_section in section_list:
     print(this_section.title)
