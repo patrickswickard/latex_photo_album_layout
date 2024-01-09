@@ -6,6 +6,8 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
+ONEUP_FORMAT = True
+
 def parse_file():
   """This is the main method which creates the book"""
   my_paper_width = 8.5
@@ -18,7 +20,11 @@ def parse_file():
   # then the files will be in a directory in ./cache/ corresponding to an album code
   # and metadata about those images will be in a file in cache
   # called photoset_info.json
+  # this file contains json hash keyed on album id
+  # entries are an album title and sequential list of photos
+  # with id caption and url
   album_code = '72177720312512993' #REPLACEME
+  # OTHER ALBUM CODES
   #album_code = '72177720310657841' #REPLACEME
   #album_code = '72177720311316693' #REPLACEME
   #album_code = '72177720310604095' #REPLACEME

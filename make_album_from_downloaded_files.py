@@ -6,6 +6,8 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
+ONEUP_FORMAT = False
+
 def parse_file():
   """This is the main method which creates the book"""
   my_paper_width = 8.5
@@ -14,10 +16,20 @@ def parse_file():
   my_bottom_margin = 0.5
   my_left_margin = 0.5
   my_right_margin = 0.5
+  # if you run the script for downloading all files from a flickr photoset
+  # then the files will be in a directory in ./cache/ corresponding to an album code
+  # and metadata about those images will be in a file in cache
+  # called photoset_info.json
   # this file contains json hash keyed on album id
   # entries are an album title and sequential list of photos
   # with id caption and url
   album_code = '72177720310657841'
+  # OTHER ALBUM CODES
+  #album_code = '72177720310657841' #REPLACEME
+  #album_code = '72177720311316693' #REPLACEME
+  #album_code = '72177720310604095' #REPLACEME
+  #album_code = '72177720310546202' #REPLACEME
+  #album_code = '72177720310176444' #REPLACEME
   #album_code = '72157621908701594' # sample album code
   with open('./cache/' + album_code + '/photoset_info.json', 'r', encoding='utf-8') as myinfile:
     album_hash = json.load(myinfile)
