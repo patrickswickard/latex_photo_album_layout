@@ -64,7 +64,13 @@ def parse_file():
       # bonus info
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
-    page_list = get_page_list(photo_list)
+    page_list = get_page_list(photo_list,
+                              paper_width=my_paper_width,
+                              paper_height=my_paper_height,
+                              top_margin=my_top_margin,
+                              bottom_margin=my_bottom_margin,
+                              left_margin=my_left_margin,
+                              right_margin=my_right_margin)
     this_section = get_section(this_album,page_list,my_paper_width,my_left_margin,my_right_margin)
     this_section.blank_after_qr = False
     all_sections.append(this_section)
@@ -133,8 +139,16 @@ def create_qr_code(this_album):
   qr_img.save('cache/' + qr_path)
   return qr_path
 
-def get_page_list(photo_list):
+def get_page_list(photo_list,paper_width,paper_height,
+                  top_margin,bottom_margin,
+                  left_margin,right_margin):
   """Get list of pages"""
+  print(paper_width)
+  print(paper_height)
+  print(top_margin)
+  print(bottom_margin)
+  print(left_margin)
+  print(right_margin)
   page_list = []
   current_page = flickr_photo.Page()
   for thisphoto in photo_list:
