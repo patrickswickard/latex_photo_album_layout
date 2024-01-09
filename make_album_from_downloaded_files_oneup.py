@@ -1,4 +1,4 @@
-"""This script should create a single one-up book from an album"""
+"""This script should create a single book from an album"""
 import json
 import qrcode
 import flickr_photo
