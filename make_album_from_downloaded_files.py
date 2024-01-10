@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = False
+ONEUP_FORMAT = True
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -42,7 +42,7 @@ if ONEUP_FORMAT:
 else:
   BOOK_FILENAME = 'downloaded_album_666_2'
 
-def parse_file():
+def create_book_from_downloaded_album():
   """This is the main method which creates the book"""
   with open('./cache/' + ALBUM_CODE + '/photoset_info.json', 'r', encoding='utf-8') as myinfile:
     album_hash = json.load(myinfile)
@@ -229,4 +229,4 @@ def get_section(this_album,page_list):
   return this_section
 
 if __name__ == '__main__':
-  parse_file()
+  create_book_from_downloaded_album()
