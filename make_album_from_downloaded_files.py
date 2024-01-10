@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -31,6 +31,10 @@ else:
 #album_code = '72177720310546202' #REPLACEME
 #album_code = '72177720310176444' #REPLACEME
 #album_code = '72157621908701594' # sample album code
+if ONEUP_FORMAT:
+  BOOK_FILENAME = 'DFTM_REVISED_AGAIN_SUCKA2'
+else:
+  BOOK_FILENAME = 'downloaded_album_666_2'
 
 def parse_file():
   """This is the main method which creates the book"""
@@ -100,10 +104,6 @@ def make_one_multi_section_book(all_sections):
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
-  if ONEUP_FORMAT:
-    book_filename = 'DFTM_REVISED_AGAIN_SUCKA2'
-  else:
-    book_filename = 'downloaded_album_666_2'
   total_pages = 0
   for this_section in section_list:
     print(this_section.title)
@@ -111,7 +111,7 @@ def make_one_multi_section_book(all_sections):
     print("Pages in section: " + str(pages_in_section))
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
-  output_filename = 'cache/' + book_filename + '.tex'
+  output_filename = 'cache/' + BOOK_FILENAME + '.tex'
   with open(output_filename, 'w', encoding='utf-8') as myoutfile:
     if ONEUP_FORMAT:
       this_book = flickr_photo.BookOneup(myoutfile,
@@ -128,7 +128,7 @@ def make_one_multi_section_book(all_sections):
     this_book.date = ''
     this_book.url = ''
     this_book.section_list = section_list
-    print('Creating tex file for ' + book_filename)
+    print('Creating tex file for ' + BOOK_FILENAME)
     this_book.print_book()
     print('Album tex file created, see ' + output_filename)
 
