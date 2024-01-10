@@ -7,6 +7,7 @@ class Album:
     self.id = id
     self.title = ''
     self.author = ''
+    self.owner_id = ''
     self.date = ''
     self.url = ''
     self.album_entries = []
