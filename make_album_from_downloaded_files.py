@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -79,34 +79,38 @@ def parse_file():
       # bonus info
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
-    page_list = get_page_list(photo_list,
-                              paper_width=PAPER_WIDTH,
-                              paper_height=PAPER_HEIGHT,
-                              top_margin=TOP_MARGIN,
-                              bottom_margin=BOTTOM_MARGIN,
-                              left_margin=LEFT_MARGIN,
-                              right_margin=RIGHT_MARGIN)
-    this_section = get_section(this_album,
-                               page_list,
-                               PAPER_WIDTH,
-                               LEFT_MARGIN,
-                               RIGHT_MARGIN)
+    page_list = get_page_list(photo_list)
+#    page_list = get_page_list(photo_list,
+#                              paper_width=PAPER_WIDTH,
+#                              paper_height=PAPER_HEIGHT,
+#                              top_margin=TOP_MARGIN,
+#                              bottom_margin=BOTTOM_MARGIN,
+#                              left_margin=LEFT_MARGIN,
+#                              right_margin=RIGHT_MARGIN)
+#    this_section = get_section(this_album,
+#                               page_list,
+#                               PAPER_WIDTH,
+#                               LEFT_MARGIN,
+#                               RIGHT_MARGIN)
+    this_section = get_section(this_album,page_list)
     if ONEUP_FORMAT:
       this_section.blank_after_qr = True
     else:
       this_section.blank_after_qr = False
     all_sections.append(this_section)
-  make_one_multi_section_book(all_sections,
-                              paper_width=PAPER_WIDTH,
-                              paper_height=PAPER_HEIGHT,
-                              top_margin=TOP_MARGIN,
-                              bottom_margin=BOTTOM_MARGIN,
-                              left_margin=LEFT_MARGIN,
-                              right_margin=RIGHT_MARGIN)
+  make_one_multi_section_book(all_sections)
+#  make_one_multi_section_book(all_sections,
+#                              paper_width=PAPER_WIDTH,
+#                              paper_height=PAPER_HEIGHT,
+#                              top_margin=TOP_MARGIN,
+#                              bottom_margin=BOTTOM_MARGIN,
+#                              left_margin=LEFT_MARGIN,
+#                              right_margin=RIGHT_MARGIN)
 
-def make_one_multi_section_book(all_sections,paper_width,paper_height,
-                                top_margin,bottom_margin,
-                                left_margin,right_margin):
+def make_one_multi_section_book(all_sections):
+#def make_one_multi_section_book(all_sections,paper_width,paper_height,
+#                                top_margin,bottom_margin,
+#                                left_margin,right_margin):
   """This method makes one multi-section book"""
   section_list = []
   for this_section in all_sections:
@@ -143,9 +147,10 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,
     this_book.print_book()
     print('Album tex file created, see ' + output_filename)
 
-def make_all_single_section_books(all_sections,paper_width,paper_height,
-                                  top_margin,bottom_margin,
-                                  left_margin,right_margin):
+def make_all_single_section_books(all_sections):
+#def make_all_single_section_books(all_sections,paper_width,paper_height,
+#                                  top_margin,bottom_margin,
+#                                  left_margin,right_margin):
   """Make all single section books"""
   for this_section in all_sections:
     # for now we are restricting books to one section...
@@ -178,16 +183,17 @@ def create_qr_code(this_album):
   qr_img.save('cache/' + qr_path)
   return qr_path
 
-def get_page_list(photo_list,paper_width,paper_height,
-                  top_margin,bottom_margin,
-                  left_margin,right_margin):
+def get_page_list(photo_list):
+#def get_page_list(photo_list,paper_width,paper_height,
+#                  top_margin,bottom_margin,
+#                  left_margin,right_margin):
   """Get list of pages"""
   # four lines of 10pt or 12pt font fit in 0.5in
   text_height = 0.5
-  landscape_width = paper_width - left_margin - right_margin
-  portrait_width = paper_width - left_margin - right_margin
-  landscape_height = paper_height - top_margin - bottom_margin - text_height
-  portrait_height = paper_height - top_margin - bottom_margin - text_height
+  landscape_width = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
+  portrait_width = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
+  landscape_height = PAPER_HEIGHT - TOP_MARGIN - BOTTOM_MARGIN - text_height
+  portrait_height = PAPER_HEIGHT - TOP_MARGIN - BOTTOM_MARGIN - text_height
   print('Using: LW ' + str(landscape_width) + ' LH '
         + str(landscape_height) + ' PW '
         + str(portrait_width) + ' PH '
@@ -234,10 +240,11 @@ def get_page_list(photo_list,paper_width,paper_height,
   page_list.append(current_page)
   return page_list
 
-def get_section(this_album,page_list,paper_width,left_margin,right_margin):
+def get_section(this_album,page_list):
+#def get_section(this_album,page_list,paper_width,left_margin,right_margin):
   """Get a single section with qr code """
   this_section = flickr_photo.Section()
-  qrdimmax = paper_width - left_margin - right_margin
+  qrdimmax = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
   if qrdimmax < 5.19:
     qrdim = qrdimmax
   else:
