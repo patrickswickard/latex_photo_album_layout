@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = False
+ONEUP_FORMAT = True
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -60,18 +60,7 @@ def parse_file():
   # process albums in alphabetical order by title
   album_list = []
   for this_album_code in album_code_list:
-    # owner_id can be extracted from all_info_file if desired and consistent
-    this_album = flickr_photo.Album(this_album_code)
-    this_album.id = this_album_code
-    this_album.author = album_hash[this_album_code]['owner_name']
-    this_album.owner_id = album_hash[this_album_code]['owner_id']
-    this_album.date = ''
-    this_album.title = album_hash[this_album_code]['title']
-    this_album.url = ('https://www.flickr.com/photos/'
-                      + this_album.owner_id
-                      + '/albums/'
-                      + this_album.id)
-    this_album.album_entries = album_hash[this_album_code]['photoset_hash']
+    this_album = get_album_info(album_hash,this_album_code)
     album_list.append(this_album)
   all_sections = []
   for this_album in album_list:
@@ -104,6 +93,22 @@ def get_photo_info(thisphoto_hash,this_album):
   # bonus info
   thisphoto.album_title = this_album.title
   return thisphoto
+
+def get_album_info(album_hash,this_album_code):
+  """Get album info from album hash"""
+  # owner_id can be extracted from all_info_file if desired and consistent
+  this_album = flickr_photo.Album(this_album_code)
+  this_album.id = this_album_code
+  this_album.author = album_hash[this_album_code]['owner_name']
+  this_album.owner_id = album_hash[this_album_code]['owner_id']
+  this_album.date = ''
+  this_album.title = album_hash[this_album_code]['title']
+  this_album.url = ('https://www.flickr.com/photos/'
+                    + this_album.owner_id
+                    + '/albums/'
+                    + this_album.id)
+  this_album.album_entries = album_hash[this_album_code]['photoset_hash']
+  return this_album
 
 def make_one_multi_section_book(all_sections):
   """This method makes one multi-section book"""
