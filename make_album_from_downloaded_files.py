@@ -6,16 +6,16 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = False
+ONEUP_FORMAT = True
+PAPER_WIDTH = 8.5
+PAPER_HEIGHT = 11.0
+TOP_MARGIN = 0.5
+BOTTOM_MARGIN = 0.5
+LEFT_MARGIN = 0.5
+RIGHT_MARGIN = 0.5
 
 def parse_file():
   """This is the main method which creates the book"""
-  my_paper_width = 8.5
-  my_paper_height = 11.0
-  my_top_margin = 0.5
-  my_bottom_margin = 0.5
-  my_left_margin = 0.5
-  my_right_margin = 0.5
   # if you run the script for downloading all files from a flickr photoset
   # then the files will be in a directory in ./cache/ corresponding to an album code
   # and metadata about those images will be in a file in cache
@@ -80,40 +80,34 @@ def parse_file():
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list,
-                              paper_width=my_paper_width,
-                              paper_height=my_paper_height,
-                              top_margin=my_top_margin,
-                              bottom_margin=my_bottom_margin,
-                              left_margin=my_left_margin,
-                              right_margin=my_right_margin)
+                              paper_width=PAPER_WIDTH,
+                              paper_height=PAPER_HEIGHT,
+                              top_margin=TOP_MARGIN,
+                              bottom_margin=BOTTOM_MARGIN,
+                              left_margin=LEFT_MARGIN,
+                              right_margin=RIGHT_MARGIN)
     this_section = get_section(this_album,
                                page_list,
-                               my_paper_width,
-                               my_left_margin,
-                               my_right_margin)
+                               PAPER_WIDTH,
+                               LEFT_MARGIN,
+                               RIGHT_MARGIN)
     if ONEUP_FORMAT:
       this_section.blank_after_qr = True
     else:
       this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections,
-                              paper_width=my_paper_width,
-                              paper_height=my_paper_height,
-                              top_margin=my_top_margin,
-                              bottom_margin=my_bottom_margin,
-                              left_margin=my_left_margin,
-                              right_margin=my_right_margin)
+                              paper_width=PAPER_WIDTH,
+                              paper_height=PAPER_HEIGHT,
+                              top_margin=TOP_MARGIN,
+                              bottom_margin=BOTTOM_MARGIN,
+                              left_margin=LEFT_MARGIN,
+                              right_margin=RIGHT_MARGIN)
 
 def make_one_multi_section_book(all_sections,paper_width,paper_height,
                                 top_margin,bottom_margin,
                                 left_margin,right_margin):
   """This method makes one multi-section book"""
-  print(paper_width)
-  print(paper_height)
-  print(top_margin)
-  print(bottom_margin)
-  print(left_margin)
-  print(right_margin)
   section_list = []
   for this_section in all_sections:
     section_list.append(this_section)
@@ -132,12 +126,12 @@ def make_one_multi_section_book(all_sections,paper_width,paper_height,
   with open(output_filename, 'w', encoding='utf-8') as myoutfile:
     if ONEUP_FORMAT:
       this_book = flickr_photo.BookOneup(myoutfile,
-                                         paper_width=paper_width,
-                                         paper_height=paper_height,
-                                         top_margin=top_margin,
-                                         bottom_margin=bottom_margin,
-                                         left_margin=left_margin,
-                                         right_margin=right_margin)
+                                         paper_width=PAPER_WIDTH,
+                                         paper_height=PAPER_HEIGHT,
+                                         top_margin=TOP_MARGIN,
+                                         bottom_margin=BOTTOM_MARGIN,
+                                         left_margin=LEFT_MARGIN,
+                                         right_margin=RIGHT_MARGIN)
     else:
       this_book = flickr_photo.Book(myoutfile)
     this_book.title = ''
@@ -153,12 +147,6 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,
                                   top_margin,bottom_margin,
                                   left_margin,right_margin):
   """Make all single section books"""
-  print(paper_width)
-  print(paper_height)
-  print(top_margin)
-  print(bottom_margin)
-  print(left_margin)
-  print(right_margin)
   for this_section in all_sections:
     # for now we are restricting books to one section...
     section_list = [this_section]
@@ -166,12 +154,12 @@ def make_all_single_section_books(all_sections,paper_width,paper_height,
     with open(output_filename, 'w', encoding='utf-8') as myoutfile:
       if ONEUP_FORMAT:
         this_book = flickr_photo.BookOneup(myoutfile,
-                                           paper_width=paper_width,
-                                           paper_height=paper_height,
-                                           top_margin=top_margin,
-                                           bottom_margin=bottom_margin,
-                                           left_margin=left_margin,
-                                           right_margin=right_margin)
+                                           paper_width=PAPER_WIDTH,
+                                           paper_height=PAPER_HEIGHT,
+                                           top_margin=TOP_MARGIN,
+                                           bottom_margin=BOTTOM_MARGIN,
+                                           left_margin=LEFT_MARGIN,
+                                           right_margin=RIGHT_MARGIN)
       else:
         this_book = flickr_photo.Book(myoutfile)
       this_book.title = this_section.title
@@ -194,12 +182,6 @@ def get_page_list(photo_list,paper_width,paper_height,
                   top_margin,bottom_margin,
                   left_margin,right_margin):
   """Get list of pages"""
-  print(paper_width)
-  print(paper_height)
-  print(top_margin)
-  print(bottom_margin)
-  print(left_margin)
-  print(right_margin)
   # four lines of 10pt or 12pt font fit in 0.5in
   text_height = 0.5
   landscape_width = paper_width - left_margin - right_margin
