@@ -6,35 +6,35 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = False
+ONEUP_FORMAT = True
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
 BOTTOM_MARGIN = 0.5
 LEFT_MARGIN = 0.5
 RIGHT_MARGIN = 0.5
+# if you run the script for downloading all files from a flickr photoset
+# then the files will be in a directory in ./cache/ corresponding to an album code
+# and metadata about those images will be in a file in cache
+# called photoset_info.json
+# this file contains json hash keyed on album id
+# entries are an album title and sequential list of photos
+# with id caption and url
+if ONEUP_FORMAT:
+  ALBUM_CODE = '72177720312512993' #REPLACEME
+else:
+  ALBUM_CODE = '72177720310657841' #REPLACEME
+# OTHER ALBUM CODES
+#album_code = '72177720310657841' #REPLACEME
+#album_code = '72177720311316693' #REPLACEME
+#album_code = '72177720310604095' #REPLACEME
+#album_code = '72177720310546202' #REPLACEME
+#album_code = '72177720310176444' #REPLACEME
+#album_code = '72157621908701594' # sample album code
 
 def parse_file():
   """This is the main method which creates the book"""
-  # if you run the script for downloading all files from a flickr photoset
-  # then the files will be in a directory in ./cache/ corresponding to an album code
-  # and metadata about those images will be in a file in cache
-  # called photoset_info.json
-  # this file contains json hash keyed on album id
-  # entries are an album title and sequential list of photos
-  # with id caption and url
-  if ONEUP_FORMAT:
-    album_code = '72177720312512993' #REPLACEME
-  else:
-    album_code = '72177720310657841' #REPLACEME
-  # OTHER ALBUM CODES
-  #album_code = '72177720310657841' #REPLACEME
-  #album_code = '72177720311316693' #REPLACEME
-  #album_code = '72177720310604095' #REPLACEME
-  #album_code = '72177720310546202' #REPLACEME
-  #album_code = '72177720310176444' #REPLACEME
-  #album_code = '72157621908701594' # sample album code
-  with open('./cache/' + album_code + '/photoset_info.json', 'r', encoding='utf-8') as myinfile:
+  with open('./cache/' + ALBUM_CODE + '/photoset_info.json', 'r', encoding='utf-8') as myinfile:
     album_hash = json.load(myinfile)
   # this file contains a json hash keyed on photo id
   # entries are metadata for individual photos
@@ -80,18 +80,6 @@ def parse_file():
       thisphoto.album_title = this_album.title
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
-#    page_list = get_page_list(photo_list,
-#                              paper_width=PAPER_WIDTH,
-#                              paper_height=PAPER_HEIGHT,
-#                              top_margin=TOP_MARGIN,
-#                              bottom_margin=BOTTOM_MARGIN,
-#                              left_margin=LEFT_MARGIN,
-#                              right_margin=RIGHT_MARGIN)
-#    this_section = get_section(this_album,
-#                               page_list,
-#                               PAPER_WIDTH,
-#                               LEFT_MARGIN,
-#                               RIGHT_MARGIN)
     this_section = get_section(this_album,page_list)
     if ONEUP_FORMAT:
       this_section.blank_after_qr = True
@@ -99,18 +87,8 @@ def parse_file():
       this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections)
-#  make_one_multi_section_book(all_sections,
-#                              paper_width=PAPER_WIDTH,
-#                              paper_height=PAPER_HEIGHT,
-#                              top_margin=TOP_MARGIN,
-#                              bottom_margin=BOTTOM_MARGIN,
-#                              left_margin=LEFT_MARGIN,
-#                              right_margin=RIGHT_MARGIN)
 
 def make_one_multi_section_book(all_sections):
-#def make_one_multi_section_book(all_sections,paper_width,paper_height,
-#                                top_margin,bottom_margin,
-#                                left_margin,right_margin):
   """This method makes one multi-section book"""
   section_list = []
   for this_section in all_sections:
@@ -148,9 +126,6 @@ def make_one_multi_section_book(all_sections):
     print('Album tex file created, see ' + output_filename)
 
 def make_all_single_section_books(all_sections):
-#def make_all_single_section_books(all_sections,paper_width,paper_height,
-#                                  top_margin,bottom_margin,
-#                                  left_margin,right_margin):
   """Make all single section books"""
   for this_section in all_sections:
     # for now we are restricting books to one section...
@@ -184,9 +159,6 @@ def create_qr_code(this_album):
   return qr_path
 
 def get_page_list(photo_list):
-#def get_page_list(photo_list,paper_width,paper_height,
-#                  top_margin,bottom_margin,
-#                  left_margin,right_margin):
   """Get list of pages"""
   # four lines of 10pt or 12pt font fit in 0.5in
   text_height = 0.5
@@ -241,7 +213,6 @@ def get_page_list(photo_list):
   return page_list
 
 def get_section(this_album,page_list):
-#def get_section(this_album,page_list,paper_width,left_margin,right_margin):
   """Get a single section with qr code """
   this_section = flickr_photo.Section()
   qrdimmax = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
