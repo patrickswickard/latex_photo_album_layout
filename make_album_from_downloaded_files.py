@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -71,10 +71,6 @@ def parse_file():
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
-    if ONEUP_FORMAT:
-      this_section.blank_after_qr = True
-    else:
-      this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections)
 
@@ -226,6 +222,10 @@ def get_section(this_album,page_list):
   this_section.url = this_album.url
   qr_path = create_qr_code(this_album)
   this_section.qr = qr_path
+  if ONEUP_FORMAT:
+    this_section.blank_after_qr = True
+  else:
+    this_section.blank_after_qr = False
   return this_section
 
 if __name__ == '__main__':
