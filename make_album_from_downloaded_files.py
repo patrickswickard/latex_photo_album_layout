@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -51,14 +51,16 @@ def parse_file():
   album_list = []
   for this_album_code in album_code_list:
     # owner_id can be extracted from all_info_file if desired and consistent
-    owner_id = album_hash[this_album_code]['owner_id']
-    owner_name = album_hash[this_album_code]['owner_name']
     this_album = flickr_photo.Album(this_album_code)
     this_album.id = this_album_code
-    this_album.author = owner_name
+    this_album.author = album_hash[this_album_code]['owner_name']
+    this_album.owner_id = album_hash[this_album_code]['owner_id']
     this_album.date = ''
     this_album.title = album_hash[this_album_code]['title']
-    this_album.url = 'https://www.flickr.com/photos/' + owner_id + '/albums/' + this_album.id
+    this_album.url = ('https://www.flickr.com/photos/'
+                      + this_album.owner_id
+                      + '/albums/'
+                      + this_album.id)
     this_album.album_entries = album_hash[this_album_code]['photoset_hash']
     album_list.append(this_album)
   all_sections = []
