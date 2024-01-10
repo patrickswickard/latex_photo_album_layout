@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = False
+ONEUP_FORMAT = True
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -68,18 +68,7 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-      myid = thisphoto_hash['id']
-      url = thisphoto_hash['source']
-      photo_prefix = this_album.id + '/'
-      photo_filename = myid + '.jpg'
-      location = photo_prefix + photo_filename
-      caption = thisphoto_hash['title']
-      #caption = ''
-      width = thisphoto_hash['width']
-      height = thisphoto_hash['height']
-      thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
-      # bonus info
-      thisphoto.album_title = this_album.title
+      thisphoto = get_photo_info(thisphoto_hash,this_album)
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
@@ -89,6 +78,22 @@ def parse_file():
       this_section.blank_after_qr = False
     all_sections.append(this_section)
   make_one_multi_section_book(all_sections)
+
+def get_photo_info(thisphoto_hash,this_album):
+  """Get photo info from photo hash"""
+  myid = thisphoto_hash['id']
+  url = thisphoto_hash['source']
+  photo_prefix = this_album.id + '/'
+  photo_filename = myid + '.jpg'
+  location = photo_prefix + photo_filename
+  caption = thisphoto_hash['title']
+  #caption = ''
+  width = thisphoto_hash['width']
+  height = thisphoto_hash['height']
+  thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
+  # bonus info
+  thisphoto.album_title = this_album.title
+  return thisphoto
 
 def make_one_multi_section_book(all_sections):
   """This method makes one multi-section book"""
