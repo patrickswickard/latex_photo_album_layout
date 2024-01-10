@@ -13,6 +13,12 @@ TOP_MARGIN = 0.5
 BOTTOM_MARGIN = 0.5
 LEFT_MARGIN = 0.5
 RIGHT_MARGIN = 0.5
+# four lines of 10pt or 12pt font fit in 0.5in
+TEXT_HEIGHT = 0.5
+LANDSCAPE_WIDTH = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
+PORTRAIT_WIDTH = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
+LANDSCAPE_HEIGHT = PAPER_HEIGHT - TOP_MARGIN - BOTTOM_MARGIN - TEXT_HEIGHT
+PORTRAIT_HEIGHT = PAPER_HEIGHT - TOP_MARGIN - BOTTOM_MARGIN - TEXT_HEIGHT
 # if you run the script for downloading all files from a flickr photoset
 # then the files will be in a directory in ./cache/ corresponding to an album code
 # and metadata about those images will be in a file in cache
@@ -167,37 +173,16 @@ def create_qr_code(this_album):
 
 def get_page_list(photo_list):
   """Get list of pages"""
-  # four lines of 10pt or 12pt font fit in 0.5in
-  text_height = 0.5
-  landscape_width = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
-  portrait_width = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
-  landscape_height = PAPER_HEIGHT - TOP_MARGIN - BOTTOM_MARGIN - text_height
-  portrait_height = PAPER_HEIGHT - TOP_MARGIN - BOTTOM_MARGIN - text_height
-  print('Using: LW ' + str(landscape_width) + ' LH '
-        + str(landscape_height) + ' PW '
-        + str(portrait_width) + ' PH '
-        + str(portrait_height))
-#  if paper_width == 8.5 and paper_height == 11.0:
-#    landscape_width = 7.5
-#    landscape_height = 9.0
-#    portrait_width = 7.5
-#    portrait_height = 9.0
-#  elif paper_width == 6.0 and paper_height == 9.0:
-#    landscape_width = 5.0
-#    landscape_height = 7.5
-#    portrait_width = 5.0
-#    portrait_height = 7.5
-#  else:
-#    landscape_width = 5.0
-#    landscape_height = 7.5
-#    portrait_width = 5.0
-#    portrait_height = 7.5
+  print('Using: LW ' + str(LANDSCAPE_WIDTH)
+        + ' LH ' + str(LANDSCAPE_HEIGHT)
+        + ' PW ' + str(PORTRAIT_WIDTH)
+        + ' PH ' + str(PORTRAIT_HEIGHT))
   page_list = []
   if ONEUP_FORMAT:
-    current_page = flickr_photo.PageOneup(landscape_width=landscape_width,
-                                          landscape_height=landscape_height,
-                                          portrait_width=portrait_width,
-                                          portrait_height=portrait_height)
+    current_page = flickr_photo.PageOneup(landscape_width=LANDSCAPE_WIDTH,
+                                          landscape_height=LANDSCAPE_HEIGHT,
+                                          portrait_width=PORTRAIT_WIDTH,
+                                          portrait_height=PORTRAIT_HEIGHT)
   else:
     current_page = flickr_photo.Page()
   for thisphoto in photo_list:
@@ -208,10 +193,10 @@ def get_page_list(photo_list):
     else:
       page_list.append(current_page)
       if ONEUP_FORMAT:
-        current_page = flickr_photo.PageOneup(landscape_width=landscape_width,
-                                              landscape_height=landscape_height,
-                                              portrait_width=portrait_width,
-                                              portrait_height=portrait_height)
+        current_page = flickr_photo.PageOneup(landscape_width=LANDSCAPE_WIDTH,
+                                              landscape_height=LANDSCAPE_HEIGHT,
+                                              portrait_width=PORTRAIT_WIDTH,
+                                              portrait_height=PORTRAIT_HEIGHT)
       else:
         current_page = flickr_photo.Page()
       current_page.add_photo(thisphoto)
