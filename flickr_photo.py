@@ -456,9 +456,10 @@ class Book:
     Book.print_end(thisfile)
     thisfile.close()
 
-  def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,
-                     left_margin=None,right_margin=None,
-                     paper_width=None,paper_height=None):
+#  def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,
+#                     left_margin=None,right_margin=None,
+#                     paper_width=None,paper_height=None):
+  def print_preamble(self,thisfile):
     """Print preamble of latex document given margins which are currently ignored"""
     # ignore inputs for now
     top_margin = '0.75in'
