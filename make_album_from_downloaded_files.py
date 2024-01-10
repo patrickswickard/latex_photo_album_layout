@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -89,6 +89,29 @@ def get_photo_info(thisphoto_hash,this_album):
   # bonus info
   thisphoto.album_title = this_album.title
   return thisphoto
+
+def get_section(this_album,page_list):
+  """Get a single section with qr code """
+  this_section = flickr_photo.Section()
+  qrdimmax = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
+  if qrdimmax < 5.19:
+    qrdim = qrdimmax
+  else:
+    qrdim = 5.19
+  this_section.qrdim = qrdim
+  for thispage in page_list:
+    this_section.add_page(thispage)
+  this_section.title = this_album.title
+  this_section.author = this_album.author
+  this_section.date = this_album.date
+  this_section.url = this_album.url
+  qr_path = create_qr_code(this_album)
+  this_section.qr = qr_path
+  if ONEUP_FORMAT:
+    this_section.blank_after_qr = True
+  else:
+    this_section.blank_after_qr = False
+  return this_section
 
 def get_album_info(album_hash,this_album_code):
   """Get album info from album hash"""
@@ -204,29 +227,6 @@ def get_page_list(photo_list):
   # add final page
   page_list.append(current_page)
   return page_list
-
-def get_section(this_album,page_list):
-  """Get a single section with qr code """
-  this_section = flickr_photo.Section()
-  qrdimmax = PAPER_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
-  if qrdimmax < 5.19:
-    qrdim = qrdimmax
-  else:
-    qrdim = 5.19
-  this_section.qrdim = qrdim
-  for thispage in page_list:
-    this_section.add_page(thispage)
-  this_section.title = this_album.title
-  this_section.author = this_album.author
-  this_section.date = this_album.date
-  this_section.url = this_album.url
-  qr_path = create_qr_code(this_album)
-  this_section.qr = qr_path
-  if ONEUP_FORMAT:
-    this_section.blank_after_qr = True
-  else:
-    this_section.blank_after_qr = False
-  return this_section
 
 if __name__ == '__main__':
   create_book_from_downloaded_album()
