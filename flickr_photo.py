@@ -300,13 +300,6 @@ class PageOneup(Page):
     return False
 
   def print_landscape_line(self,thisfile,filename):
-    # historical 8.5x11 values
-    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
-    # use this for 6 x 9 oneup
-    #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
-    # use this for 6 x 9 two-up
-    #thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\begin{center}')
     thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
                    + 'in,height=' + str(self.landscape_height)
@@ -314,14 +307,6 @@ class PageOneup(Page):
     thisfile.write('\\end{center}')
 
   def print_portrait_line(self,thisfile, filename):
-    # historical 8.5x11 values
-    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
-    # use this for 6 x 9 oneup
-    #thisfile.write('\\includegraphics[width=5.0in,height=7.5in,keepaspectratio]{' + filename + '}\n')
-    #thisfile.write('\\includegraphics[width=' + str(5.0) + 'in,height=' + str(7.5) + 'in,keepaspectratio]{' + filename + '}\n')
-    # use this for 6 x 9 two-up
-    #thisfile.write('\\includegraphics[width=5.0in,height=3.25in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\begin{center}\n')
     thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
                    + 'in,height=' + str(self.portrait_height)
@@ -406,7 +391,8 @@ class Section:
     thisfile.write('\n')
     thisfile.write('\\section*{' + self.title + '}\n\n')
     thisfile.write('\\url{' + self.url + '}\n\n')
-    thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
+    thisfile.write('Scan the QR code below to go to the original album '
+                   + 'with full-size photos on Flickr:\n\n')
     thisfile.write('\\begin{center}\n')
     thisfile.write('\\includegraphics[width=' + str(self.qrdim) + 'in]{' + qr_location + '}\n')
     thisfile.write('\\end{center}\n')
@@ -469,13 +455,10 @@ class Book:
     paper_width = '8.5in'
     paper_height = '11in'
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
     thisfile.write('\\usepackage[top=' + top_margin + ', bottom=' + bottom_margin
                    + ', left=' + left_margin + ', right=' + right_margin
                    + ', paperwidth=' + paper_width + ', paperheight=' + paper_height
                    + ']{geometry}\n')
-    # above is what has historically been used but the margins below are probably better
-    #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
@@ -503,10 +486,6 @@ class BookOneup(Book):
     """Print the latex preamble for a one-up book"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     thisfile.write('\\pagenumbering{gobble}\n')
-    # 8.5 x 11 format historical
-    #thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
-    # 6 x 9 format
-    #thisfile.write('\\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in, paperwidth=6.0in, paperheight=9in]{geometry}\n')
     thisfile.write('\\usepackage[top=' + str(self.top_margin) + 'in,'
                    + ' bottom=' + str(self.bottom_margin) + 'in,'
                    + ' left=' + str(self.left_margin) + 'in,'
