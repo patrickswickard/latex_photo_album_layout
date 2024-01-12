@@ -153,17 +153,9 @@ def make_one_multi_section_book(all_sections):
         'right_margin':RIGHT_MARGIN,
       }
       this_book = flickr_photo.BookOneup(myoutfile,paper_dimensions)
-#      this_book = flickr_photo.BookOneup(myoutfile,
-#                                         paper_width=PAPER_WIDTH,
-#                                         paper_height=PAPER_HEIGHT,
-#                                         top_margin=TOP_MARGIN,
-#                                         bottom_margin=BOTTOM_MARGIN,
-#                                         left_margin=LEFT_MARGIN,
-#                                         right_margin=RIGHT_MARGIN)
     else:
       paper_dimensions={}
       this_book = flickr_photo.Book(myoutfile,paper_dimensions)
-#      this_book = flickr_photo.Book(myoutfile)
     this_book.title = ''
     this_book.author = ''
     this_book.date = ''
@@ -189,17 +181,9 @@ def make_all_single_section_books(all_sections):
                             'right_margin':RIGHT_MARGIN,
                            }
         this_book = flickr_photo.BookOneup(myoutfile,paper_dimensions)
-#        this_book = flickr_photo.BookOneup(myoutfile,
-#                                           paper_width=PAPER_WIDTH,
-#                                           paper_height=PAPER_HEIGHT,
-#                                           top_margin=TOP_MARGIN,
-#                                           bottom_margin=BOTTOM_MARGIN,
-#                                           left_margin=LEFT_MARGIN,
-#                                           right_margin=RIGHT_MARGIN)
       else:
         paper_dimensions={}
         this_book = flickr_photo.Book(myoutfile,paper_dimensions)
-#        this_book = flickr_photo.Book(myoutfile)
       this_book.title = this_section.title
       this_book.author = this_section.author
       this_book.date = this_section.date
