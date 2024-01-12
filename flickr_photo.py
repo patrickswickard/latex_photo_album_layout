@@ -442,6 +442,8 @@ class Book:
     paper_width = self.paper_dimensions.get('paper_width',8.5)
     paper_height = self.paper_dimensions.get('paper_height',11)
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
+    if self.one_up:
+      thisfile.write('\\pagenumbering{gobble}\n')
     thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
                    + ' bottom=' + str(bottom_margin) + 'in,'
                    + ' left=' + str(left_margin) + 'in,'
@@ -484,7 +486,8 @@ class BookOneup(Book):
     paper_width = self.paper_dimensions.get('paper_width',8.5)
     paper_height = self.paper_dimensions.get('paper_height',11)
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\pagenumbering{gobble}\n')
+    if self.one_up:
+      thisfile.write('\\pagenumbering{gobble}\n')
     thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
                    + ' bottom=' + str(bottom_margin) + 'in,'
                    + ' left=' + str(left_margin) + 'in,'
