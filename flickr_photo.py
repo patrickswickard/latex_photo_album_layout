@@ -407,7 +407,7 @@ class Section:
 
 class Book:
   """Book class representing a single photo book"""
-  def __init__(self,thisfile,paper_dimensions):
+  def __init__(self,thisfile,paper_dimensions,one_up):
     self.section_list = []
     self.thisfile = thisfile
     self.title = ''
