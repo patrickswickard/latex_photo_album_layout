@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -144,15 +144,26 @@ def make_one_multi_section_book(all_sections):
   output_filename = 'cache/' + BOOK_FILENAME + '.tex'
   with open(output_filename, 'w', encoding='utf-8') as myoutfile:
     if ONEUP_FORMAT:
-      this_book = flickr_photo.BookOneup(myoutfile,
-                                         paper_width=PAPER_WIDTH,
-                                         paper_height=PAPER_HEIGHT,
-                                         top_margin=TOP_MARGIN,
-                                         bottom_margin=BOTTOM_MARGIN,
-                                         left_margin=LEFT_MARGIN,
-                                         right_margin=RIGHT_MARGIN)
+      paper_dimensions={
+        'paper_width':PAPER_WIDTH,
+        'paper_height':PAPER_HEIGHT,
+        'top_margin':TOP_MARGIN,
+        'bottom_margin':BOTTOM_MARGIN,
+        'left_margin':LEFT_MARGIN,
+        'right_margin':RIGHT_MARGIN,
+      }
+      this_book = flickr_photo.BookOneup(myoutfile,paper_dimensions)
+#      this_book = flickr_photo.BookOneup(myoutfile,
+#                                         paper_width=PAPER_WIDTH,
+#                                         paper_height=PAPER_HEIGHT,
+#                                         top_margin=TOP_MARGIN,
+#                                         bottom_margin=BOTTOM_MARGIN,
+#                                         left_margin=LEFT_MARGIN,
+#                                         right_margin=RIGHT_MARGIN)
     else:
-      this_book = flickr_photo.Book(myoutfile)
+      paper_dimensions={}
+      this_book = flickr_photo.Book(myoutfile,paper_dimensions)
+#      this_book = flickr_photo.Book(myoutfile)
     this_book.title = ''
     this_book.author = ''
     this_book.date = ''
@@ -170,15 +181,25 @@ def make_all_single_section_books(all_sections):
     output_filename = 'texfiles/' + this_section.title + '.tex'
     with open(output_filename, 'w', encoding='utf-8') as myoutfile:
       if ONEUP_FORMAT:
-        this_book = flickr_photo.BookOneup(myoutfile,
-                                           paper_width=PAPER_WIDTH,
-                                           paper_height=PAPER_HEIGHT,
-                                           top_margin=TOP_MARGIN,
-                                           bottom_margin=BOTTOM_MARGIN,
-                                           left_margin=LEFT_MARGIN,
-                                           right_margin=RIGHT_MARGIN)
+        paper_dimensions = {'paper_width':PAPER_WIDTH,
+                            'paper_height':PAPER_HEIGHT,
+                            'top_margin':TOP_MARGIN,
+                            'bottom_margin':BOTTOM_MARGIN,
+                            'left_margin':LEFT_MARGIN,
+                            'right_margin':RIGHT_MARGIN,
+                           }
+        this_book = flickr_photo.BookOneup(myoutfile,paper_dimensions)
+#        this_book = flickr_photo.BookOneup(myoutfile,
+#                                           paper_width=PAPER_WIDTH,
+#                                           paper_height=PAPER_HEIGHT,
+#                                           top_margin=TOP_MARGIN,
+#                                           bottom_margin=BOTTOM_MARGIN,
+#                                           left_margin=LEFT_MARGIN,
+#                                           right_margin=RIGHT_MARGIN)
       else:
-        this_book = flickr_photo.Book(myoutfile)
+        paper_dimensions={}
+        this_book = flickr_photo.Book(myoutfile,paper_dimensions)
+#        this_book = flickr_photo.Book(myoutfile)
       this_book.title = this_section.title
       this_book.author = this_section.author
       this_book.date = this_section.date

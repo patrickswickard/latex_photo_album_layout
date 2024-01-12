@@ -407,9 +407,7 @@ class Section:
 
 class Book:
   """Book class representing a single photo book"""
-  def __init__(self,thisfile,paper_width=8.5,paper_height=11.0,
-               top_margin=0.5,bottom_margin=0.5,
-               left_margin=0.5,right_margin=0.5):
+  def __init__(self,thisfile,paper_dimensions):
     self.section_list = []
     self.thisfile = thisfile
     self.title = ''
@@ -417,12 +415,7 @@ class Book:
     self.date = ''
     self.url = ''
     self.qr = ''
-    self.paper_width = paper_width
-    self.paper_height = paper_height
-    self.top_margin = top_margin
-    self.bottom_margin = bottom_margin
-    self.left_margin = left_margin
-    self.right_margin = right_margin
+    self.paper_dimensions = paper_dimensions
 
   def print_book(self):
     """Print book to .tex file"""
@@ -436,22 +429,33 @@ class Book:
     Book.print_end(thisfile)
     thisfile.close()
 
-#  def print_preamble(self,thisfile,top_margin=None,bottom_margin=None,
-#                     left_margin=None,right_margin=None,
-#                     paper_width=None,paper_height=None):
   def print_preamble(self,thisfile):
     """Print preamble of latex document given margins which are currently ignored"""
+    self.paper_dimensions = {}
     # ignore inputs for now
-    top_margin = '0.75in'
-    bottom_margin = '0.75in'
-    left_margin = '0.75in'
-    right_margin = '0.75in'
-    paper_width = '8.5in'
-    paper_height = '11in'
+#    top_margin = self.paper_dimensions.get('top_margin','0.75in')
+#    bottom_margin = self.paper_dimensions.get('bottom_margin','0.75in')
+#    left_margin = self.paper_dimensions.get('left_margin','0.75in')
+#    right_margin = self.paper_dimensions.get('right_margin','0.75in')
+#    paper_width = self.paper_dimensions.get('paper_width','8.5in')
+#    paper_height = self.paper_dimensions.get('paper_height','11in')
+    top_margin = self.paper_dimensions.get('top_margin',0.75)
+    bottom_margin = self.paper_dimensions.get('bottom_margin',0.75)
+    left_margin = self.paper_dimensions.get('left_margin',0.75)
+    right_margin = self.paper_dimensions.get('right_margin',0.75)
+    paper_width = self.paper_dimensions.get('paper_width',8.5)
+    paper_height = self.paper_dimensions.get('paper_height',11)
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=' + top_margin + ', bottom=' + bottom_margin
-                   + ', left=' + left_margin + ', right=' + right_margin
-                   + ', paperwidth=' + paper_width + ', paperheight=' + paper_height
+#    thisfile.write('\\usepackage[top=' + top_margin + ', bottom=' + bottom_margin
+#                   + ', left=' + left_margin + ', right=' + right_margin
+#                   + ', paperwidth=' + paper_width + ', paperheight=' + paper_height
+#                   + ']{geometry}\n')
+    thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
+                   + ' bottom=' + str(bottom_margin) + 'in,'
+                   + ' left=' + str(left_margin) + 'in,'
+                   + ' right='  + str(right_margin) + 'in,'
+                   + ' paperwidth=' + str(paper_width) + 'in,'
+                   + ' paperheight=' + str(paper_height) + 'in'
                    + ']{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
@@ -480,12 +484,12 @@ class BookOneup(Book):
     """Print the latex preamble for a one-up book"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     thisfile.write('\\pagenumbering{gobble}\n')
-    thisfile.write('\\usepackage[top=' + str(self.top_margin) + 'in,'
-                   + ' bottom=' + str(self.bottom_margin) + 'in,'
-                   + ' left=' + str(self.left_margin) + 'in,'
-                   + ' right='  + str(self.right_margin) + 'in,'
-                   + ' paperwidth=' + str(self.paper_width) + 'in,'
-                   + ' paperheight=' + str(self.paper_height) + 'in'
+    thisfile.write('\\usepackage[top=' + str(self.paper_dimensions['top_margin']) + 'in,'
+                   + ' bottom=' + str(self.paper_dimensions['bottom_margin']) + 'in,'
+                   + ' left=' + str(self.paper_dimensions['left_margin']) + 'in,'
+                   + ' right='  + str(self.paper_dimensions['right_margin']) + 'in,'
+                   + ' paperwidth=' + str(self.paper_dimensions['paper_width']) + 'in,'
+                   + ' paperheight=' + str(self.paper_dimensions['paper_height']) + 'in'
                    + ']{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
