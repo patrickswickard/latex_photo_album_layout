@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = False
+ONEUP_FORMAT = True
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -152,7 +152,6 @@ def make_one_multi_section_book(all_sections):
         'left_margin':LEFT_MARGIN,
         'right_margin':RIGHT_MARGIN,
       }
-      #this_book = flickr_photo.BookOneup(myoutfile,paper_dimensions,ONEUP_FORMAT)
       this_book = flickr_photo.Book(myoutfile,paper_dimensions,ONEUP_FORMAT)
     else:
       paper_dimensions={}
@@ -182,7 +181,6 @@ def make_all_single_section_books(all_sections):
                             'right_margin':RIGHT_MARGIN,
                            }
         this_book = flickr_photo.Book(myoutfile,paper_dimensions,ONEUP_FORMAT)
-        #this_book = flickr_photo.BookOneup(myoutfile,paper_dimensions,ONEUP_FORMAT)
       else:
         paper_dimensions={}
         this_book = flickr_photo.Book(myoutfile,paper_dimensions,ONEUP_FORMAT)
