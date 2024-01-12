@@ -471,36 +471,3 @@ class Book:
   def print_end(thisfile):
     """Print end of latex document"""
     thisfile.write('\\end{document}\n')
-#
-#class BookOneup(Book):
-#  """Class representing a book that has one image per page"""
-#  def print_preamble(self,thisfile):
-#    """Print the latex preamble for a one-up book"""
-#    if not self.one_up:
-#      # ignore inputs for now
-#      self.paper_dimensions = {}
-#    top_margin = self.paper_dimensions.get('top_margin',0.75)
-#    bottom_margin = self.paper_dimensions.get('bottom_margin',0.75)
-#    left_margin = self.paper_dimensions.get('left_margin',0.75)
-#    right_margin = self.paper_dimensions.get('right_margin',0.75)
-#    paper_width = self.paper_dimensions.get('paper_width',8.5)
-#    paper_height = self.paper_dimensions.get('paper_height',11)
-#    thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-#    if self.one_up:
-#      thisfile.write('\\pagenumbering{gobble}\n')
-#    thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
-#                   + ' bottom=' + str(bottom_margin) + 'in,'
-#                   + ' left=' + str(left_margin) + 'in,'
-#                   + ' right='  + str(right_margin) + 'in,'
-#                   + ' paperwidth=' + str(paper_width) + 'in,'
-#                   + ' paperheight=' + str(paper_height) + 'in'
-#                   + ']{geometry}\n')
-#    thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
-#    thisfile.write("\\usepackage{pslatex}\n")
-#    thisfile.write("\\usepackage[pdftex]{graphicx}\n")
-#    thisfile.write("\\usepackage{float}\n")
-#    thisfile.write("\\usepackage{hyperref}\n")
-#    thisfile.write("\\setlength{\\parindent}{0pt}\n")
-#    thisfile.write("\\title{" + self.title + "}\n")
-#    thisfile.write("\\author{" + self.author + "}\n")
-#    thisfile.write("\\date{" + self.date + "}\n")
