@@ -432,8 +432,9 @@ class Book:
 
   def print_preamble(self,thisfile):
     """Print preamble of latex document given margins which are currently ignored"""
-    self.paper_dimensions = {}
-    # ignore inputs for now
+    if not self.one_up:
+      # ignore inputs for now
+      self.paper_dimensions = {}
     top_margin = self.paper_dimensions.get('top_margin',0.75)
     bottom_margin = self.paper_dimensions.get('bottom_margin',0.75)
     left_margin = self.paper_dimensions.get('left_margin',0.75)
@@ -473,8 +474,9 @@ class BookOneup(Book):
   """Class representing a book that has one image per page"""
   def print_preamble(self,thisfile):
     """Print the latex preamble for a one-up book"""
-#    self.paper_dimensions = {}
-#    # ignore inputs for now
+    if not self.one_up:
+      # ignore inputs for now
+      self.paper_dimensions = {}
     top_margin = self.paper_dimensions.get('top_margin',0.75)
     bottom_margin = self.paper_dimensions.get('bottom_margin',0.75)
     left_margin = self.paper_dimensions.get('left_margin',0.75)
