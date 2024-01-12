@@ -416,6 +416,7 @@ class Book:
     self.url = ''
     self.qr = ''
     self.paper_dimensions = paper_dimensions
+    self.one_up = one_up
 
   def print_book(self):
     """Print book to .tex file"""
