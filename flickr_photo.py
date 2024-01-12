@@ -407,9 +407,9 @@ class Section:
 
 class Book:
   """Book class representing a single photo book"""
-  def __init__(self,thisfile,paper_width=None,paper_height=None,
-               top_margin=None,bottom_margin=None,
-               left_margin=None,right_margin=None):
+  def __init__(self,thisfile,paper_width=8.5,paper_height=11.0,
+               top_margin=0.5,bottom_margin=0.5,
+               left_margin=0.5,right_margin=0.5):
     self.section_list = []
     self.thisfile = thisfile
     self.title = ''
@@ -417,18 +417,12 @@ class Book:
     self.date = ''
     self.url = ''
     self.qr = ''
-    self.paper_width = paper_width if paper_width is not None else 8.5
-    self.paper_height = paper_height if paper_height is not None else 11.0
-    self.top_margin = top_margin if top_margin is not None else 0.75
-    self.bottom_margin = bottom_margin if bottom_margin is not None else 0.75
-    self.left_margin = left_margin if left_margin is not None else 0.5
-    self.right_margin = right_margin if right_margin is not None else 0.5
-    #self.paper_width = paper_width if paper_width is not None else 6.0
-    #self.paper_height = paper_height if paper_height is not None else 9.0
-    #self.top_margin = top_margin if top_margin is not None else 0.5
-    #self.bottom_margin = bottom_margin if bottom_margin is not None else 0.5
-    #self.left_margin = left_margin if left_margin is not None else 0.5
-    #self.right_margin = right_margin if right_margin is not None else 0.5
+    self.paper_width = paper_width
+    self.paper_height = paper_height
+    self.top_margin = top_margin
+    self.bottom_margin = bottom_margin
+    self.left_margin = left_margin
+    self.right_margin = right_margin
 
   def print_book(self):
     """Print book to .tex file"""
