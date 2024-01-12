@@ -284,10 +284,10 @@ class PageOneup(Page):
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 6x9
-    self.landscape_width = landscape_width if landscape_width is not None else 5.0
-    self.landscape_height = landscape_height if landscape_height is not None else 7.5
-    self.portrait_width = portrait_width if portrait_width is not None else 5.0
-    self.portrait_height = portrait_height if portrait_height is not None else 7.5
+    self.landscape_width = landscape_width #if landscape_width is not None else 5.0
+    self.landscape_height = landscape_height #if landscape_height is not None else 7.5
+    self.portrait_width = portrait_width #if portrait_width is not None else 5.0
+    self.portrait_height = portrait_height #if portrait_height is not None else 7.5
 
   def canfit_l(self):
     if self.layout == '':
