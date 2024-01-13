@@ -209,7 +209,8 @@ def create_qr_code(this_album):
 def get_page_list(photo_list):
   """Get page list"""
   page_list = []
-  current_page = flickr_photo.Page()
+  photo_max_dims = {}
+  current_page = flickr_photo.Page(photo_max_dims,one_up=False)
   for thisphoto in photo_list:
     if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
       current_page.add_photo(thisphoto)
@@ -217,7 +218,8 @@ def get_page_list(photo_list):
       current_page.add_photo(thisphoto)
     else:
       page_list.append(current_page)
-      current_page = flickr_photo.Page()
+      photo_max_dims = {}
+      current_page = flickr_photo.Page(photo_max_dims,one_up=False)
       current_page.add_photo(thisphoto)
   # add final page
   page_list.append(current_page)
