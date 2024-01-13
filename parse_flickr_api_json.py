@@ -46,23 +46,28 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-      myid = thisphoto_hash['id']
-      url = thisphoto_hash['url']
-      prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
-      photo_filename = myid + '.jpg'
-      location = prefix + photo_filename
-      caption = thisphoto_hash['title']
-      width = all_info_hash[myid]['width_o']
-      height = all_info_hash[myid]['height_o']
-      thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
-      # bonus info
-      thisphoto.album_title = this_album.title
+      thisphoto = get_thisphoto_info(thisphoto_hash,this_album,all_info_hash)
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
     all_sections.append(this_section)
   #make_all_single_section_books(all_sections)
   make_one_multi_section_book(all_sections)
+
+def get_thisphoto_info(thisphoto_hash,this_album,all_info_hash):
+  """Get thisphoto info"""
+  myid = thisphoto_hash['id']
+  url = thisphoto_hash['url']
+  prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
+  photo_filename = myid + '.jpg'
+  location = prefix + photo_filename
+  caption = thisphoto_hash['title']
+  width = all_info_hash[myid]['width_o']
+  height = all_info_hash[myid]['height_o']
+  thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
+  # bonus info
+  thisphoto.album_title = this_album.title
+  return thisphoto
 
 def make_one_multi_section_book(all_sections):
   """Make a single book with multiple sections"""
