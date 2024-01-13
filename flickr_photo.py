@@ -51,7 +51,6 @@ class Page:
     if self.one_up:
       if self.layout == '':
         return True
-      return False
     else:
       if self.layout == '':
         return True
@@ -61,14 +60,13 @@ class Page:
         return True
       if self.layout == 'PP':
         return True
-      return False
+    return False
 
   def canfit_p(self):
     """Determine if page can fit another image in portrait orientation"""
     if self.one_up:
       if self.layout == '':
         return True
-      return False
     else:
       if self.layout == '':
         return True
@@ -82,7 +80,7 @@ class Page:
         return True
       if self.layout == 'PPP':
         return True
-      return False
+    return False
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
