@@ -31,7 +31,7 @@ class Photo:
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
   def __init__(self,landscape_width = None, landscape_height = None,
-               portrait_width = None, portrait_height = None):
+               portrait_width = None, portrait_height = None,one_up=False):
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 8.5x11
