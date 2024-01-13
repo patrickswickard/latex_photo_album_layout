@@ -46,24 +46,27 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-      id = thisphoto_hash['id']
-      url = thisphoto_hash['url']
-      prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
-      photo_filename = id + '.jpg'
-      location = prefix + photo_filename
-      caption = thisphoto_hash['title']
-      width = all_info_hash[id]['width_o']
-      height = all_info_hash[id]['height_o']
-      thisphoto = flickr_photo_caption_only_hack.Photo(id,url,location,caption,width,height)
-      # bonus info
-      thisphoto.album_title = this_album.title
+      thisphoto = get_thisphoto_info(thisphoto_hash,this_album,all_info_hash)
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
     all_sections.append(this_section)
-  #make_all_single_section_books(all_sections)
-  #make_one_multi_section_book(all_sections)
   make_one_big_book_all_text(all_sections)
+
+def get_thisphoto_info(thisphoto_hash,this_album,all_info_hash):
+  """Get thisphoto info"""
+  myid = thisphoto_hash['id']
+  url = thisphoto_hash['url']
+  prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
+  photo_filename = myid + '.jpg'
+  location = prefix + photo_filename
+  caption = thisphoto_hash['title']
+  width = all_info_hash[myid]['width_o']
+  height = all_info_hash[myid]['height_o']
+  thisphoto = flickr_photo_caption_only_hack.Photo(myid,url,location,caption,width,height)
+  # bonus info
+  thisphoto.album_title = this_album.title
+  return thisphoto
 
 def make_one_multi_section_book(all_sections):
   """Make a single multi-section book"""
@@ -174,15 +177,15 @@ def make_one_multi_section_book(all_sections):
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
   output_filename = 'texfiles2/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w', encoding='utf-8')
-  this_book = flickr_photo_caption_only_hack.Book(output_file)
-  this_book.title = ''
-  this_book.author = ''
-  this_book.date = ''
-  this_book.url = ''
-  this_book.section_list = section_list
-  print('Creating tex file for ' + book_filename)
-  this_book.print_book()
+  with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+    this_book = flickr_photo_caption_only_hack.Book(myoutfile)
+    this_book.title = ''
+    this_book.author = ''
+    this_book.date = ''
+    this_book.url = ''
+    this_book.section_list = section_list
+    print('Creating tex file for ' + book_filename)
+    this_book.print_book()
 
 def make_all_single_section_books(all_sections):
   """Make all books with a single section"""
@@ -190,15 +193,15 @@ def make_all_single_section_books(all_sections):
     # for now we are restricting books to one section...
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
-    output_file = open(output_filename, 'w', encoding='utf-8')
-    this_book = flickr_photo_caption_only_hack.Book(output_file)
-    this_book.title = this_section.title
-    this_book.author = this_section.author
-    this_book.date = this_section.date
-    this_book.url = this_section.url
-    this_book.section_list = section_list
-    print('Creating tex file for ' + this_section.title)
-    this_book.print_book()
+    with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+      this_book = flickr_photo_caption_only_hack.Book(myoutfile)
+      this_book.title = this_section.title
+      this_book.author = this_section.author
+      this_book.date = this_section.date
+      this_book.url = this_section.url
+      this_book.section_list = section_list
+      print('Creating tex file for ' + this_section.title)
+      this_book.print_book()
 
 def make_one_big_book_all_text(all_sections):
   """Make one big book with text only captions"""
@@ -207,15 +210,15 @@ def make_one_big_book_all_text(all_sections):
     section_list.append(this_section)
   book_filename = 'everything2'
   output_filename = 'texfiles3/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w', encoding='utf-8')
-  this_book = flickr_photo_caption_only_hack.Book(output_file)
-  this_book.title = ''
-  this_book.author = ''
-  this_book.date = ''
-  this_book.url = ''
-  this_book.section_list = section_list
-  print('Creating tex file for ' + book_filename)
-  this_book.print_book_caption_only()
+  with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+    this_book = flickr_photo_caption_only_hack.Book(myoutfile)
+    this_book.title = ''
+    this_book.author = ''
+    this_book.date = ''
+    this_book.url = ''
+    this_book.section_list = section_list
+    print('Creating tex file for ' + book_filename)
+    this_book.print_book_caption_only()
 
 def create_qr_code(this_album):
   """Create a qr code jpg image that points to an album/section"""
