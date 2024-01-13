@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -208,10 +208,14 @@ def get_page_list(photo_list):
         + ' PH ' + str(PORTRAIT_HEIGHT))
   page_list = []
   if ONEUP_FORMAT:
-    current_page = flickr_photo.PageOneup(landscape_width=LANDSCAPE_WIDTH,
-                                          landscape_height=LANDSCAPE_HEIGHT,
-                                          portrait_width=PORTRAIT_WIDTH,
-                                          portrait_height=PORTRAIT_HEIGHT,one_up=True)
+#    current_page = flickr_photo.PageOneup(landscape_width=LANDSCAPE_WIDTH,
+#                                          landscape_height=LANDSCAPE_HEIGHT,
+#                                          portrait_width=PORTRAIT_WIDTH,
+#                                          portrait_height=PORTRAIT_HEIGHT,one_up=True)
+    current_page = flickr_photo.Page(landscape_width=LANDSCAPE_WIDTH,
+                                     landscape_height=LANDSCAPE_HEIGHT,
+                                     portrait_width=PORTRAIT_WIDTH,
+                                     portrait_height=PORTRAIT_HEIGHT,one_up=True)
   else:
     current_page = flickr_photo.Page(one_up=False)
   for thisphoto in photo_list:
@@ -222,10 +226,14 @@ def get_page_list(photo_list):
     else:
       page_list.append(current_page)
       if ONEUP_FORMAT:
-        current_page = flickr_photo.PageOneup(landscape_width=LANDSCAPE_WIDTH,
-                                              landscape_height=LANDSCAPE_HEIGHT,
-                                              portrait_width=PORTRAIT_WIDTH,
-                                              portrait_height=PORTRAIT_HEIGHT,one_up=True)
+#        current_page = flickr_photo.PageOneup(landscape_width=LANDSCAPE_WIDTH,
+#                                              landscape_height=LANDSCAPE_HEIGHT,
+#                                              portrait_width=PORTRAIT_WIDTH,
+#                                              portrait_height=PORTRAIT_HEIGHT,one_up=True)
+        current_page = flickr_photo.Page(landscape_width=LANDSCAPE_WIDTH,
+                                         landscape_height=LANDSCAPE_HEIGHT,
+                                         portrait_width=PORTRAIT_WIDTH,
+                                         portrait_height=PORTRAIT_HEIGHT,one_up=True)
       else:
         current_page = flickr_photo.Page(one_up=False)
       current_page.add_photo(thisphoto)
