@@ -47,27 +47,7 @@ def parse_file():
     # build list of photo objects
     photo_list = []
     for thisphoto_hash in this_album.album_entries:
-      id = thisphoto_hash['id']
-#      url = thisphoto_hash['url']
-      url = ''
-      prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
-      photo_filename = id + '.jpg'
-      location = prefix + photo_filename
-      caption = thisphoto_hash['title']
-      width = 0
-      height = 0
-      if id in all_info_hash:
-        width = all_info_hash[id]['width_o']
-        height = all_info_hash[id]['height_o']
-      else:
-        actual_image = PIL.Image.open(location)
-        width = actual_image.width
-        height = actual_image.height
-      #width = actual_image.width
-      #height = actual_image.height
-      thisphoto = flickr_photo.Photo(id,url,location,caption,width,height)
-      # bonus info
-      thisphoto.album_title = this_album.title
+      thisphoto = get_thisphoto_info(thisphoto_hash,this_album,all_info_hash)
       photo_list.append(thisphoto)
     page_list = get_page_list(photo_list)
     this_section = get_section(this_album,page_list)
@@ -75,6 +55,30 @@ def parse_file():
   #make_all_single_section_books(all_sections)
   make_one_multi_section_book(all_sections)
   #make_one_big_book_all_text(all_sections)
+
+def get_thisphoto_info(thisphoto_hash,this_album,all_info_hash):
+  """Get thisphoto info"""
+  myid = thisphoto_hash['id']
+  url = ''
+  prefix = '/home/swickape/Pictures/flickr/Downloads/' + this_album.title + '/'
+  photo_filename = myid + '.jpg'
+  location = prefix + photo_filename
+  caption = thisphoto_hash['title']
+  width = 0
+  height = 0
+  if myid in all_info_hash:
+    width = all_info_hash[myid]['width_o']
+    height = all_info_hash[myid]['height_o']
+  else:
+    actual_image = PIL.Image.open(location)
+    width = actual_image.width
+    height = actual_image.height
+  #width = actual_image.width
+  #height = actual_image.height
+  thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
+  # bonus info
+  thisphoto.album_title = this_album.title
+  return thisphoto
 
 def make_one_multi_section_book(all_sections):
   """Make one book with multiple sections"""
@@ -187,15 +191,15 @@ def make_one_multi_section_book(all_sections):
     total_pages += len(this_section.page_list)
     print("Pages in book so far: " + str(total_pages))
   output_filename = 'texfiles2/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w', encoding='utf-8')
-  this_book = flickr_photo.Book(output_file)
-  this_book.title = ''
-  this_book.author = ''
-  this_book.date = ''
-  this_book.url = ''
-  this_book.section_list = section_list
-  print('Creating tex file for ' + book_filename)
-  this_book.print_book()
+  with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+    this_book = flickr_photo.Book(myoutfile,paper_dimensions={},one_up=False)
+    this_book.title = ''
+    this_book.author = ''
+    this_book.date = ''
+    this_book.url = ''
+    this_book.section_list = section_list
+    print('Creating tex file for ' + book_filename)
+    this_book.print_book()
 
 def make_all_single_section_books(all_sections):
   """Make all books with a single section section"""
@@ -203,15 +207,15 @@ def make_all_single_section_books(all_sections):
     # for now we are restricting books to one section...
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
-    output_file = open(output_filename, 'w', encoding='utf-8')
-    this_book = flickr_photo.Book(output_file)
-    this_book.title = this_section.title
-    this_book.author = this_section.author
-    this_book.date = this_section.date
-    this_book.url = this_section.url
-    this_book.section_list = section_list
-    print('Creating tex file for ' + this_section.title)
-    this_book.print_book()
+    with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+      this_book = flickr_photo.Book(myoutfile,paper_dimensions={},one_up=False)
+      this_book.title = this_section.title
+      this_book.author = this_section.author
+      this_book.date = this_section.date
+      this_book.url = this_section.url
+      this_book.section_list = section_list
+      print('Creating tex file for ' + this_section.title)
+      this_book.print_book()
 
 def make_one_big_book_all_text(all_sections):
   """Make a text-only book with just captions"""
@@ -220,15 +224,15 @@ def make_one_big_book_all_text(all_sections):
     section_list.append(this_section)
   book_filename = 'everything3'
   output_filename = 'texfiles3/' + book_filename + '.tex'
-  output_file = open(output_filename, 'w', encoding='utf-8')
-  this_book = flickr_photo.Book(output_file)
-  this_book.title = ''
-  this_book.author = ''
-  this_book.date = ''
-  this_book.url = ''
-  this_book.section_list = section_list
-  print('Creating tex file for ' + book_filename)
-  this_book.print_book_caption_only()
+  with open(output_filename, 'w', encoding='utf-8') as myoutfile:
+    this_book = flickr_photo.Book(myoutfile,paper_dimensions={},one_up=False)
+    this_book.title = ''
+    this_book.author = ''
+    this_book.date = ''
+    this_book.url = ''
+    this_book.section_list = section_list
+    print('Creating tex file for ' + book_filename)
+    this_book.print_book_caption_only()
 
 def create_qr_code(this_album):
   """Create a qr code jpg image that points to an album/section"""
@@ -241,7 +245,8 @@ def create_qr_code(this_album):
 def get_page_list(photo_list):
   """Get page list"""
   page_list = []
-  current_page = flickr_photo.Page()
+  photo_max_dims = {}
+  current_page = flickr_photo.Page(photo_max_dims,one_up=False)
   for thisphoto in photo_list:
     if (thisphoto.orientation == 'L') and (current_page.canfit_l()):
       current_page.add_photo(thisphoto)
@@ -249,7 +254,8 @@ def get_page_list(photo_list):
       current_page.add_photo(thisphoto)
     else:
       page_list.append(current_page)
-      current_page = flickr_photo.Page()
+      photo_max_dims = {}
+      current_page = flickr_photo.Page(photo_max_dims,one_up=False)
       current_page.add_photo(thisphoto)
   # add final page
   page_list.append(current_page)
