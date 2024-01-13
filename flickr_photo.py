@@ -317,54 +317,6 @@ class Page:
     self.print_caption_line_final(thisfile, capt_p1)
     thisfile.write('\\pagebreak\n')
 
-class PageOneup(Page):
-  """Special instance of Page class except we force one image per page"""
-
-#  def canfit_l(self):
-#    if self.layout == '':
-#      return True
-#    return False
-
-#  def canfit_p(self):
-#    if self.layout == '':
-#      return True
-#    return False
-
-#  def print_landscape_line(self,thisfile,filename):
-#    # center is different
-#    thisfile.write('\\begin{center}')
-#    thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
-#                   + 'in,height=' + str(self.landscape_height)
-#                   + 'in,keepaspectratio]{' + filename + '}\n')
-#    thisfile.write('\\end{center}')
-
-#  def print_portrait_line(self,thisfile, filename):
-#    # center is different
-#    thisfile.write('\\begin{center}\n')
-#    thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
-#                   + 'in,height=' + str(self.portrait_height)
-#                   + 'in,keepaspectratio]{' + filename + '}\n')
-#    thisfile.write('\\end{center}\n')
-
-#  # this maybe only looks okay for one-up?
-#  def print_caption_line(self,thisfile,text):
-#    if text:
-#      thisfile.write('\\begin{center}\n')
-#      thisfile.write(text +'\\\\\n')
-#      thisfile.write('\\end{center}\n')
-#    else:
-#      thisfile.write('\n')
-
-#  # this maybe only looks okay for one-up?
-#  # final line does not need linebreak because of pagebreak
-#  def print_caption_line_final(self,thisfile,text):
-#    if text:
-#      thisfile.write('\\begin{center}\n')
-#      thisfile.write(text +'\n')
-#      thisfile.write('\\end{center}\n')
-#    else:
-#      thisfile.write('\n')
-
 class Section:
   """Class representing a Book section representing a group of related Pages"""
   def __init__(self):
