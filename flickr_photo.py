@@ -278,16 +278,6 @@ class Page:
 
 class PageOneup(Page):
   """Special instance of Page class except we force one image per page"""
-  def __init__(self,landscape_width = None, landscape_height = None,
-               portrait_width = None, portrait_height = None):
-    super().__init__()
-    self.photo_list = []
-    self.layout = ''
-    # currently hard-coded for 6x9
-    self.landscape_width = landscape_width #if landscape_width is not None else 5.0
-    self.landscape_height = landscape_height #if landscape_height is not None else 7.5
-    self.portrait_width = portrait_width #if portrait_width is not None else 5.0
-    self.portrait_height = portrait_height #if portrait_height is not None else 7.5
 
   def canfit_l(self):
     if self.layout == '':
@@ -300,6 +290,7 @@ class PageOneup(Page):
     return False
 
   def print_landscape_line(self,thisfile,filename):
+    # center is different
     thisfile.write('\\begin{center}')
     thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
                    + 'in,height=' + str(self.landscape_height)
@@ -307,6 +298,7 @@ class PageOneup(Page):
     thisfile.write('\\end{center}')
 
   def print_portrait_line(self,thisfile, filename):
+    # center is different
     thisfile.write('\\begin{center}\n')
     thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
                    + 'in,height=' + str(self.portrait_height)
