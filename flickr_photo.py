@@ -114,18 +114,34 @@ class Page:
 
   def print_caption_line(self,thisfile,text):
     """Print a caption line"""
-    if text:
-      thisfile.write(text +'\\\\\n')
+    if self.one_up:
+      if text:
+        thisfile.write('\\begin{center}\n')
+        thisfile.write(text +'\\\\\n')
+        thisfile.write('\\end{center}\n')
+      else:
+        thisfile.write('\n')
     else:
-      thisfile.write('\n')
+      if text:
+        thisfile.write(text +'\\\\\n')
+      else:
+        thisfile.write('\n')
 
   # final line does not need linebreak because of pagebreak
   def print_caption_line_final(self,thisfile,text):
     """Print the final caption line (special case)"""
-    if text:
-      thisfile.write(text +'\n')
+    if self.one_up:
+      if text:
+        thisfile.write('\\begin{center}\n')
+        thisfile.write(text +'\n')
+        thisfile.write('\\end{center}\n')
+      else:
+        thisfile.write('\n')
     else:
-      thisfile.write('\n')
+      if text:
+        thisfile.write(text +'\n')
+      else:
+        thisfile.write('\n')
 
   def print_ll(self,thisfile):
     """Print a page with LL orientation"""
@@ -330,24 +346,24 @@ class PageOneup(Page):
 #                   + 'in,keepaspectratio]{' + filename + '}\n')
 #    thisfile.write('\\end{center}\n')
 
-  # this maybe only looks okay for one-up?
-  def print_caption_line(self,thisfile,text):
-    if text:
-      thisfile.write('\\begin{center}\n')
-      thisfile.write(text +'\\\\\n')
-      thisfile.write('\\end{center}\n')
-    else:
-      thisfile.write('\n')
+#  # this maybe only looks okay for one-up?
+#  def print_caption_line(self,thisfile,text):
+#    if text:
+#      thisfile.write('\\begin{center}\n')
+#      thisfile.write(text +'\\\\\n')
+#      thisfile.write('\\end{center}\n')
+#    else:
+#      thisfile.write('\n')
 
-  # this maybe only looks okay for one-up?
-  # final line does not need linebreak because of pagebreak
-  def print_caption_line_final(self,thisfile,text):
-    if text:
-      thisfile.write('\\begin{center}\n')
-      thisfile.write(text +'\n')
-      thisfile.write('\\end{center}\n')
-    else:
-      thisfile.write('\n')
+#  # this maybe only looks okay for one-up?
+#  # final line does not need linebreak because of pagebreak
+#  def print_caption_line_final(self,thisfile,text):
+#    if text:
+#      thisfile.write('\\begin{center}\n')
+#      thisfile.write(text +'\n')
+#      thisfile.write('\\end{center}\n')
+#    else:
+#      thisfile.write('\n')
 
 class Section:
   """Class representing a Book section representing a group of related Pages"""
