@@ -112,8 +112,7 @@ class Page:
                      + 'in,height=' + str(self.portrait_height)
                      + 'in,keepaspectratio]{' + filename + '}\n')
 
-  @staticmethod
-  def print_caption_line(thisfile,text):
+  def print_caption_line(self,thisfile,text):
     """Print a caption line"""
     if text:
       thisfile.write(text +'\\\\\n')
@@ -121,8 +120,7 @@ class Page:
       thisfile.write('\n')
 
   # final line does not need linebreak because of pagebreak
-  @staticmethod
-  def print_caption_line_final(thisfile,text):
+  def print_caption_line_final(self,thisfile,text):
     """Print the final caption line (special case)"""
     if text:
       thisfile.write(text +'\n')
@@ -142,8 +140,8 @@ class Page:
     thisfile.write('\\vspace{0.25in}\n')
     self.print_landscape_line(thisfile, land2)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_l1)
-    Page.print_caption_line_final(thisfile, capt_l2)
+    self.print_caption_line(thisfile, capt_l1)
+    self.print_caption_line_final(thisfile, capt_l2)
     thisfile.write('\\pagebreak\n')
 
   def print_l(self,thisfile):
@@ -154,7 +152,7 @@ class Page:
     thisfile.write('% Layout L\n')
     self.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
-    Page.print_caption_line_final(thisfile, capt_l1)
+    self.print_caption_line_final(thisfile, capt_l1)
     thisfile.write('\\pagebreak\n')
 
   def print_pppp(self,thisfile):
@@ -175,10 +173,10 @@ class Page:
     self.print_portrait_line(thisfile, port3)
     self.print_portrait_line(thisfile, port4)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_p1)
-    Page.print_caption_line(thisfile, capt_p2)
-    Page.print_caption_line(thisfile, capt_p3)
-    Page.print_caption_line_final(thisfile, capt_p4)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_p2)
+    self.print_caption_line(thisfile, capt_p3)
+    self.print_caption_line_final(thisfile, capt_p4)
     thisfile.write('\\pagebreak\n')
 
   def print_ppp(self,thisfile):
@@ -196,9 +194,9 @@ class Page:
     thisfile.write('\n')
     self.print_portrait_line(thisfile, port3)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_p1)
-    Page.print_caption_line(thisfile, capt_p2)
-    Page.print_caption_line_final(thisfile, capt_p3)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_p2)
+    self.print_caption_line_final(thisfile, capt_p3)
     thisfile.write('\\pagebreak\n')
 
   def print_pp(self,thisfile):
@@ -212,8 +210,8 @@ class Page:
     self.print_portrait_line(thisfile, port1)
     self.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_p1)
-    Page.print_caption_line_final(thisfile, capt_p2)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_p2)
     thisfile.write('\\pagebreak\n')
 
   def print_p(self,thisfile):
@@ -224,7 +222,7 @@ class Page:
     thisfile.write('% Layout P\n')
     self.print_portrait_line(thisfile, port1)
     thisfile.write('\n')
-    Page.print_caption_line_final(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_p1)
     thisfile.write('\\pagebreak\n')
 
   def print_ppl(self,thisfile):
@@ -243,9 +241,9 @@ class Page:
     thisfile.write('\\vspace{0.25in}\n')
     self.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_p1)
-    Page.print_caption_line(thisfile, capt_p2)
-    Page.print_caption_line_final(thisfile, capt_l1)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_p2)
+    self.print_caption_line_final(thisfile, capt_l1)
     thisfile.write('\\pagebreak\n')
 
   def print_lpp(self,thisfile):
@@ -264,9 +262,9 @@ class Page:
     self.print_portrait_line(thisfile, port1)
     self.print_portrait_line(thisfile, port2)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_l1)
-    Page.print_caption_line(thisfile, capt_p1)
-    Page.print_caption_line_final(thisfile, capt_p2)
+    self.print_caption_line(thisfile, capt_l1)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_p2)
     thisfile.write('\\pagebreak\n')
 
   def print_pl(self,thisfile):
@@ -282,8 +280,8 @@ class Page:
     thisfile.write('\\vspace{0.25in}\n')
     self.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_p1)
-    Page.print_caption_line_final(thisfile, capt_l1)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_l1)
     thisfile.write('\\pagebreak\n')
 
   def print_lp(self,thisfile):
@@ -299,8 +297,8 @@ class Page:
     thisfile.write('\\vspace{0.25in}\n')
     self.print_portrait_line(thisfile, port1)
     thisfile.write('\n')
-    Page.print_caption_line(thisfile, capt_l1)
-    Page.print_caption_line_final(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_l1)
+    self.print_caption_line_final(thisfile, capt_p1)
     thisfile.write('\\pagebreak\n')
 
 class PageOneup(Page):
