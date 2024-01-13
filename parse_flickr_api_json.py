@@ -174,7 +174,7 @@ def make_one_multi_section_book(all_sections):
     print("Pages in book so far: " + str(total_pages))
   output_filename = 'texfiles2/' + book_filename + '.tex'
   with open(output_filename, 'w', encoding='utf-8') as myoutfile:
-    this_book = flickr_photo.Book(myoutfile,one_up=False)
+    this_book = flickr_photo.Book(myoutfile,paper_dimensions={},one_up=False)
     this_book.title = ''
     this_book.author = ''
     this_book.date = ''
@@ -190,7 +190,7 @@ def make_all_single_section_books(all_sections):
     section_list = [this_section]
     output_filename = 'texfiles/' + this_section.title + '.tex'
     with open(output_filename, 'w', encoding='utf-8') as myoutfile:
-      this_book = flickr_photo.Book(myoutfile,one_up=False)
+      this_book = flickr_photo.Book(myoutfile,paper_dimensions={},one_up=False)
       this_book.title = this_section.title
       this_book.author = this_section.author
       this_book.date = this_section.date
