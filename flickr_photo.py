@@ -39,6 +39,7 @@ class Page:
     self.landscape_height = landscape_height if landscape_height is not None else 4
     self.portrait_width = portrait_width if portrait_width is not None else 7.5
     self.portrait_height = portrait_height if portrait_height is not None else 4
+    self.one_up = one_up
 
   def add_photo(self,photo):
     """Try to add next photo to page"""
@@ -47,31 +48,41 @@ class Page:
 
   def canfit_l(self):
     """Determine if page can fit another image in landscape orientation"""
-    if self.layout == '':
-      return True
-    if self.layout == 'L':
-      return True
-    if self.layout == 'P':
-      return True
-    if self.layout == 'PP':
-      return True
-    return False
+    if self.one_up:
+      if self.layout == '':
+        return True
+      return False
+    else:
+      if self.layout == '':
+        return True
+      if self.layout == 'L':
+        return True
+      if self.layout == 'P':
+        return True
+      if self.layout == 'PP':
+        return True
+      return False
 
   def canfit_p(self):
     """Determine if page can fit another image in portrait orientation"""
-    if self.layout == '':
-      return True
-    if self.layout == 'L':
-      return True
-    if self.layout == 'LP':
-      return True
-    if self.layout == 'P':
-      return True
-    if self.layout == 'PP':
-      return True
-    if self.layout == 'PPP':
-      return True
-    return False
+    if self.one_up:
+      if self.layout == '':
+        return True
+      return False
+    else:
+      if self.layout == '':
+        return True
+      if self.layout == 'L':
+        return True
+      if self.layout == 'LP':
+        return True
+      if self.layout == 'P':
+        return True
+      if self.layout == 'PP':
+        return True
+      if self.layout == 'PPP':
+        return True
+      return False
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
@@ -279,15 +290,15 @@ class Page:
 class PageOneup(Page):
   """Special instance of Page class except we force one image per page"""
 
-  def canfit_l(self):
-    if self.layout == '':
-      return True
-    return False
+#  def canfit_l(self):
+#    if self.layout == '':
+#      return True
+#    return False
 
-  def canfit_p(self):
-    if self.layout == '':
-      return True
-    return False
+#  def canfit_p(self):
+#    if self.layout == '':
+#      return True
+#    return False
 
   def print_landscape_line(self,thisfile,filename):
     # center is different
