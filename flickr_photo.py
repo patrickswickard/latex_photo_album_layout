@@ -30,8 +30,13 @@ class Photo:
 
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
-  def __init__(self,landscape_width = None, landscape_height = None,
-               portrait_width = None, portrait_height = None,one_up=False):
+#  def __init__(self,landscape_width = None, landscape_height = None,
+#               portrait_width = None, portrait_height = None,one_up=False):
+  def __init__(self,photo_max_dims,one_up=False):
+    landscape_width = photo_max_dims.get('landscape_width',7.5)
+    landscape_height = photo_max_dims.get('landscape_height',4)
+    portrait_width = photo_max_dims.get('portrait_width',7.5)
+    portrait_height = photo_max_dims.get('portrait_height',4)
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 8.5x11
