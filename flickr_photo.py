@@ -86,15 +86,31 @@ class Page:
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
-    thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
-                   + 'in,height=' + str(self.landscape_height)
-                   + 'in,keepaspectratio]{' + filename + '}\n')
+    if self.one_up:
+      # center is different
+      thisfile.write('\\begin{center}')
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
+                     + 'in,height=' + str(self.landscape_height)
+                     + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\end{center}')
+    else:
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
+                     + 'in,height=' + str(self.landscape_height)
+                     + 'in,keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
-    thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
-                   + 'in,height=' + str(self.portrait_height)
-                   + 'in,keepaspectratio]{' + filename + '}\n')
+    if self.one_up:
+      # center is different
+      thisfile.write('\\begin{center}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
+                     + 'in,height=' + str(self.portrait_height)
+                     + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\end{center}\n')
+    else:
+      thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
+                     + 'in,height=' + str(self.portrait_height)
+                     + 'in,keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_caption_line(thisfile,text):
@@ -300,21 +316,21 @@ class PageOneup(Page):
 #      return True
 #    return False
 
-  def print_landscape_line(self,thisfile,filename):
-    # center is different
-    thisfile.write('\\begin{center}')
-    thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
-                   + 'in,height=' + str(self.landscape_height)
-                   + 'in,keepaspectratio]{' + filename + '}\n')
-    thisfile.write('\\end{center}')
+#  def print_landscape_line(self,thisfile,filename):
+#    # center is different
+#    thisfile.write('\\begin{center}')
+#    thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
+#                   + 'in,height=' + str(self.landscape_height)
+#                   + 'in,keepaspectratio]{' + filename + '}\n')
+#    thisfile.write('\\end{center}')
 
-  def print_portrait_line(self,thisfile, filename):
-    # center is different
-    thisfile.write('\\begin{center}\n')
-    thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
-                   + 'in,height=' + str(self.portrait_height)
-                   + 'in,keepaspectratio]{' + filename + '}\n')
-    thisfile.write('\\end{center}\n')
+#  def print_portrait_line(self,thisfile, filename):
+#    # center is different
+#    thisfile.write('\\begin{center}\n')
+#    thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
+#                   + 'in,height=' + str(self.portrait_height)
+#                   + 'in,keepaspectratio]{' + filename + '}\n')
+#    thisfile.write('\\end{center}\n')
 
   # this maybe only looks okay for one-up?
   def print_caption_line(self,thisfile,text):
