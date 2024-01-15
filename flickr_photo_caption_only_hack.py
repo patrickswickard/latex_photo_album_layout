@@ -441,7 +441,8 @@ class Section:
     thisfile.write('\n')
     thisfile.write('\\section*{' + self.title + '}\n\n')
     thisfile.write('\\url{' + self.url + '}\n\n')
-    thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
+    thisfile.write('Scan the QR code below to go to the original album '
+                   + 'with full-size photos on Flickr:\n\n')
     thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
     thisfile.write('\\pagebreak\n')
 
@@ -483,7 +484,12 @@ class Book:
   def print_preamble(self,thisfile):
     """Print preamble of latex document with hard-coded margins"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+    thisfile.write('\\usepackage[top=' + str(0.75) + 'in, '
+                   + 'bottom=' + str(0.75) + 'in, '
+                   + 'left=' + str(0.5) + 'in, '
+                   + 'right=' + str(0.5) + 'in, '
+                   + 'paperwidth=' + str(8.5) + 'in, '
+                   + 'paperheight=' + str(11) + 'in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
