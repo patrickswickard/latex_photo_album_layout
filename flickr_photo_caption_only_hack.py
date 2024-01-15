@@ -22,7 +22,7 @@ class Photo:
     self.caption = pylatex.escape_latex(caption)
     self.width = width
     self.height = height
-    if width < height:
+    if width <= height:
       self.orientation = 'P'
     else:
       self.orientation = 'L'
