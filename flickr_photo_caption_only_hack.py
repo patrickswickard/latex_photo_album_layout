@@ -15,8 +15,8 @@ class Album:
 
 class Photo:
   """Photo class with metadata for a single photo"""
-  def __init__(self,id,url,location,caption,width,height):
-    self.id = id
+  def __init__(self,photoid,url,location,caption,width,height):
+    self.id = photoid
     self.url = url
     self.location = location
     self.caption = pylatex.escape_latex(caption)
