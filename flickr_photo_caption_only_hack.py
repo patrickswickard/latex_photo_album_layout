@@ -401,7 +401,8 @@ class Section:
       elif thispage.layout == 'LP':
         thispage.print_lp(thisfile)
       else:
-        raise 'That did not match any known layouts!'
+        print('That did not match any known layouts!')
+        sys.exit(1)
 
   def print_section_caption_only(self):
     """Print a section of book caption only"""

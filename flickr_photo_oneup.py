@@ -1,4 +1,5 @@
 """This class has tools to create photo books one-up with captions in .tex format"""
+import sys
 import pylatex
 
 class Album:
@@ -295,7 +296,8 @@ class Section:
       elif thispage.layout == 'LP':
         thispage.print_lp(thisfile)
       else:
-        raise 'That did not match any known layouts!'
+        print('That did not match any known layouts!')
+        sys.exit(1)
 
   def print_qr_page(self,thisfile,qr_location):
     """Print a page with a qr code"""
