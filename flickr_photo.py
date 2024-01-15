@@ -56,13 +56,8 @@ class Page:
       if self.layout == '':
         return True
     else:
-      if self.layout == '':
-        return True
-      if self.layout == 'L':
-        return True
-      if self.layout == 'P':
-        return True
-      if self.layout == 'PP':
+      canfit_set = {'','L','P','PP'}
+      if self.layout in canfit_set:
         return True
     return False
 
@@ -72,17 +67,8 @@ class Page:
       if self.layout == '':
         return True
     else:
-      if self.layout == '':
-        return True
-      if self.layout == 'L':
-        return True
-      if self.layout == 'LP':
-        return True
-      if self.layout == 'P':
-        return True
-      if self.layout == 'PP':
-        return True
-      if self.layout == 'PPP':
+      canfit_set = {'','L','LP','P','PP','PPP'}
+      if self.layout in canfit_set:
         return True
     return False
 
