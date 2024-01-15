@@ -4,8 +4,8 @@ import pylatex
 
 class Album:
   """Album class for representing a collection of Photos"""
-  def __init__(self,id):
-    self.id = id
+  def __init__(self,albumid):
+    self.id = albumid
     self.title = ''
     self.author = ''
     self.owner_id = ''
