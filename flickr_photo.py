@@ -1,4 +1,5 @@
 """This class has tools to create photo books with captions in .tex format"""
+import sys
 import pylatex
 
 class Album:
@@ -361,7 +362,8 @@ class Section:
       elif thispage.layout == 'LP':
         thispage.print_lp(self.thisfile)
       else:
-        raise 'That did not match any known layouts!'
+        print('That did not match any known layouts!')
+        sys.exit(1)
 
   @staticmethod
   def print_blank_page(thisfile):
