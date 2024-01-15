@@ -56,13 +56,17 @@ class Page:
   def print_landscape_line(thisfile,filename):
     """Print landscape line"""
     #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(7.5) + 'in,'
+                   + 'height=' + str(9.0) + 'in,'
+                   + 'keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_portrait_line(thisfile, filename):
     """Print portrait line"""
     #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    thisfile.write('\\includegraphics[width=7.5in,height=9.0in,keepaspectratio]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(7.5) + 'in,'
+                   + 'height=' + str(9.0) + 'in,'
+                   + 'keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_caption_line(thisfile,text):
@@ -305,7 +309,8 @@ class Section:
     thisfile.write('\n')
     thisfile.write('\\section*{' + self.title + '}\n\n')
     thisfile.write('\\url{' + self.url + '}\n\n')
-    thisfile.write('Scan the QR code below to go to the original album with full-size photos on Flickr:\n\n')
+    thisfile.write('Scan the QR code below to go to the original album '
+                   + 'with full-size photos on Flickr:\n\n')
     thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
     thisfile.write('\\pagebreak\n')
 
@@ -335,7 +340,12 @@ class Book:
   def print_preamble(self,thisfile):
     """Print preamble of latex document given margins which are currently ignored"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=0.75in, bottom=0.75in, left=0.5in, right=0.5in, paperwidth=8.5in, paperheight=11in]{geometry}\n')
+    thisfile.write('\\usepackage[top=' + str(0.75) + 'in, '
+                   + 'bottom=' + str(0.75) + 'in, '
+                   + 'left=' + str(0.5) + 'in, '
+                   + 'right=' + str(0.5) + 'in, '
+                   + 'paperwidth=' + str(8.5) + 'in, '
+                   + 'paperheight=' + str(11) + 'in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
