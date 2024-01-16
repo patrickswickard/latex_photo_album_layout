@@ -36,19 +36,19 @@ class Page:
     self.layout = ''
 
   def add_photo(self,photo):
-    """Add a new photo"""
+    """Try to add next photo to page"""
     self.photo_list.append(photo)
     self.layout += photo.orientation
 
   def canfit_l(self):
-    """Check if canfit another landscape photo inline"""
+    """Determine if page can fit another image in landscape orientation"""
     canfit_set = {'','L','P','PP'}
     if self.layout in canfit_set:
       return True
     return False
 
   def canfit_p(self):
-    """Check if canfit another portrait photo inline"""
+    """Determine if page can fit another image in portrait orientation"""
     canfit_set = {'','L','LP','P','PP','PPP'}
     if self.layout in canfit_set:
       return True
@@ -56,12 +56,12 @@ class Page:
 
   @staticmethod
   def print_landscape_line(thisfile,filename):
-    """Print a landscape line"""
+    """Print a photo inline in landscape format"""
     thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
 
   @staticmethod
   def print_portrait_line(thisfile, filename):
-    """Print a portrait line"""
+    """Print a photo inline in portrait format"""
     thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
 
   @staticmethod
@@ -356,6 +356,8 @@ class Section:
     self.date = ''
     self.url = ''
     self.qr = ''
+    self.qrdim = 5.19
+    self.blank_after_qr = False
 
   def add_page(self,page):
     """Append a page to section"""
