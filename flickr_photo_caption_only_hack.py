@@ -470,12 +470,12 @@ class Book:
   def print_preamble(self,thisfile):
     """Print preamble of latex document with hard-coded margins"""
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=' + str(0.75) + 'in, '
-                   + 'bottom=' + str(0.75) + 'in, '
-                   + 'left=' + str(0.5) + 'in, '
-                   + 'right=' + str(0.5) + 'in, '
-                   + 'paperwidth=' + str(8.5) + 'in, '
-                   + 'paperheight=' + str(11) + 'in]{geometry}\n')
+    thisfile.write('\\usepackage[top=' + str(0.75) + 'in,'
+                   + ' bottom=' + str(0.75) + 'in,'
+                   + ' left=' + str(0.5) + 'in,'
+                   + ' right=' + str(0.5) + 'in,'
+                   + ' paperwidth=' + str(8.5) + 'in,'
+                   + ' paperheight=' + str(11) + 'in]{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
