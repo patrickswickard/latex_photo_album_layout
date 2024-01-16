@@ -263,7 +263,7 @@ class Section:
   """Class representing a Book section representing a group of related Pages"""
   def __init__(self):
     self.page_list = []
-    #self.thisfile = thisfile
+    self.thisfile = thisfile
     self.title = ''
     self.author = ''
     self.date = ''
