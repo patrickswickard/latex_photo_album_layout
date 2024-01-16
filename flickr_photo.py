@@ -421,7 +421,7 @@ class Book:
     thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
                    + ' bottom=' + str(bottom_margin) + 'in,'
                    + ' left=' + str(left_margin) + 'in,'
-                   + ' right='  + str(right_margin) + 'in,'
+                   + ' right=' + str(right_margin) + 'in,'
                    + ' paperwidth=' + str(paper_width) + 'in,'
                    + ' paperheight=' + str(paper_height) + 'in'
                    + ']{geometry}\n')

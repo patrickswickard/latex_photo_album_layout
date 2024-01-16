@@ -34,6 +34,7 @@ class Page:
   def __init__(self):
     self.photo_list = []
     self.layout = ''
+    self.one_up = False
 
   def add_photo(self,photo):
     """Try to add next photo to page"""

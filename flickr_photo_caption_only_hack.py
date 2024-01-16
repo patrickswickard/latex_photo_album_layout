@@ -34,6 +34,7 @@ class Page:
   def __init__(self):
     self.photo_list = []
     self.layout = ''
+    self.one_up = False
 
   def add_photo(self,photo):
     """Try to add next photo to page"""
@@ -42,16 +43,24 @@ class Page:
 
   def canfit_l(self):
     """Determine if page can fit another image in landscape orientation"""
-    canfit_set = {'','L','P','PP'}
-    if self.layout in canfit_set:
-      return True
+    if self.one_up:
+      if self.layout == '':
+        return True
+    else:
+      canfit_set = {'','L','P','PP'}
+      if self.layout in canfit_set:
+        return True
     return False
 
   def canfit_p(self):
     """Determine if page can fit another image in portrait orientation"""
-    canfit_set = {'','L','LP','P','PP','PPP'}
-    if self.layout in canfit_set:
-      return True
+    if self.one_up:
+      if self.layout == '':
+        return True
+    else:
+      canfit_set = {'','L','LP','P','PP','PPP'}
+      if self.layout in canfit_set:
+        return True
     return False
 
   @staticmethod
@@ -469,13 +478,20 @@ class Book:
 
   def print_preamble(self,thisfile):
     """Print preamble of latex document with hard-coded margins"""
+    top_margin = 0.75
+    bottom_margin = 0.75
+    left_margin = 0.5
+    right_margin = 0.5
+    paper_width = 8.5
+    paper_height = 11.0
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=' + str(0.75) + 'in,'
-                   + ' bottom=' + str(0.75) + 'in,'
-                   + ' left=' + str(0.5) + 'in,'
-                   + ' right=' + str(0.5) + 'in,'
-                   + ' paperwidth=' + str(8.5) + 'in,'
-                   + ' paperheight=' + str(11) + 'in]{geometry}\n')
+    thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
+                   + ' bottom=' + str(bottom_margin) + 'in,'
+                   + ' left=' + str(left_margin) + 'in,'
+                   + ' right=' + str(right_margin) + 'in,'
+                   + ' paperwidth=' + str(paper_width) + 'in,'
+                   + ' paperheight=' + str(paper_height) + 'in'
+                   + ']{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
