@@ -77,28 +77,28 @@ class Page:
     if self.one_up:
       # center is different
       thisfile.write('\\begin{center}')
-      thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
-                     + 'in,height=' + str(self.landscape_height)
-                     + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) = 'in,'
+                     + 'height=' + str(self.landscape_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
       thisfile.write('\\end{center}')
     else:
-      thisfile.write('\\includegraphics[width=' + str(self.landscape_width)
-                     + 'in,height=' + str(self.landscape_height)
-                     + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,'
+                     + 'height=' + str(self.landscape_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
     if self.one_up:
       # center is different
       thisfile.write('\\begin{center}\n')
-      thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
-                     + 'in,height=' + str(self.portrait_height)
-                     + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,'
+                     + 'height=' + str(self.portrait_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
       thisfile.write('\\end{center}\n')
     else:
-      thisfile.write('\\includegraphics[width=' + str(self.portrait_width)
-                     + 'in,height=' + str(self.portrait_height)
-                     + 'in,keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,'
+                     + 'height=' + str(self.portrait_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
 
   def print_caption_line(self,thisfile,text):
     """Print a caption line"""

@@ -32,9 +32,20 @@ class Photo:
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
   def __init__(self):
+    photo_max_dims = {}
+    one_up = False
+    landscape_width = photo_max_dims.get('landscape_width',7.5)
+    landscape_height = photo_max_dims.get('landscape_height',4)
+    portrait_width = photo_max_dims.get('portrait_width',7.5)
+    portrait_height = photo_max_dims.get('portrait_height',4)
     self.photo_list = []
     self.layout = ''
-    self.one_up = False
+    # currently hard-coded for 8.5x11
+    self.landscape_width = landscape_width if landscape_width is not None else 7.5
+    self.landscape_height = landscape_height if landscape_height is not None else 4
+    self.portrait_width = portrait_width if portrait_width is not None else 7.5
+    self.portrait_height = portrait_height if portrait_height is not None else 4
+    self.one_up = one_up
 
   def add_photo(self,photo):
     """Try to add next photo to page"""
@@ -56,17 +67,19 @@ class Page:
   @staticmethod
   def print_landscape_line(thisfile,filename):
     """Print a photo inline in landscape format"""
-    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    thisfile.write('\\includegraphics[width=' + str(7.5) + 'in,'
-                   + 'height=' + str(9.0) + 'in,'
+    landscape_width = 7.5
+    landscape_height = 9.0
+    thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
+                   + 'height=' + str(landscape_height) + 'in,'
                    + 'keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
   def print_portrait_line(thisfile, filename):
     """Print a photo inline in portrait format"""
-    #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
-    thisfile.write('\\includegraphics[width=' + str(7.5) + 'in,'
-                   + 'height=' + str(9.0) + 'in,'
+    portrait_width = 7.5
+    portrait_height = 9.0
+    thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
+                   + 'height=' + str(portrait_height) + 'in,'
                    + 'keepaspectratio]{' + filename + '}\n')
 
   @staticmethod
