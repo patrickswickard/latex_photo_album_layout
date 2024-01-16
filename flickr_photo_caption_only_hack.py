@@ -431,6 +431,15 @@ class Section:
         sys.exit(1)
     thisfile.write('\\pagebreak\n')
 
+  @staticmethod
+  def print_blank_page(thisfile):
+    """Print a blank page"""
+    thisfile.write('\\newpage\n')
+    thisfile.write('\n')
+    thisfile.write('\\ % The empty page\n')
+    thisfile.write('\n')
+    thisfile.write('\\newpage\n')
+
   def print_qr_page(self,thisfile,qr_location):
     """Print a page with a qr code"""
     thisfile.write('\n')
@@ -451,6 +460,7 @@ class Book:
     self.date = ''
     self.url = ''
     self.qr = ''
+    self.one_up = False
 
   def print_book(self):
     """Print book to .tex file"""
@@ -485,6 +495,8 @@ class Book:
     paper_width = 8.5
     paper_height = 11.0
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
+    if self.one_up:
+      thisfile.write('\\pagenumbering{gobble}\n')
     thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
                    + ' bottom=' + str(bottom_margin) + 'in,'
                    + ' left=' + str(left_margin) + 'in,'
