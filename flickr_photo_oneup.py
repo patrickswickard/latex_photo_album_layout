@@ -36,25 +36,25 @@ class Page:
     self.layout = ''
 
   def add_photo(self,photo):
-    """Append a photo"""
+    """Try to add next photo to page"""
     self.photo_list.append(photo)
     self.layout += photo.orientation
 
   def canfit_l(self):
-    """Determine if a landscape photo can fit"""
+    """Determine if page can fit another image in landscape orientation"""
     if self.layout == '':
       return True
     return False
 
   def canfit_p(self):
-    """Determine if a portrait photo can fit"""
+    """Determine if page can fit another image in portrait orientation"""
     if self.layout == '':
       return True
     return False
 
   @staticmethod
   def print_landscape_line(thisfile,filename):
-    """Print landscape line"""
+    """Print a photo inline in landscape format"""
     #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\includegraphics[width=' + str(7.5) + 'in,'
                    + 'height=' + str(9.0) + 'in,'
@@ -62,7 +62,7 @@ class Page:
 
   @staticmethod
   def print_portrait_line(thisfile, filename):
-    """Print portrait line"""
+    """Print a photo inline in portrait format"""
     #thisfile.write('\\includegraphics[width=7.5in,height=4in,keepaspectratio]{' + filename + '}\n')
     thisfile.write('\\includegraphics[width=' + str(7.5) + 'in,'
                    + 'height=' + str(9.0) + 'in,'
@@ -70,7 +70,7 @@ class Page:
 
   @staticmethod
   def print_caption_line(thisfile,text):
-    """Print caption line"""
+    """Print a caption line"""
     if text:
       thisfile.write(text +'\\\\\n')
     else:
@@ -79,7 +79,7 @@ class Page:
   # final line does not need linebreak because of pagebreak
   @staticmethod
   def print_caption_line_final(thisfile,text):
-    """Print final caption line"""
+    """Print the final caption line (special case)"""
     if text:
       thisfile.write(text +'\n')
     else:
@@ -269,6 +269,8 @@ class Section:
     self.date = ''
     self.url = ''
     self.qr = ''
+    self.qrdim = 5.19
+    self.blank_after_qr = False
 
   def add_page(self,page):
     """Append a page to section"""
@@ -303,6 +305,15 @@ class Section:
       else:
         print('That did not match any known layouts!')
         sys.exit(1)
+
+  @staticmethod
+  def print_blank_page(thisfile):
+    """Print a blank page"""
+    thisfile.write('\\newpage\n')
+    thisfile.write('\n')
+    thisfile.write('\\ % The empty page\n')
+    thisfile.write('\n')
+    thisfile.write('\\newpage\n')
 
   def print_qr_page(self,thisfile,qr_location):
     """Print a page with a qr code"""
