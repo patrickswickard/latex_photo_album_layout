@@ -42,29 +42,15 @@ class Page:
 
   def canfit_l(self):
     """Check if canfit another landscape photo inline"""
-    if self.layout == '':
-      return True
-    if self.layout == 'L':
-      return True
-    if self.layout == 'P':
-      return True
-    if self.layout == 'PP':
+    canfit_set = {'','L','P','PP'}
+    if self.layout in canfit_set:
       return True
     return False
 
   def canfit_p(self):
     """Check if canfit another portrait photo inline"""
-    if self.layout == '':
-      return True
-    if self.layout == 'L':
-      return True
-    if self.layout == 'LP':
-      return True
-    if self.layout == 'P':
-      return True
-    if self.layout == 'PP':
-      return True
-    if self.layout == 'PPP':
+    canfit_set = {'','L','LP','P','PP','PPP'}
+    if self.layout in canfit_set:
       return True
     return False
 
@@ -364,7 +350,7 @@ class Section:
   """Class representing a Book section representing a group of related Pages"""
   def __init__(self):
     self.page_list = []
-    self.thisfile = thisfile
+    self.thisfile = ''
     self.title = ''
     self.author = ''
     self.date = ''
