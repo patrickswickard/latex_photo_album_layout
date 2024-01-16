@@ -365,60 +365,58 @@ class Section:
 
   def print_section(self):
     """Print a section of book"""
-    thisfile = self.thisfile
     if self.qr != '':
-      self.print_qr_page(thisfile,self.qr)
+      self.print_qr_page(self.thisfile,self.qr)
     for thispage in self.page_list:
       if thispage.layout == 'LL':
-        thispage.print_ll(thisfile)
+        thispage.print_ll(self.thisfile)
       elif thispage.layout == 'L':
-        thispage.print_l(thisfile)
+        thispage.print_l(self.thisfile)
       elif thispage.layout == 'PPPP':
-        thispage.print_pppp(thisfile)
+        thispage.print_pppp(self.thisfile)
       elif thispage.layout == 'PPP':
-        thispage.print_ppp(thisfile)
+        thispage.print_ppp(self.thisfile)
       elif thispage.layout == 'PP':
-        thispage.print_pp(thisfile)
+        thispage.print_pp(self.thisfile)
       elif thispage.layout == 'P':
-        thispage.print_p(thisfile)
+        thispage.print_p(self.thisfile)
       elif thispage.layout == 'PPL':
-        thispage.print_ppl(thisfile)
+        thispage.print_ppl(self.thisfile)
       elif thispage.layout == 'LPP':
-        thispage.print_lpp(thisfile)
+        thispage.print_lpp(self.thisfile)
       elif thispage.layout == 'PL':
-        thispage.print_pl(thisfile)
+        thispage.print_pl(self.thisfile)
       elif thispage.layout == 'LP':
-        thispage.print_lp(thisfile)
+        thispage.print_lp(self.thisfile)
       else:
         print('That did not match any known layouts!')
         sys.exit(1)
 
   def print_section_caption_only(self):
     """Print a section of book caption only"""
-    thisfile = self.thisfile
     if self.qr != '':
-      self.print_qr_page(thisfile,self.qr)
+      self.print_qr_page(self.thisfile,self.qr)
     for thispage in self.page_list:
       if thispage.layout == 'LL':
-        thispage.print_llco(thisfile)
+        thispage.print_llco(self.thisfile)
       elif thispage.layout == 'L':
-        thispage.print_lco(thisfile)
+        thispage.print_lco(self.thisfile)
       elif thispage.layout == 'PPPP':
-        thispage.print_ppppco(thisfile)
+        thispage.print_ppppco(self.thisfile)
       elif thispage.layout == 'PPP':
-        thispage.print_pppco(thisfile)
+        thispage.print_pppco(self.thisfile)
       elif thispage.layout == 'PP':
-        thispage.print_ppco(thisfile)
+        thispage.print_ppco(self.thisfile)
       elif thispage.layout == 'P':
-        thispage.print_pco(thisfile)
+        thispage.print_pco(self.thisfile)
       elif thispage.layout == 'PPL':
-        thispage.print_pplco(thisfile)
+        thispage.print_pplco(self.thisfile)
       elif thispage.layout == 'LPP':
-        thispage.print_lppco(thisfile)
+        thispage.print_lppco(self.thisfile)
       elif thispage.layout == 'PL':
-        thispage.print_plco(thisfile)
+        thispage.print_plco(self.thisfile)
       elif thispage.layout == 'LP':
-        thispage.print_lpco(thisfile)
+        thispage.print_lpco(self.thisfile)
       else:
         print('That did not match any known layouts!')
         sys.exit(1)
