@@ -79,10 +79,12 @@ class Page:
     landscape_width = 7.5
     landscape_height = 9.0
     if self.one_up:
-      # center is different in generic
+      # center is different
+      thisfile.write('\\begin{center}')
       thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
                      + 'height=' + str(landscape_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\end{center}')
     else:
       thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
                      + 'height=' + str(landscape_height) + 'in,'
@@ -94,9 +96,11 @@ class Page:
     portrait_height = 9.0
     if self.one_up:
       # center is different
+      thisfile.write('\\begin{center}\n')
       thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
                      + 'height=' + str(portrait_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\end{center}\n')
     else:
       thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
                      + 'height=' + str(portrait_height) + 'in,'
@@ -106,7 +110,9 @@ class Page:
     """Print a caption line"""
     if self.one_up:
       if text:
+        thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\\\\\n')
+        thisfile.write('\\end{center}\n')
       else:
         thisfile.write('\n')
     else:
@@ -120,7 +126,9 @@ class Page:
     """Print the final caption line (special case)"""
     if self.one_up:
       if text:
+        thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\n')
+        thisfile.write('\\end{center}\n')
       else:
         thisfile.write('\n')
     else:
