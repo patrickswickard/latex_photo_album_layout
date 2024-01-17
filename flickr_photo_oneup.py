@@ -83,6 +83,7 @@ class Page:
       thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
                      + 'height=' + str(landscape_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
+    else:
       thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
                      + 'height=' + str(landscape_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
