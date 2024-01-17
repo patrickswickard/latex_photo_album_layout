@@ -34,10 +34,16 @@ class Page:
   def __init__(self):
     photo_max_dims = {}
     one_up = False
-    landscape_width = photo_max_dims.get('landscape_width',7.5)
-    landscape_height = photo_max_dims.get('landscape_height',4)
-    portrait_width = photo_max_dims.get('portrait_width',7.5)
-    portrait_height = photo_max_dims.get('portrait_height',4)
+    if one_up:
+      landscape_width = photo_max_dims.get('landscape_width',7.5)
+      landscape_height = photo_max_dims.get('landscape_height',9.0)
+      portrait_width = photo_max_dims.get('portrait_width',7.5)
+      portrait_height = photo_max_dims.get('portrait_height',9.0)
+    else:
+      landscape_width = photo_max_dims.get('landscape_width',7.5)
+      landscape_height = photo_max_dims.get('landscape_height',4)
+      portrait_width = photo_max_dims.get('portrait_width',7.5)
+      portrait_height = photo_max_dims.get('portrait_height',4)
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 8.5x11
@@ -106,7 +112,9 @@ class Page:
     """Print the final caption line (special case)"""
     if self.one_up:
       if text:
+        thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\n')
+        thisfile.write('\\end{center}\n')
       else:
         thisfile.write('\n')
     else:
