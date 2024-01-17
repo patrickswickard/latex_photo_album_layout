@@ -77,7 +77,7 @@ class Page:
     if self.one_up:
       # center is different
       thisfile.write('\\begin{center}')
-      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) = 'in,'
+      thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,'
                      + 'height=' + str(self.landscape_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
       thisfile.write('\\end{center}')
