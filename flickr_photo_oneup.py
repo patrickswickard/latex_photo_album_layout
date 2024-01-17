@@ -33,7 +33,7 @@ class Page:
   """Class representing a single page with checks to see what layouts can work"""
   def __init__(self):
     photo_max_dims = {}
-    one_up = False
+    one_up = True
     landscape_width = photo_max_dims.get('landscape_width',7.5)
     landscape_height = photo_max_dims.get('landscape_height',4)
     portrait_width = photo_max_dims.get('portrait_width',7.5)
@@ -54,46 +54,79 @@ class Page:
 
   def canfit_l(self):
     """Determine if page can fit another image in landscape orientation"""
-    if self.layout == '':
-      return True
+    if self.one_up:
+      if self.layout == '':
+        return True
+    else:
+      canfit_set = {'','L','P','PP'}
+      if self.layout in canfit_set:
+        return True
     return False
 
   def canfit_p(self):
     """Determine if page can fit another image in portrait orientation"""
-    if self.layout == '':
-      return True
+    if self.one_up:
+      if self.layout == '':
+        return True
+    else:
+      canfit_set = {'','L','LP','P','PP','PPP'}
+      if self.layout in canfit_set:
+        return True
     return False
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
     landscape_width = 7.5
     landscape_height = 9.0
-    thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
-                   + 'height=' + str(landscape_height) + 'in,'
-                   + 'keepaspectratio]{' + filename + '}\n')
+    if self.one_up:
+      # center is different in generic
+      thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
+                     + 'height=' + str(landscape_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
+                     + 'height=' + str(landscape_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
     portrait_width = 7.5
     portrait_height = 9.0
-    thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
-                   + 'height=' + str(portrait_height) + 'in,'
-                   + 'keepaspectratio]{' + filename + '}\n')
+    if self.one_up:
+      # center is different
+      thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
+                     + 'height=' + str(portrait_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
+    else:
+      thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
+                     + 'height=' + str(portrait_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
 
   def print_caption_line(self,thisfile,text):
     """Print a caption line"""
-    if text:
-      thisfile.write(text +'\\\\\n')
+    if self.one_up:
+      if text:
+        thisfile.write(text +'\\\\\n')
+      else:
+        thisfile.write('\n')
     else:
-      thisfile.write('\n')
+      if text:
+        thisfile.write(text +'\\\\\n')
+      else:
+        thisfile.write('\n')
 
   # final line does not need linebreak because of pagebreak
   def print_caption_line_final(self,thisfile,text):
     """Print the final caption line (special case)"""
-    if text:
-      thisfile.write(text +'\n')
+    if self.one_up:
+      if text:
+        thisfile.write(text +'\n')
+      else:
+        thisfile.write('\n')
     else:
-      thisfile.write('\n')
+      if text:
+        thisfile.write(text +'\n')
+      else:
+        thisfile.write('\n')
 
   def print_ll(self,thisfile):
     """Print a page with LL orientation"""
@@ -331,8 +364,15 @@ class Section:
     thisfile.write('\\url{' + self.url + '}\n\n')
     thisfile.write('Scan the QR code below to go to the original album '
                    + 'with full-size photos on Flickr:\n\n')
-    thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
+    thisfile.write('\\includegraphics[width=' + str(self.qrdim) + 'in]{' + qr_location + '}\n')
     thisfile.write('\\pagebreak\n')
+    if self.blank_after_qr:
+      Section.print_blank_page(thisfile)
+    #thisfile.write('\\newpage\n')
+    #thisfile.write('\n')
+    #thisfile.write('\ % The empty page\n')
+    #thisfile.write('\n')
+    #thisfile.write('\\newpage\n')
 
 class Book:
   """Book class representing a single photo book"""
@@ -344,6 +384,8 @@ class Book:
     self.date = ''
     self.url = ''
     self.qr = ''
+    self.paper_dimensions = {}
+    self.one_up = False
 
   def print_book(self):
     """Print book to .tex file"""
@@ -359,13 +401,25 @@ class Book:
 
   def print_preamble(self,thisfile):
     """Print preamble of latex document given margins which are currently ignored"""
+    if not self.one_up:
+      # ignore inputs for now
+      self.paper_dimensions = {}
+    top_margin = self.paper_dimensions.get('top_margin',0.75)
+    bottom_margin = self.paper_dimensions.get('bottom_margin',0.75)
+    left_margin = self.paper_dimensions.get('left_margin',0.75)
+    right_margin = self.paper_dimensions.get('right_margin',0.75)
+    paper_width = self.paper_dimensions.get('paper_width',8.5)
+    paper_height = self.paper_dimensions.get('paper_height',11)
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
-    thisfile.write('\\usepackage[top=' + str(0.75) + 'in,'
-                   + ' bottom=' + str(0.75) + 'in,'
-                   + ' left=' + str(0.5) + 'in,'
-                   + ' right=' + str(0.5) + 'in,'
-                   + ' paperwidth=' + str(8.5) + 'in,'
-                   + ' paperheight=' + str(11) + 'in]{geometry}\n')
+    if self.one_up:
+      thisfile.write('\\pagenumbering{gobble}\n')
+    thisfile.write('\\usepackage[top=' + str(top_margin) + 'in,'
+                   + ' bottom=' + str(bottom_margin) + 'in,'
+                   + ' left=' + str(left_margin) + 'in,'
+                   + ' right=' + str(right_margin) + 'in,'
+                   + ' paperwidth=' + str(paper_width) + 'in,'
+                   + ' paperheight=' + str(paper_height) + 'in'
+                   + ']{geometry}\n')
     thisfile.write("\\usepackage{amsfonts,amssymb,amsmath}\n")
     thisfile.write("\\usepackage{pslatex}\n")
     thisfile.write("\\usepackage[pdftex]{graphicx}\n")
