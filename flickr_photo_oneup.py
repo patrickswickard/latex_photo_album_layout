@@ -364,7 +364,9 @@ class Section:
     thisfile.write('\\url{' + self.url + '}\n\n')
     thisfile.write('Scan the QR code below to go to the original album '
                    + 'with full-size photos on Flickr:\n\n')
+    thisfile.write('\\begin{center}\n')
     thisfile.write('\\includegraphics[width=' + str(self.qrdim) + 'in]{' + qr_location + '}\n')
+    thisfile.write('\\end{center}\n')
     thisfile.write('\\pagebreak\n')
     if self.blank_after_qr:
       Section.print_blank_page(thisfile)

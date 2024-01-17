@@ -65,20 +65,44 @@ class Page:
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
-    thisfile.write('\\includegraphics[width=5.19in]{' + filename + '}\n')
+    landscape_width = 5.19
+    thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in'
+                   + ']{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
+    portrait_height = 4
     """Print a photo inline in portrait format"""
-    thisfile.write('\\includegraphics[height=4in]{' + filename + '}\n')
+    thisfile.write('\\includegraphics[height=' + str(portrait_height) + 'in'
+                   + ']{' + filename + '}\n')
 
   def print_caption_line(self,thisfile,text):
     """Print a caption line"""
-    thisfile.write(text +'\\\\\n')
+    if self.one_up:
+      if text:
+        thisfile.write('\\begin{center}\n')
+        thisfile.write(text +'\\\\\n')
+        thisfile.write('\\end{center}\n')
+      else:
+        thisfile.write('\n')
+    else:
+      if text:
+        thisfile.write(text +'\\\\\n')
+      else:
+        thisfile.write('\n')
 
   # final line does not need linebreak because of pagebreak
   def print_caption_line_final(self,thisfile,text):
     """Print the final caption line (special case)"""
-    thisfile.write(text +'\n')
+    if self.one_up:
+      if text:
+        thisfile.write(text +'\n')
+      else:
+        thisfile.write('\n')
+    else:
+      if text:
+        thisfile.write(text +'\n')
+      else:
+        thisfile.write('\n')
 
   def print_caption_line_co(self,thisfile,text):
     """Print a caption line caption only"""
@@ -441,8 +465,17 @@ class Section:
     thisfile.write('\\url{' + self.url + '}\n\n')
     thisfile.write('Scan the QR code below to go to the original album '
                    + 'with full-size photos on Flickr:\n\n')
-    thisfile.write('\\includegraphics[width=5.19in]{' + qr_location + '}\n')
+    thisfile.write('\\begin{center}\n')
+    thisfile.write('\\includegraphics[width=' + str(self.qrdim) + 'in]{' + qr_location + '}\n')
+    thisfile.write('\\end{center}\n')
     thisfile.write('\\pagebreak\n')
+    if self.blank_after_qr:
+      Section.print_blank_page(thisfile)
+    #thisfile.write('\\newpage\n')
+    #thisfile.write('\n')
+    #thisfile.write('\ % The empty page\n')
+    #thisfile.write('\n')
+    #thisfile.write('\\newpage\n')
 
 class Book:
   """Book class representing a single photo book"""
@@ -454,6 +487,7 @@ class Book:
     self.date = ''
     self.url = ''
     self.qr = ''
+    self.paper_dimensions = {}
     self.one_up = False
 
   def print_book(self):
@@ -481,13 +515,16 @@ class Book:
     thisfile.close()
 
   def print_preamble(self,thisfile):
-    """Print preamble of latex document with hard-coded margins"""
-    top_margin = 0.75
-    bottom_margin = 0.75
-    left_margin = 0.5
-    right_margin = 0.5
-    paper_width = 8.5
-    paper_height = 11.0
+    """Print preamble of latex document given margins which are currently ignored"""
+    if not self.one_up:
+      # ignore inputs for now
+      self.paper_dimensions = {}
+    top_margin = self.paper_dimensions.get('top_margin',0.75)
+    bottom_margin = self.paper_dimensions.get('bottom_margin',0.75)
+    left_margin = self.paper_dimensions.get('left_margin',0.75)
+    right_margin = self.paper_dimensions.get('right_margin',0.75)
+    paper_width = self.paper_dimensions.get('paper_width',8.5)
+    paper_height = self.paper_dimensions.get('paper_height',11)
     thisfile.write('\\documentclass[10pt,letterpaper]{article}\n')
     if self.one_up:
       thisfile.write('\\pagenumbering{gobble}\n')
