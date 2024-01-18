@@ -34,6 +34,7 @@ class Page:
   def __init__(self):
     photo_max_dims = {}
     one_up = True
+    caption_only = False
     if one_up:
       landscape_width = photo_max_dims.get('landscape_width',7.5)
       landscape_height = photo_max_dims.get('landscape_height',9.0)
@@ -52,6 +53,7 @@ class Page:
     self.portrait_width = portrait_width if portrait_width is not None else 7.5
     self.portrait_height = portrait_height if portrait_height is not None else 4
     self.one_up = one_up
+    self.caption_only = caption_only
 
   def add_photo(self,photo):
     """Try to add next photo to page"""
