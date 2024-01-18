@@ -83,8 +83,9 @@ class Page:
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
     if self.one_up:
-      landscape_width = 5.19
-      landscape_height = 4
+      # center is different
+      landscape_width = 7.5
+      landscape_height = 9.0
       thisfile.write('\\begin{center}')
       thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
                      + 'height=' + str(landscape_height) + 'in,'
@@ -93,14 +94,16 @@ class Page:
     else:
       landscape_width = 5.19
       landscape_height = 4
-      thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in'
-                     + ']{' + filename + '}\n')
+      thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
+                     + 'height=' + str(landscape_height) + 'in,'
+                     + 'keepaspectratio]{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
     """Print a photo inline in portrait format"""
     if self.one_up:
-      portrait_width = 5.19
-      portrait_height = 4
+      # center is different
+      portrait_width = 7.5
+      portrait_height = 9.0
       thisfile.write('\\begin{center}\n')
       thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
                      + 'height=' + str(portrait_height) + 'in,'

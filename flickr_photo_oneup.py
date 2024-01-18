@@ -92,8 +92,8 @@ class Page:
                      + 'keepaspectratio]{' + filename + '}\n')
       thisfile.write('\\end{center}')
     else:
-      landscape_width = 7.5
-      landscape_height = 9.0
+      landscape_width = 5.19
+      landscape_height = 4
       thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in,'
                      + 'height=' + str(landscape_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
@@ -110,8 +110,8 @@ class Page:
                      + 'keepaspectratio]{' + filename + '}\n')
       thisfile.write('\\end{center}\n')
     else:
-      portrait_width = 7.5
-      portrait_height = 9.0
+      portrait_width = 5.19
+      portrait_height = 4
       thisfile.write('\\includegraphics[width=' + str(portrait_width) + 'in,'
                      + 'height=' + str(portrait_height) + 'in,'
                      + 'keepaspectratio]{' + filename + '}\n')
