@@ -148,7 +148,8 @@ class Page:
     thisfile.write('\n')
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line_final(thisfile, capt_l2)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_l(self,thisfile):
     """Print a page with L orientation"""
@@ -159,7 +160,8 @@ class Page:
     self.print_landscape_line(thisfile, land1)
     thisfile.write('\n')
     self.print_caption_line_final(thisfile, capt_l1)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_pppp(self,thisfile):
     """Print a page with PPPP orientation"""
@@ -183,7 +185,8 @@ class Page:
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line(thisfile, capt_p3)
     self.print_caption_line_final(thisfile, capt_p4)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_ppp(self,thisfile):
     """Print a page with PPP orientation"""
@@ -203,7 +206,8 @@ class Page:
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line_final(thisfile, capt_p3)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_pp(self,thisfile):
     """Print a page with PP orientation"""
@@ -218,7 +222,8 @@ class Page:
     thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_p2)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_p(self,thisfile):
     """Print a page with P orientation"""
@@ -229,7 +234,8 @@ class Page:
     self.print_portrait_line(thisfile, port1)
     thisfile.write('\n')
     self.print_caption_line_final(thisfile, capt_p1)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_ppl(self,thisfile):
     """Print a page with PPL orientation"""
@@ -250,7 +256,8 @@ class Page:
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line_final(thisfile, capt_l1)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_lpp(self,thisfile):
     """Print a page with LPP orientation"""
@@ -271,7 +278,8 @@ class Page:
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_p2)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_pl(self,thisfile):
     """Print a page with PL orientation"""
@@ -288,7 +296,8 @@ class Page:
     thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_l1)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
   def print_lp(self,thisfile):
     """Print a page with LP orientation"""
@@ -305,7 +314,8 @@ class Page:
     thisfile.write('\n')
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line_final(thisfile, capt_p1)
-    thisfile.write('\\pagebreak\n')
+    if not self.caption_only:
+      thisfile.write('\\pagebreak\n')
 
 class Section:
   """Class representing a Book section representing a group of related Pages"""
