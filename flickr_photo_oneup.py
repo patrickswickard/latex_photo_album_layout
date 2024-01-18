@@ -407,6 +407,7 @@ class Book:
     self.qr = ''
     self.paper_dimensions = {}
     self.one_up = False
+    self.caption_only = False
 
   def print_book(self):
     """Print book to .tex file"""

@@ -490,7 +490,7 @@ class Section:
       else:
         print('That did not match any known layouts!')
         sys.exit(1)
-    thisfile.write('\\pagebreak\n')
+    self.thisfile.write('\\pagebreak\n')
 
   @staticmethod
   def print_blank_page(thisfile):
@@ -532,6 +532,7 @@ class Book:
     self.qr = ''
     self.paper_dimensions = {}
     self.one_up = False
+    self.caption_only = True
 
   def print_book(self):
     """Print book to .tex file"""
