@@ -401,7 +401,10 @@ class Book:
     # this is dodgy
     for thissection in self.section_list:
       thissection.thisfile = thisfile
-      thissection.print_section()
+      if self.caption_only:
+        thissection.print_section_caption_only()
+      else:
+        thissection.print_section()
     Book.print_end(thisfile)
     thisfile.close()
 
