@@ -334,6 +334,8 @@ class Page:
 
   def print_llco(self,thisfile):
     """Print a page with LL orientation caption only"""
+    land1 = self.photo_list[0].location
+    land2 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
     capt_l2 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -342,12 +344,17 @@ class Page:
 
   def print_lco(self,thisfile):
     """Print a page with L orientation caption only"""
+    land1 = self.photo_list[0].location
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
     self.print_caption_line_final_co(thisfile, capt_l1)
 
   def print_ppppco(self,thisfile):
     """Print a page with PPPP orientation caption only"""
+    port1 = self.photo_list[0].location
+    port2 = self.photo_list[1].location
+    port3 = self.photo_list[2].location
+    port4 = self.photo_list[3].location
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
@@ -360,6 +367,9 @@ class Page:
 
   def print_pppco(self,thisfile):
     """Print a page with PPP orientation caption only"""
+    port1 = self.photo_list[0].location
+    port2 = self.photo_list[1].location
+    port3 = self.photo_list[2].location
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
@@ -370,6 +380,8 @@ class Page:
 
   def print_ppco(self,thisfile):
     """Print a page with PP orientation caption only"""
+    port1 = self.photo_list[0].location
+    port2 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -378,12 +390,16 @@ class Page:
 
   def print_pco(self,thisfile):
     """Print a page with P orientation caption only"""
+    port1 = self.photo_list[0].location
     capt_p1 = self.photo_list[0].caption
-    thisfile.write('\n')
+    thisfile.wri    port1 = self.photo_list[0].locationte('\n')
     self.print_caption_line_final_co(thisfile, capt_p1)
 
   def print_pplco(self,thisfile):
     """Print a page with PPL orientation caption only"""
+    port1 = self.photo_list[0].location
+    port2 = self.photo_list[1].location
+    land1 = self.photo_list[2].location
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_l1 = self.photo_list[2].caption
@@ -394,6 +410,9 @@ class Page:
 
   def print_lppco(self,thisfile):
     """Print a page with LPP orientation caption only"""
+    land1 = self.photo_list[0].location
+    port1 = self.photo_list[1].location
+    port2 = self.photo_list[2].location
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     capt_p2 = self.photo_list[2].caption
@@ -404,6 +423,8 @@ class Page:
 
   def print_plco(self,thisfile):
     """Print a page with PL orientation caption only"""
+    port1 = self.photo_list[0].location
+    land1 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
     capt_l1 = self.photo_list[1].caption
     thisfile.write('\n')
@@ -412,6 +433,8 @@ class Page:
 
   def print_lpco(self,thisfile):
     """Print a page with LP orientation caption only"""
+    land1 = self.photo_list[0].location
+    port1 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     thisfile.write('\n')
