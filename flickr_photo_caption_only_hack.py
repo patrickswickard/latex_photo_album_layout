@@ -541,8 +541,13 @@ class Book:
     Book.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
+#      thissection.thisfile = thisfile
+#      thissection.print_section()
       thissection.thisfile = thisfile
-      thissection.print_section()
+      if self.caption_only:
+        thissection.print_section_caption_only()
+      else:
+        thissection.print_section()
     Book.print_end(thisfile)
     thisfile.close()
 
@@ -554,7 +559,10 @@ class Book:
     # this is dodgy
     for thissection in self.section_list:
       thissection.thisfile = thisfile
-      thissection.print_section_caption_only()
+      if self.caption_only:
+        thissection.print_section_caption_only()
+      else:
+        thissection.print_section()
     Book.print_end(thisfile)
     thisfile.close()
 
