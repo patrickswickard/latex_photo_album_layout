@@ -563,25 +563,25 @@ class Section:
     if self.caption_only:
       for thispage in self.page_list:
         if thispage.layout == 'LL':
-          thispage.print_llco(self.thisfile)
+          thispage.print_ll(self.thisfile)
         elif thispage.layout == 'L':
-          thispage.print_lco(self.thisfile)
+          thispage.print_l(self.thisfile)
         elif thispage.layout == 'PPPP':
-          thispage.print_ppppco(self.thisfile)
+          thispage.print_pppp(self.thisfile)
         elif thispage.layout == 'PPP':
-          thispage.print_pppco(self.thisfile)
+          thispage.print_ppp(self.thisfile)
         elif thispage.layout == 'PP':
-          thispage.print_ppco(self.thisfile)
+          thispage.print_pp(self.thisfile)
         elif thispage.layout == 'P':
-          thispage.print_pco(self.thisfile)
+          thispage.print_p(self.thisfile)
         elif thispage.layout == 'PPL':
-          thispage.print_pplco(self.thisfile)
+          thispage.print_ppl(self.thisfile)
         elif thispage.layout == 'LPP':
-          thispage.print_lppco(self.thisfile)
+          thispage.print_lpp(self.thisfile)
         elif thispage.layout == 'PL':
-          thispage.print_plco(self.thisfile)
+          thispage.print_pl(self.thisfile)
         elif thispage.layout == 'LP':
-          thispage.print_lpco(self.thisfile)
+          thispage.print_lp(self.thisfile)
         else:
           print('That did not match any known layouts!')
           sys.exit(1)
