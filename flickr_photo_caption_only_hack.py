@@ -541,23 +541,6 @@ class Book:
     Book.print_begin(thisfile)
     # this is dodgy
     for thissection in self.section_list:
-#      thissection.thisfile = thisfile
-#      thissection.print_section()
-      thissection.thisfile = thisfile
-      if self.caption_only:
-        thissection.print_section_caption_only()
-      else:
-        thissection.print_section()
-    Book.print_end(thisfile)
-    thisfile.close()
-
-  def print_book_caption_only(self):
-    """Print caption only book to .tex file"""
-    thisfile = self.thisfile
-    self.print_preamble(thisfile)
-    Book.print_begin(thisfile)
-    # this is dodgy
-    for thissection in self.section_list:
       thissection.thisfile = thisfile
       if self.caption_only:
         thissection.print_section_caption_only()
