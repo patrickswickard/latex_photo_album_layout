@@ -428,6 +428,8 @@ class Section:
     self.qr = ''
     self.qrdim = 5.19
     self.blank_after_qr = False
+    self.one_up = False
+    self.caption_only = True
 
   def add_page(self,page):
     """Append a page to section"""

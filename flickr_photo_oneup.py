@@ -333,7 +333,7 @@ class Section:
     self.qr = ''
     self.qrdim = 5.19
     self.blank_after_qr = False
-    self.one_up = False
+    self.one_up = True
     self.caption_only = False
 
   def add_page(self,page):
