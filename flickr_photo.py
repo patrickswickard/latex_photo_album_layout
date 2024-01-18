@@ -375,11 +375,6 @@ class Section:
     thisfile.write('\\pagebreak\n')
     if self.blank_after_qr:
       Section.print_blank_page(thisfile)
-    #thisfile.write('\\newpage\n')
-    #thisfile.write('\n')
-    #thisfile.write('\ % The empty page\n')
-    #thisfile.write('\n')
-    #thisfile.write('\\newpage\n')
 
 class Book:
   """Book class representing a single photo book"""
