@@ -82,15 +82,29 @@ class Page:
 
   def print_landscape_line(self,thisfile,filename):
     """Print a photo inline in landscape format"""
-    landscape_width = 5.19
-    thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in'
-                   + ']{' + filename + '}\n')
+    if self.one_up:
+      landscape_width = 5.19
+      landscape_height = 4
+      thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in'
+                     + ']{' + filename + '}\n')
+    else:
+      landscape_width = 5.19
+      landscape_height = 4
+      thisfile.write('\\includegraphics[width=' + str(landscape_width) + 'in'
+                     + ']{' + filename + '}\n')
 
   def print_portrait_line(self,thisfile, filename):
-    portrait_height = 4
     """Print a photo inline in portrait format"""
-    thisfile.write('\\includegraphics[height=' + str(portrait_height) + 'in'
-                   + ']{' + filename + '}\n')
+    if self.one_up:
+      portrait_width = 5.19
+      portrait_height = 4
+      thisfile.write('\\includegraphics[height=' + str(portrait_height) + 'in'
+                     + ']{' + filename + '}\n')
+    else:
+      portrait_width = 5.19
+      portrait_height = 4
+      thisfile.write('\\includegraphics[height=' + str(portrait_height) + 'in'
+                     + ']{' + filename + '}\n')
 
   def print_caption_line(self,thisfile,text):
     """Print a caption line"""
