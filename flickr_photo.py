@@ -140,12 +140,13 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     capt_l2 = self.photo_list[1].caption
     thisfile.write('\n')
-    thisfile.write('% Layout LL\n')
-    self.print_landscape_line(thisfile, land1)
-    thisfile.write('\n')
-    thisfile.write('\\vspace{0.25in}\n')
-    self.print_landscape_line(thisfile, land2)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout LL\n')
+      self.print_landscape_line(thisfile, land1)
+      thisfile.write('\n')
+      thisfile.write('\\vspace{0.25in}\n')
+      self.print_landscape_line(thisfile, land2)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line_final(thisfile, capt_l2)
     if not self.caption_only:
@@ -156,9 +157,10 @@ class Page:
     land1 = self.photo_list[0].location
     capt_l1 = self.photo_list[0].caption
     thisfile.write('\n')
-    thisfile.write('% Layout L\n')
-    self.print_landscape_line(thisfile, land1)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout L\n')
+      self.print_landscape_line(thisfile, land1)
+      thisfile.write('\n')
     self.print_caption_line_final(thisfile, capt_l1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
@@ -174,13 +176,14 @@ class Page:
     capt_p3 = self.photo_list[2].caption
     capt_p4 = self.photo_list[3].caption
     thisfile.write('\n')
-    thisfile.write('% Layout PPPP\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
-    thisfile.write('\n')
-    self.print_portrait_line(thisfile, port3)
-    self.print_portrait_line(thisfile, port4)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout PPPP\n')
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
+      thisfile.write('\n')
+      self.print_portrait_line(thisfile, port3)
+      self.print_portrait_line(thisfile, port4)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line(thisfile, capt_p3)
@@ -197,12 +200,13 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
     thisfile.write('\n')
-    thisfile.write('% Layout PPP\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
-    thisfile.write('\n')
-    self.print_portrait_line(thisfile, port3)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout PPP\n')
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
+      thisfile.write('\n')
+      self.print_portrait_line(thisfile, port3)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line_final(thisfile, capt_p3)
@@ -216,10 +220,11 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     thisfile.write('\n')
-    thisfile.write('% Layout PP\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout PP\n')
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_p2)
     if not self.caption_only:
@@ -230,9 +235,10 @@ class Page:
     port1 = self.photo_list[0].location
     capt_p1 = self.photo_list[0].caption
     thisfile.write('\n')
-    thisfile.write('% Layout P\n')
-    self.print_portrait_line(thisfile, port1)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout P\n')
+      self.print_portrait_line(thisfile, port1)
+      thisfile.write('\n')
     self.print_caption_line_final(thisfile, capt_p1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
@@ -246,13 +252,14 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_l1 = self.photo_list[2].caption
     thisfile.write('\n')
-    thisfile.write('% Layout PPL\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
-    thisfile.write('\n')
-    thisfile.write('\\vspace{0.25in}\n')
-    self.print_landscape_line(thisfile, land1)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout PPL\n')
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
+      thisfile.write('\n')
+      thisfile.write('\\vspace{0.25in}\n')
+      self.print_landscape_line(thisfile, land1)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line_final(thisfile, capt_l1)
@@ -268,13 +275,14 @@ class Page:
     capt_p1 = self.photo_list[1].caption
     capt_p2 = self.photo_list[2].caption
     thisfile.write('\n')
-    thisfile.write('% Layout LPP\n')
-    self.print_landscape_line(thisfile, land1)
-    thisfile.write('\n')
-    thisfile.write('\\vspace{0.25in}\n')
-    self.print_portrait_line(thisfile, port1)
-    self.print_portrait_line(thisfile, port2)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout LPP\n')
+      self.print_landscape_line(thisfile, land1)
+      thisfile.write('\n')
+      thisfile.write('\\vspace{0.25in}\n')
+      self.print_portrait_line(thisfile, port1)
+      self.print_portrait_line(thisfile, port2)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_p2)
@@ -288,12 +296,13 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     capt_l1 = self.photo_list[1].caption
     thisfile.write('\n')
-    thisfile.write('% Layout PL\n')
-    self.print_portrait_line(thisfile, port1)
-    thisfile.write('\n')
-    thisfile.write('\\vspace{0.25in}\n')
-    self.print_landscape_line(thisfile, land1)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout PL\n')
+      self.print_portrait_line(thisfile, port1)
+      thisfile.write('\n')
+      thisfile.write('\\vspace{0.25in}\n')
+      self.print_landscape_line(thisfile, land1)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_l1)
     if not self.caption_only:
@@ -306,12 +315,13 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     thisfile.write('\n')
-    thisfile.write('% Layout LP\n')
-    self.print_landscape_line(thisfile, land1)
-    thisfile.write('\n')
-    thisfile.write('\\vspace{0.25in}\n')
-    self.print_portrait_line(thisfile, port1)
-    thisfile.write('\n')
+    if not self.caption_only:
+      thisfile.write('% Layout LP\n')
+      self.print_landscape_line(thisfile, land1)
+      thisfile.write('\n')
+      thisfile.write('\\vspace{0.25in}\n')
+      self.print_portrait_line(thisfile, port1)
+      thisfile.write('\n')
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line_final(thisfile, capt_p1)
     if not self.caption_only:
