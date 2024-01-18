@@ -149,15 +149,6 @@ class Page:
       else:
         thisfile.write('\n')
 
-  def print_caption_line_co(self,thisfile,text):
-    """Print a caption line caption only"""
-    thisfile.write(text +'\\\\\n')
-
-  # final line does not need linebreak because of pagebreak
-  def print_caption_line_final_co(self,thisfile,text):
-    """Print the final caption line (special case) caption only"""
-    thisfile.write(text +'\n')
-
   def print_ll(self,thisfile):
     """Print a page with LL orientation"""
     land1 = self.photo_list[0].location
@@ -366,8 +357,8 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_landscape_line(thisfile, land2)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_l1)
-    self.print_caption_line_final_co(thisfile, capt_l2)
+    self.print_caption_line(thisfile, capt_l1)
+    self.print_caption_line_final(thisfile, capt_l2)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -380,7 +371,7 @@ class Page:
       thisfile.write('% Layout L\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-    self.print_caption_line_final_co(thisfile, capt_l1)
+    self.print_caption_line_final(thisfile, capt_l1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -403,10 +394,10 @@ class Page:
       self.print_portrait_line(thisfile, port3)
       self.print_portrait_line(thisfile, port4)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_co(thisfile, capt_p2)
-    self.print_caption_line_co(thisfile, capt_p3)
-    self.print_caption_line_final_co(thisfile, capt_p4)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_p2)
+    self.print_caption_line(thisfile, capt_p3)
+    self.print_caption_line_final(thisfile, capt_p4)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -426,9 +417,9 @@ class Page:
       thisfile.write('\n')
       self.print_portrait_line(thisfile, port3)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_co(thisfile, capt_p2)
-    self.print_caption_line_final_co(thisfile, capt_p3)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_p2)
+    self.print_caption_line_final(thisfile, capt_p3)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -444,8 +435,8 @@ class Page:
       self.print_portrait_line(thisfile, port1)
       self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_final_co(thisfile, capt_p2)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_p2)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -458,7 +449,7 @@ class Page:
       thisfile.write('% Layout P\n')
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-    self.print_caption_line_final_co(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_p1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -479,9 +470,9 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_co(thisfile, capt_p2)
-    self.print_caption_line_final_co(thisfile, capt_l1)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_p2)
+    self.print_caption_line_final(thisfile, capt_l1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -502,9 +493,9 @@ class Page:
       self.print_portrait_line(thisfile, port1)
       self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_l1)
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_final_co(thisfile, capt_p2)
+    self.print_caption_line(thisfile, capt_l1)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_p2)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -522,8 +513,8 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_p1)
-    self.print_caption_line_final_co(thisfile, capt_l1)
+    self.print_caption_line(thisfile, capt_p1)
+    self.print_caption_line_final(thisfile, capt_l1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -541,8 +532,8 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-    self.print_caption_line_co(thisfile, capt_l1)
-    self.print_caption_line_final_co(thisfile, capt_p1)
+    self.print_caption_line(thisfile, capt_l1)
+    self.print_caption_line_final(thisfile, capt_p1)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
