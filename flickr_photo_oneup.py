@@ -86,8 +86,6 @@ class Page:
     """Print a photo inline in landscape format"""
     if self.one_up:
       # center is different
-      landscape_width = 7.5
-      landscape_height = 9.0
       thisfile.write('\\begin{center}')
       thisfile.write('\\includegraphics[width=' + str(self.landscape_width) + 'in,'
                      + 'height=' + str(self.landscape_height) + 'in,'
@@ -102,8 +100,6 @@ class Page:
     """Print a photo inline in portrait format"""
     if self.one_up:
       # center is different
-      portrait_width = 7.5
-      portrait_height = 9.0
       thisfile.write('\\begin{center}\n')
       thisfile.write('\\includegraphics[width=' + str(self.portrait_width) + 'in,'
                      + 'height=' + str(self.portrait_height) + 'in,'
