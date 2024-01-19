@@ -37,6 +37,16 @@ class Page:
     portrait_width = photo_max_dims.get('portrait_width',7.5)
     portrait_height = photo_max_dims.get('portrait_height',4)
     caption_only = False
+    if one_up:
+      landscape_width = photo_max_dims.get('landscape_width',7.5)
+      landscape_height = photo_max_dims.get('landscape_height',9.0)
+      portrait_width = photo_max_dims.get('portrait_width',7.5)
+      portrait_height = photo_max_dims.get('portrait_height',9.0)
+    else:
+      landscape_width = photo_max_dims.get('landscape_width',7.5)
+      landscape_height = photo_max_dims.get('landscape_height',4)
+      portrait_width = photo_max_dims.get('portrait_width',7.5)
+      portrait_height = photo_max_dims.get('portrait_height',4)
     self.photo_list = []
     self.layout = ''
     # currently hard-coded for 8.5x11
@@ -350,30 +360,57 @@ class Section:
     """Print a section of book"""
     if self.qr != '':
       self.print_qr_page(self.thisfile,self.qr)
-    for thispage in self.page_list:
-      if thispage.layout == 'LL':
-        thispage.print_ll(self.thisfile)
-      elif thispage.layout == 'L':
-        thispage.print_l(self.thisfile)
-      elif thispage.layout == 'PPPP':
-        thispage.print_pppp(self.thisfile)
-      elif thispage.layout == 'PPP':
-        thispage.print_ppp(self.thisfile)
-      elif thispage.layout == 'PP':
-        thispage.print_pp(self.thisfile)
-      elif thispage.layout == 'P':
-        thispage.print_p(self.thisfile)
-      elif thispage.layout == 'PPL':
-        thispage.print_ppl(self.thisfile)
-      elif thispage.layout == 'LPP':
-        thispage.print_lpp(self.thisfile)
-      elif thispage.layout == 'PL':
-        thispage.print_pl(self.thisfile)
-      elif thispage.layout == 'LP':
-        thispage.print_lp(self.thisfile)
-      else:
-        print('That did not match any known layouts!')
-        sys.exit(1)
+    if self.caption_only:
+      for thispage in self.page_list:
+        if thispage.layout == 'LL':
+          thispage.print_ll(self.thisfile)
+        elif thispage.layout == 'L':
+          thispage.print_l(self.thisfile)
+        elif thispage.layout == 'PPPP':
+          thispage.print_pppp(self.thisfile)
+        elif thispage.layout == 'PPP':
+          thispage.print_ppp(self.thisfile)
+        elif thispage.layout == 'PP':
+          thispage.print_pp(self.thisfile)
+        elif thispage.layout == 'P':
+          thispage.print_p(self.thisfile)
+        elif thispage.layout == 'PPL':
+          thispage.print_ppl(self.thisfile)
+        elif thispage.layout == 'LPP':
+          thispage.print_lpp(self.thisfile)
+        elif thispage.layout == 'PL':
+          thispage.print_pl(self.thisfile)
+        elif thispage.layout == 'LP':
+          thispage.print_lp(self.thisfile)
+        else:
+          print('That did not match any known layouts!')
+          sys.exit(1)
+      self.thisfile.write('\\pagebreak\n')
+    else:
+      for thispage in self.page_list:
+        if thispage.layout == 'LL':
+          thispage.print_ll(self.thisfile)
+        elif thispage.layout == 'L':
+          thispage.print_l(self.thisfile)
+        elif thispage.layout == 'PPPP':
+          thispage.print_pppp(self.thisfile)
+        elif thispage.layout == 'PPP':
+          thispage.print_ppp(self.thisfile)
+        elif thispage.layout == 'PP':
+          thispage.print_pp(self.thisfile)
+        elif thispage.layout == 'P':
+          thispage.print_p(self.thisfile)
+        elif thispage.layout == 'PPL':
+          thispage.print_ppl(self.thisfile)
+        elif thispage.layout == 'LPP':
+          thispage.print_lpp(self.thisfile)
+        elif thispage.layout == 'PL':
+          thispage.print_pl(self.thisfile)
+        elif thispage.layout == 'LP':
+          thispage.print_lp(self.thisfile)
+        else:
+          print('That did not match any known layouts!')
+          sys.exit(1)
 
   @staticmethod
   def print_blank_page(thisfile):
@@ -421,7 +458,7 @@ class Book:
     for thissection in self.section_list:
       thissection.thisfile = thisfile
       if self.caption_only:
-        thissection.print_section_caption_only()
+        thissection.print_section()
       else:
         thissection.print_section()
     Book.print_end(thisfile)
