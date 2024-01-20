@@ -32,10 +32,6 @@ class Photo:
 class Page:
   """Class representing a single page with checks to see what layouts can work"""
   def __init__(self,photo_max_dims,one_up=False):
-    landscape_width = photo_max_dims.get('landscape_width',7.5)
-    landscape_height = photo_max_dims.get('landscape_height',4)
-    portrait_width = photo_max_dims.get('portrait_width',7.5)
-    portrait_height = photo_max_dims.get('portrait_height',4)
     caption_only = False
     if one_up:
       landscape_width = photo_max_dims.get('landscape_width',7.5)
