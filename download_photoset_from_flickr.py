@@ -1,4 +1,5 @@
 """Download a photo set from Flickr by id"""
+import time
 import os
 import shutil
 import json
@@ -6,7 +7,7 @@ import requests
 
 # REPLACEME this changes regularly, see e.g.
 # https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
-API_KEY = '3b79d4271d8e9784144f1d369da743dd'
+API_KEY = '48b0c43f1da3d05ba2037fb41950d946'
 
 photoset_id_list = [
   #'CHANGEME'
@@ -16,7 +17,10 @@ photoset_id_list = [
   #'72177720310604095'
   #'72177720310657841' #dickjr
   #'72177720314043112' #houses
-  '72177720314181850' #strips
+  #'72177720314181850' #strips
+  #'72177720314471684' #angry kevin
+  #'72177720314473955' #faces 1
+  '72177720314495494' #faces 2
   #'72177720312512993'
 ]
 
@@ -34,6 +38,7 @@ def get_photoset_info(this_photoset_id):
                            + '&format=json&nojsoncallback=1')
   print(api_get_photolist_url)
   photolist_api_output = requests.get(api_get_photolist_url)
+  print(photolist_api_output.text)
   photolist_hash = json.loads(photolist_api_output.text)
   return photolist_hash
 
@@ -75,6 +80,8 @@ def dump_all_photo_json_to_cache_dir(this_photoset_id,this_all_photo_hash):
 
 def get_photo_info(this_photo_info,base_path,thisalbum_hash_entry):
   """Get photo info and download photo ultimately I guess"""
+  print("easy now...")
+  time.sleep(1)
   this_photo_info_hash = {}
   this_photo_id = this_photo_info['id']
   this_photo_server = this_photo_info['server']
