@@ -88,6 +88,7 @@ def get_photo_info(thisphoto_hash,this_album):
   photo_filename = myid + '.jpg'
   location = photo_prefix + photo_filename
   caption = thisphoto_hash['title']
+  caption = modify_caption(caption)
   #caption = ''
   width = thisphoto_hash['width']
   height = thisphoto_hash['height']
@@ -118,6 +119,9 @@ def get_section(this_album,page_list):
   else:
     this_section.blank_after_qr = False
   return this_section
+
+def modify_caption(caption):
+  return caption
 
 def get_album_info(album_hash,this_album_code):
   """Get album info from album hash"""
