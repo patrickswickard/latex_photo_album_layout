@@ -145,6 +145,7 @@ class Page:
     land2 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
     capt_l2 = self.photo_list[1].caption
+    captionlist = [capt_l1, capt_l2]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout LL\n')
@@ -155,6 +156,10 @@ class Page:
       thisfile.write('\n')
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line_final(thisfile, capt_l2)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
+
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -162,12 +167,16 @@ class Page:
     """Print a page with L orientation"""
     land1 = self.photo_list[0].location
     capt_l1 = self.photo_list[0].caption
+    captionlist = [capt_l1]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout L\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
     self.print_caption_line_final(thisfile, capt_l1)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -181,6 +190,7 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
     capt_p4 = self.photo_list[3].caption
+    captionlist = [capt_p1,capt_p2,capt_p3,capt_p4]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PPPP\n')
@@ -194,6 +204,9 @@ class Page:
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line(thisfile, capt_p3)
     self.print_caption_line_final(thisfile, capt_p4)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -205,6 +218,7 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
+    captionlist = [capt_p1,capt_p2,capt_p3]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PPP\n')
@@ -216,6 +230,9 @@ class Page:
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line_final(thisfile, capt_p3)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -225,6 +242,7 @@ class Page:
     port2 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
+    captionlist = [capt_p1,capt_p2]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PP\n')
@@ -233,6 +251,9 @@ class Page:
       thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_p2)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -240,12 +261,16 @@ class Page:
     """Print a page with P orientation"""
     port1 = self.photo_list[0].location
     capt_p1 = self.photo_list[0].caption
+    captionlist = [capt_p1]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout P\n')
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
     self.print_caption_line_final(thisfile, capt_p1)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -257,6 +282,7 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     capt_l1 = self.photo_list[2].caption
+    captionlist = [capt_p1,capt_p2,capt_l1]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PPL\n')
@@ -269,6 +295,9 @@ class Page:
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line(thisfile, capt_p2)
     self.print_caption_line_final(thisfile, capt_l1)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -280,6 +309,7 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     capt_p2 = self.photo_list[2].caption
+    captionlist = [capt_l1,capt_p1,capt_p2]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout LPP\n')
@@ -292,6 +322,9 @@ class Page:
     self.print_caption_line(thisfile, capt_l1)
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_p2)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -301,6 +334,7 @@ class Page:
     land1 = self.photo_list[1].location
     capt_p1 = self.photo_list[0].caption
     capt_l1 = self.photo_list[1].caption
+    captionlist = [capt_p1,capt_l1]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PL\n')
@@ -311,6 +345,9 @@ class Page:
       thisfile.write('\n')
     self.print_caption_line(thisfile, capt_p1)
     self.print_caption_line_final(thisfile, capt_l1)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,item)
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -320,6 +357,7 @@ class Page:
     port1 = self.photo_list[1].location
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
+    captionlist = [capt_l1,capt_p1]
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout LP\n')
