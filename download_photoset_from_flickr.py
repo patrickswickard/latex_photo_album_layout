@@ -7,7 +7,7 @@ import requests
 
 # REPLACEME this changes regularly, see e.g.
 # https://www.flickr.com/services/api/explore/flickr.photosets.getPhotos
-API_KEY = '48b0c43f1da3d05ba2037fb41950d946'
+API_KEY = '33bf6adea0647101a54a3379521c55f5'
 
 photoset_id_list = [
   #'CHANGEME'
@@ -20,7 +20,9 @@ photoset_id_list = [
   #'72177720314181850' #strips
   #'72177720314471684' #angry kevin
   #'72177720314473955' #faces 1
-  '72177720314495494' #faces 2
+  #'72177720314495494' #faces 2
+  '72177720314497835' #wc_en
+  #'72177720314493202' #wc_fr
   #'72177720312512993'
 ]
 
