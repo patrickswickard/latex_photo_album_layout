@@ -154,11 +154,11 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_landscape_line(thisfile, land2)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_l1)
-    self.print_caption_line_final(thisfile, capt_l2)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_l1)
+    #self.print_caption_line_final(thisfile, capt_l2)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
 
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
@@ -173,10 +173,10 @@ class Page:
       thisfile.write('% Layout L\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-    self.print_caption_line_final(thisfile, capt_l1)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line_final(thisfile, capt_l1)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -200,13 +200,13 @@ class Page:
       self.print_portrait_line(thisfile, port3)
       self.print_portrait_line(thisfile, port4)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line(thisfile, capt_p2)
-    self.print_caption_line(thisfile, capt_p3)
-    self.print_caption_line_final(thisfile, capt_p4)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_p1)
+    #self.print_caption_line(thisfile, capt_p2)
+    #self.print_caption_line(thisfile, capt_p3)
+    #self.print_caption_line_final(thisfile, capt_p4)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -227,12 +227,12 @@ class Page:
       thisfile.write('\n')
       self.print_portrait_line(thisfile, port3)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line(thisfile, capt_p2)
-    self.print_caption_line_final(thisfile, capt_p3)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_p1)
+    #self.print_caption_line(thisfile, capt_p2)
+    #self.print_caption_line_final(thisfile, capt_p3)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -249,11 +249,11 @@ class Page:
       self.print_portrait_line(thisfile, port1)
       self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line_final(thisfile, capt_p2)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_p1)
+    #self.print_caption_line_final(thisfile, capt_p2)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -267,10 +267,10 @@ class Page:
       thisfile.write('% Layout P\n')
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-    self.print_caption_line_final(thisfile, capt_p1)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line_final(thisfile, capt_p1)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -292,12 +292,12 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line(thisfile, capt_p2)
-    self.print_caption_line_final(thisfile, capt_l1)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_p1)
+    #self.print_caption_line(thisfile, capt_p2)
+    #self.print_caption_line_final(thisfile, capt_l1)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -319,12 +319,12 @@ class Page:
       self.print_portrait_line(thisfile, port1)
       self.print_portrait_line(thisfile, port2)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_l1)
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line_final(thisfile, capt_p2)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_l1)
+    #self.print_caption_line(thisfile, capt_p1)
+    #self.print_caption_line_final(thisfile, capt_p2)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -343,11 +343,11 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_p1)
-    self.print_caption_line_final(thisfile, capt_l1)
-    #for item in captionlist[:-1]:
-    #  self.print_caption_line(thisfile,item)
-    #self.print_caption_line_final(thisfile,item)
+    #self.print_caption_line(thisfile, capt_p1)
+    #self.print_caption_line_final(thisfile, capt_l1)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -366,8 +366,11 @@ class Page:
       thisfile.write('\\vspace{0.25in}\n')
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
-    self.print_caption_line(thisfile, capt_l1)
-    self.print_caption_line_final(thisfile, capt_p1)
+    #self.print_caption_line(thisfile, capt_l1)
+    #self.print_caption_line_final(thisfile, capt_p1)
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
