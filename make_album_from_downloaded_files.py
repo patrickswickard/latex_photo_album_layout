@@ -6,7 +6,7 @@ import flickr_photo
 # NOTE you will need to replace any line with REPLACEME
 # with values appropriate to your system to use this script
 
-ONEUP_FORMAT = True
+ONEUP_FORMAT = False
 PAPER_WIDTH = 8.5
 PAPER_HEIGHT = 11.0
 TOP_MARGIN = 0.5
@@ -32,9 +32,9 @@ PHOTO_MAX_DIMS = {'landscape_width': LANDSCAPE_WIDTH,
 # entries are an album title and sequential list of photos
 # with id caption and url
 if ONEUP_FORMAT:
-  ALBUM_CODE = '72177720314497835' #REPLACEME
+  ALBUM_CODE = '72177720312512993' #REPLACEME
 else:
-  ALBUM_CODE = '72177720314497835' #REPLACEME
+  ALBUM_CODE = '72177720310657841' #REPLACEME
 # OTHER ALBUM CODES
 #album_code = '72177720310657841' #REPLACEME
 #album_code = '72177720311316693' #REPLACEME
@@ -44,7 +44,7 @@ else:
 #album_code = '72157621908701594' # sample album code
 # '72177720314495494' faces
 if ONEUP_FORMAT:
-  BOOK_FILENAME = 'WCENG'
+  BOOK_FILENAME = 'DFTM_REVISED_AGAIN_SUCKA3'
 else:
   BOOK_FILENAME = 'downloaded_album_666_2'
 
