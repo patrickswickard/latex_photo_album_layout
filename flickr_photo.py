@@ -21,7 +21,7 @@ class Photo:
     self.location = location
     #self.caption = pylatex.escape_latex(caption)
     self.caption = caption
-    self.alt_caption_list = []
+    self.altcaptionlist = []
     self.width = width
     self.height = height
     if width <= height:
@@ -158,6 +158,9 @@ class Page:
     capt_l2 = self.photo_list[1].caption
     captionlist = [capt_l1, capt_l2]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -178,6 +181,9 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     captionlist = [capt_l1]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -201,6 +207,9 @@ class Page:
     capt_p4 = self.photo_list[3].caption
     captionlist = [capt_p1,capt_p2,capt_p3,capt_p4]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -226,6 +235,9 @@ class Page:
     capt_p3 = self.photo_list[2].caption
     captionlist = [capt_p1,capt_p2,capt_p3]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -248,6 +260,9 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     captionlist = [capt_p1,capt_p2]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -266,6 +281,9 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     captionlist = [capt_p1]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -287,6 +305,9 @@ class Page:
     capt_l1 = self.photo_list[2].caption
     captionlist = [capt_p1,capt_p2,capt_l1]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -312,6 +333,9 @@ class Page:
     capt_p2 = self.photo_list[2].caption
     captionlist = [capt_l1,capt_p1,capt_p2]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -335,6 +359,9 @@ class Page:
     capt_l1 = self.photo_list[1].caption
     captionlist = [capt_p1,capt_l1]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
@@ -357,6 +384,9 @@ class Page:
     capt_p1 = self.photo_list[1].caption
     captionlist = [capt_l1,capt_p1]
     altcaptionlist = []
+    for item in self.photo_list:
+      thisaltcaptionlist = item.altcaptionlist
+      altcaptionlist += thisaltcaptionlist
     if altcaptionlist:
       captionlist = altcaptionlist
     thisfile.write('\n')
