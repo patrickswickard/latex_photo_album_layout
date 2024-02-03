@@ -88,13 +88,20 @@ def get_photo_info(thisphoto_hash,this_album):
   photo_filename = myid + '.jpg'
   location = photo_prefix + photo_filename
   caption = thisphoto_hash['title']
+  altcaptionlist = get_altcaptionlist(caption)
   #caption = ''
   width = thisphoto_hash['width']
   height = thisphoto_hash['height']
   thisphoto = flickr_photo.Photo(myid,url,location,caption,width,height)
   # bonus info
   thisphoto.album_title = this_album.title
+#  thisphoto.altcaptionlist = altcaptionlist
   return thisphoto
+
+def get_altcaptionlist(title):
+  title = 'Moby Dick'
+  author = 'Herman Melville'
+  return [title,author]
 
 def get_section(this_album,page_list):
   """Get a single section with qr code """
