@@ -19,7 +19,8 @@ class Photo:
     self.id = photoid
     self.url = url
     self.location = location
-    self.caption = pylatex.escape_latex(caption)
+    #self.caption = pylatex.escape_latex(caption)
+    self.caption = caption
     self.width = width
     self.height = height
     if width <= height:
@@ -112,6 +113,7 @@ class Page:
     """Print a caption line"""
     if self.one_up:
       if text:
+        text = pylatex.escape_latex(text)
         thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\\\\\n')
         thisfile.write('\\end{center}\n')
@@ -119,6 +121,7 @@ class Page:
         thisfile.write('\n')
     else:
       if text:
+        text = pylatex.escape_latex(text)
         thisfile.write(text +'\\\\\n')
       else:
         thisfile.write('\n')
@@ -128,6 +131,7 @@ class Page:
     """Print the final caption line (special case)"""
     if self.one_up:
       if text:
+        text = pylatex.escape_latex(text)
         thisfile.write('\\begin{center}\n')
         thisfile.write(text +'\n')
         thisfile.write('\\end{center}\n')
@@ -135,6 +139,7 @@ class Page:
         thisfile.write('\n')
     else:
       if text:
+        text = pylatex.escape_latex(text)
         thisfile.write(text +'\n')
       else:
         thisfile.write('\n')
