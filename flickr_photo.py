@@ -21,6 +21,7 @@ class Photo:
     self.location = location
     #self.caption = pylatex.escape_latex(caption)
     self.caption = caption
+    self.alt_caption_list = []
     self.width = width
     self.height = height
     if width <= height:
@@ -156,6 +157,9 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     capt_l2 = self.photo_list[1].caption
     captionlist = [capt_l1, capt_l2]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout LL\n')
@@ -173,6 +177,9 @@ class Page:
     land1 = self.photo_list[0].location
     capt_l1 = self.photo_list[0].caption
     captionlist = [capt_l1]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout L\n')
@@ -193,6 +200,9 @@ class Page:
     capt_p3 = self.photo_list[2].caption
     capt_p4 = self.photo_list[3].caption
     captionlist = [capt_p1,capt_p2,capt_p3,capt_p4]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PPPP\n')
@@ -215,6 +225,9 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_p3 = self.photo_list[2].caption
     captionlist = [capt_p1,capt_p2,capt_p3]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PPP\n')
@@ -234,6 +247,9 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     capt_p2 = self.photo_list[1].caption
     captionlist = [capt_p1,capt_p2]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PP\n')
@@ -249,6 +265,9 @@ class Page:
     port1 = self.photo_list[0].location
     capt_p1 = self.photo_list[0].caption
     captionlist = [capt_p1]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout P\n')
@@ -267,6 +286,9 @@ class Page:
     capt_p2 = self.photo_list[1].caption
     capt_l1 = self.photo_list[2].caption
     captionlist = [capt_p1,capt_p2,capt_l1]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PPL\n')
@@ -289,6 +311,9 @@ class Page:
     capt_p1 = self.photo_list[1].caption
     capt_p2 = self.photo_list[2].caption
     captionlist = [capt_l1,capt_p1,capt_p2]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout LPP\n')
@@ -309,6 +334,9 @@ class Page:
     capt_p1 = self.photo_list[0].caption
     capt_l1 = self.photo_list[1].caption
     captionlist = [capt_p1,capt_l1]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout PL\n')
@@ -328,6 +356,9 @@ class Page:
     capt_l1 = self.photo_list[0].caption
     capt_p1 = self.photo_list[1].caption
     captionlist = [capt_l1,capt_p1]
+    altcaptionlist = []
+    if altcaptionlist:
+      captionlist = altcaptionlist
     thisfile.write('\n')
     if not self.caption_only:
       thisfile.write('% Layout LP\n')
