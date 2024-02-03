@@ -144,6 +144,11 @@ class Page:
       else:
         thisfile.write('\n')
 
+  def print_caption_list(self,thisfile,captionlist):
+    for item in captionlist[:-1]:
+      self.print_caption_line(thisfile,item)
+    self.print_caption_line_final(thisfile,captionlist[-1])
+
   def print_ll(self,thisfile):
     """Print a page with LL orientation"""
     land1 = self.photo_list[0].location
@@ -161,10 +166,10 @@ class Page:
       thisfile.write('\n')
     #self.print_caption_line(thisfile, capt_l1)
     #self.print_caption_line_final(thisfile, capt_l2)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
-
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -179,9 +184,10 @@ class Page:
       self.print_landscape_line(thisfile, land1)
       thisfile.write('\n')
     #self.print_caption_line_final(thisfile, capt_l1)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -209,9 +215,10 @@ class Page:
     #self.print_caption_line(thisfile, capt_p2)
     #self.print_caption_line(thisfile, capt_p3)
     #self.print_caption_line_final(thisfile, capt_p4)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -235,9 +242,10 @@ class Page:
     #self.print_caption_line(thisfile, capt_p1)
     #self.print_caption_line(thisfile, capt_p2)
     #self.print_caption_line_final(thisfile, capt_p3)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -256,9 +264,10 @@ class Page:
       thisfile.write('\n')
     #self.print_caption_line(thisfile, capt_p1)
     #self.print_caption_line_final(thisfile, capt_p2)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -273,9 +282,10 @@ class Page:
       self.print_portrait_line(thisfile, port1)
       thisfile.write('\n')
     #self.print_caption_line_final(thisfile, capt_p1)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -300,9 +310,10 @@ class Page:
     #self.print_caption_line(thisfile, capt_p1)
     #self.print_caption_line(thisfile, capt_p2)
     #self.print_caption_line_final(thisfile, capt_l1)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -327,9 +338,10 @@ class Page:
     #self.print_caption_line(thisfile, capt_l1)
     #self.print_caption_line(thisfile, capt_p1)
     #self.print_caption_line_final(thisfile, capt_p2)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -350,9 +362,10 @@ class Page:
       thisfile.write('\n')
     #self.print_caption_line(thisfile, capt_p1)
     #self.print_caption_line_final(thisfile, capt_l1)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
@@ -373,9 +386,10 @@ class Page:
       thisfile.write('\n')
     #self.print_caption_line(thisfile, capt_l1)
     #self.print_caption_line_final(thisfile, capt_p1)
-    for item in captionlist[:-1]:
-      self.print_caption_line(thisfile,item)
-    self.print_caption_line_final(thisfile,captionlist[-1])
+    self.print_caption_list(thisfile,captionlist)
+    #for item in captionlist[:-1]:
+    #  self.print_caption_line(thisfile,item)
+    #self.print_caption_line_final(thisfile,captionlist[-1])
     if not self.caption_only:
       thisfile.write('\\pagebreak\n')
 
